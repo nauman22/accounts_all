@@ -1,0 +1,41 @@
+#telephpne1 {
+  font-size: .8rem;
+  border-radius: 10rem;
+  padding: 1rem;
+  margin-top: 15px;
+}
+
+#regirstered-card {
+  padding-top: 0px;
+}
+
+#registered-container {
+  padding-top: 35px;
+}
+
+#container-login {
+  padding-top: 50px;
+}
+
+#register-btn {
+  color: var(--bs-btn-color);
+  background-color: var(--bs-btn-bg);
+}
+
+#register-btn:hover {
+  background-color: black;
+}
+
+#loign-bbtn {
+  color: white;
+  background-color: var(--bs-btn-bg);
+}
+
+#loign-bbtn:hover {
+  background-color: black;
+}
+
+#div-reset-password {
+  background-color: #ffffff;
+}
+

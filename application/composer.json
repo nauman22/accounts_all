@@ -1,0 +1,10 @@
+{
+    "name": "firebase/php-jwt",
+    "description": "dd",
+    "autoload": {
+        "psr-4": {
+            "Firebase\\PhpJwt\\": "src/"
+        }
+    },
+    "require": {}
+}

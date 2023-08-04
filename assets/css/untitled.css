@@ -1,0 +1,55 @@
+#tittle {
+  font-size: 32px;
+  font-family: 'Montserrat';
+  font-weight: 300;
+}
+
+#sub-tittle {
+  height: 34px;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+#image-registered {
+  padding-top: 20px;
+  width: 30%;
+}
+
+#submit-btn-id {
+  color: white;
+  background-color: var(--bs-blue);
+}
+
+#submit-btn-id:hover {
+  color: blue;
+  background: white;
+  box-shadow: initial;
+}
+
+#about-txt {
+  font-weight: 600;
+}
+
+#footer-section {
+}
+
+#about-section {
+  padding: 1px;
+}
+
+#abou-heading {
+  color: #ffffff!important;
+}
+
+#about-us-image {
+}
+
+#image-block-c {
+  height: 70%;
+  width: 70%;
+}
+
+#btn-contacto {
+  background-color: #3a3aa2!important;
+}
+
