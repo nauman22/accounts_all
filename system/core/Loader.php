@@ -1323,7 +1323,7 @@ class CI_Loader {
 		}
 
 		// Load any custom config file
-		if (count((array)$autoload['config']) > 0)
+		if (count($autoload['config']) > 0)
 		{
 			foreach ($autoload['config'] as $val)
 			{
@@ -1334,7 +1334,7 @@ class CI_Loader {
 		// Autoload helpers and languages
 		foreach (array('helper', 'language') as $type)
 		{
-			if (isset($autoload[$type]) && count((array)$autoload[$type]) > 0)
+			if (isset($autoload[$type]) && count($autoload[$type]) > 0)
 			{
 				$this->$type($autoload[$type]);
 			}
@@ -1347,7 +1347,7 @@ class CI_Loader {
 		}
 
 		// Load libraries
-		if (isset($autoload['libraries']) && count((array)$autoload['libraries']) > 0)
+		if (isset($autoload['libraries']) && count($autoload['libraries']) > 0)
 		{
 			// Load the database driver.
 			if (in_array('database', $autoload['libraries']))

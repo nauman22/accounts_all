@@ -1,4 +1,4 @@
- <div id="layoutSidenav_content">
+<div id="layoutSidenav_content">
  <link rel="stylesheet" href="../css/NSB_Box.css" />
 
 <script src="../js/NSB_Box.js"></script>

@@ -40,25 +40,208 @@
 <main style="background: cadetblue !important;">
     <form action="#" type="post" id="myform"></form>
     <div class="container-fluid px-4">
-        <h1 class="mt-4"><i class="fas fa-tachometer-alt "></i> Dashboard Expenses <?php 
-            $monthNum  = $_GET['month'];
-            if($monthNum){
-                $dateObj   = DateTime::createFromFormat('!m', $monthNum);
-                $monthName = $dateObj->format('F'); 
-                echo $monthName;   
-            }   else{
-                $monthNum = date('F',strtotime('first day of this month'));
-                //$dateObj   = DateTime::createFromFormat('!m', $monthNum);
-                //$monthName = $dateObj->format('F'); 
-                echo $monthNum;
-            }
+    <h1 class="mt-4"><i class="fas fa-tachometer-alt "></i> Dashboard Expenses OCTOBER</h1>
+    <div class="row">
+         <h3 class="mt-4 text-warning" ><i class="fas fa-tachometer-alt "></i> COMPANY INFORMATION</h3>
+        <div class="col-lg-12 col-md-12 col-xl-12 col-sm-12">
+            <table class="table table-success table-striped table-hover table-sm table-bordered" border="1">
+                <thead>
+                    <tr>
+                        <th>
+                            Company Name
+                        </th>
 
-        // March ?></h1>
+                        <th>
+                            Starting Date
+                        </th>
+                        <th>
+                            Expiry Date
+                        </th>
+                        <th>
+                            percentage
+                        </th>
+                    </tr>
 
+                </thead>
+                <tbody>
 
+                    <tr> 
+                        <td>IJARA UAE</td>
+                        <td>30-03-2022</td>
+                        <td>30-12-2023</td>
+                        <td>               <div class="progress">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                                    License Expire in 4 Months and 28 Days
+                                </div>
+                            </div></td>
+                    </tr>
+                    <tr> 
+                        <td>IJARA MUSQAT</td>
+                        <td>30-03-2023</td>
+                        <td>30-03-2024</td>
+                        <td>               <div class="progress">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                                    License Expire in 8 Months 
+                                </div>
+                            </div></td>
+                    </tr>
+                    <tr> 
+                        <td>IJARA DUBAI</td>
+                        <td>30-03-2022</td>
+                        <td>30-12-2025</td>
+                        <td>               <div class="progress">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                                    License Expire 2 Years , 4 Months and 29 Days
+                                </div>
+                            </div></td>
+                    </tr>
+                    <tr> 
+                        <td>IJARA SAUDI ARABIA (DAMAM)</td>
+                        <td>30-03-2022</td>
+                        <td>30-12-2026</td>
+                        <td>               <div class="progress">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                                    License Expire in 3 Years Approx.
+                                </div>
+                            </div></td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+        </div>
+        </div>
+         <div class="row">
+         <h3 class="mt-4 text-warning" ><i class="fas fa-tachometer-alt "></i> BRANCH INFORMATION</h3>
+        <div class="col-lg-12 col-md-12 col-xl-12 col-sm-12">
+            <table class="table table-success table-striped table-hover table-sm table-bordered" border="1">
+                <thead>
+                    <tr>
+                        <th>
+                            Branch Name
+                        </th>
+
+                        <th>
+                           IJARI Starting Date
+                        </th>
+                        <th>
+                           IJARI Expiry Date
+                        </th>
+                        <th>
+                            percentage
+                        </th>
+                    </tr>
+
+                </thead>
+                <tbody>
+
+                    <tr> 
+                        <td>IJARA UAE PARKING AREA HOTEL TRANSLAINA</td>
+                        <td>30-03-2022</td>
+                        <td>30-12-2023</td>
+                        <td>               <div class="progress">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                                    IJARI Expire in 4 Months and 28 Days
+                                </div>
+                            </div></td>
+                    </tr>
+                    <tr> 
+                        <td>IJARA MUSQAT AIRPORT </td>
+                        <td>30-03-2023</td>
+                        <td>30-03-2024</td>
+                        <td>               <div class="progress">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                                    IJARI Expire in 8 Months 
+                                </div>
+                            </div></td>
+                    </tr>
+                    <tr> 
+                        <td>IJARA DUBAI SUPER MARKET</td>
+                        <td>30-03-2022</td>
+                        <td>30-12-2025</td>
+                        <td>               <div class="progress">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                                    IJARI Expire 2 Years , 4 Months and 29 Days
+                                </div>
+                            </div></td>
+                    </tr>
+                    <tr> 
+                        <td>IJARA SAUDI ARABIA (DAMAM) ZILA HOSPITAL</td>
+                        <td>30-03-2022</td>
+                        <td>30-12-2026</td>
+                        <td>               <div class="progress">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                                    IJARI Expire in 3 Years Approx.
+                                </div>
+                            </div></td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+        </div>
+        </div>
+       <div class="row">
+         <h3 class="mt-4 text-warning" ><i class="fas fa-tachometer-alt "></i> EMPLOYEE INFORMATION</h3>
+        <div class="col-lg-12 col-md-12 col-xl-12 col-sm-12">
+            <table class="table table-success table-striped table-hover table-sm table-bordered" border="1">
+                <thead>
+                    <tr>
+                        <th>
+                            Employee Name
+                        </th>
+
+                        <th>
+                            Pasport Expiry
+                        </th>
+                        <th>
+                            ID Card Expiry
+                        </th>
+                        <th>
+                            Visa Expiry 
+                        </th>
+                        <th>
+                            Labour Expiry 
+                        </th>
+                    </tr>
+
+                </thead>
+                <tbody>
+
+                    <tr style="background: aqua;" > 
+                        <td>Talib Ahmad</td>
+                        <td>30-03-2024</td>
+                        <td>30-12-2024</td>
+                        <td>30-12-2024</td>
+                        <td>30-12-2024</td>
+                      
+                    </tr>
+                     <tr> 
+                        <td>Aftab Javed</td>
+                        <td>30-03-2024</td>
+                        <td>30-12-2024</td>
+                        <td>30-12-2024</td>
+                        <td>30-12-2024</td>
+                      
+                    </tr>
+                     <tr> 
+                        <td>Shezad Ahmad</td>
+                        <td>30-03-2024</td>
+                        <td>30-12-2024</td>
+                        <td>30-12-2024</td>
+                        <td>30-12-2024</td>
+                      
+                    </tr>
+
+                </tbody>
+
+            </table>
+        </div>
+        </div>
         <div class="row">
 
             <div class="col-lg-8 col-md-8 col-xl-8 col-sm-12">
+            
                 <table class="table table-success table-striped table-hover table-sm table-bordered" border="1">
                     <thead>
                         <tr>
@@ -128,18 +311,18 @@
                 </div>
             </div>
             <div class="col-md-4 col-lg-4 col-xs-12">
-                <button class="btn_month btn btn-primary btn-block " data-val="1" >JANUARY</button>
-                <button class="btn_month btn btn-primary btn-block " data-val="2">FEBRUARY</button>
-                <button class="btn_month btn btn-primary btn-block " data-val="3">MARCH</button>
-                <button class="btn_month btn btn-primary btn-block " data-val="4">APRIL</button>
-                <button class="btn_month btn btn-primary btn-block " data-val="5">MAY</button>
-                <button class="btn_month btn btn-primary btn-block " data-val="6">JUNE</button>
-                <button class="btn_month btn btn-primary btn-block " data-val="7">JULY</button>
-                <button class="btn_month btn btn-primary btn-block " data-val="8">AUGUST</button>
-                <button class="btn_month btn btn-primary btn-block " data-val="9">SEPTEMBER</button>
-                <button class="btn_month btn btn-primary btn-block " data-val="10">OCTOBER</button>
-                <button class="btn_month btn btn-primary btn-block " data-val="11">NOVEMBER</button>
-                <button class="btn_month btn btn-primary btn-block " data-val="12">DECEMBER</button>
+                <button class="btn_month btn btn-primary btn-block " >JANUARY</button>
+                <button class="btn_month btn btn-primary btn-block " >FEBRUARY</button>
+                <button class="btn_month btn btn-primary btn-block " >MARCH</button>
+                <button class="btn_month btn btn-primary btn-block " >APRIL</button>
+                <button class="btn_month btn btn-primary btn-block " >MAY</button>
+                <button class="btn_month btn btn-primary btn-block " >JUNE</button>
+                <button class="btn_month btn btn-primary btn-block " >JULY</button>
+                <button class="btn_month btn btn-primary btn-block " >AUGUST</button>
+                <button class="btn_month btn btn-primary btn-block " >SEPTEMBER</button>
+                <button class="btn_month btn btn-primary btn-block " >OCTOBER</button>
+                <button class="btn_month btn btn-primary btn-block " >NOVEMBER</button>
+                <button class="btn_month btn btn-primary btn-block " >DECEMBER</button>
                 <hr>
                 <canvas id="myBarChartExpense" ></canvas>     
                 <hr>

@@ -59,10 +59,94 @@
                                     <div class="col-lg-4 col-md-4 col-xs-12">
                                         <div class="form-floating mb-3">
                                             <input class="form-control" type="text" placeholder=" description" id="cnic" name="cnic">
-                                            <label for="cnic">CNIC</label>  
+                                            <label for="cnic">ID CARD NO</label>  
 
                                         </div>
                                     </div>
+                                </div>
+                                    <div class="row align-items-center">
+                                    <div class="col-lg-6 col-md-6 col-xs-12 ">
+                                        <div class="form-floating mb-3 col-xs-12">
+
+                                            <input class="form-control" type="date" required id="name" name="name" placeholder="amount">
+                                            <label for="name">VISA ENTRY DATE</label>  
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-lg-6 col-md-6 col-xs-12 ">
+                                        <div class="form-floating mb-3">
+
+                                            <input class="form-control" type="date" id="father_name" name="father_name" placeholder="amount">
+                                           <label for="name">VISA EXPIRY DATE</label>  
+
+                                        </div>
+                                    </div>
+                                  
+                                </div>
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6 col-md-6 col-xs-12 ">
+                                        <div class="form-floating mb-3 col-xs-12">
+
+                                            <input class="form-control" type="date" required id="name" name="name" placeholder="amount">
+                                            <label for="name">LABOUR ENTRY DATE</label>  
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-lg-6 col-md-6 col-xs-12 ">
+                                        <div class="form-floating mb-3">
+
+                                            <input class="form-control" type="date" id="father_name" name="father_name" placeholder="amount">
+                                           <label for="name">LABOUR EXPIRY DATE</label>  
+
+                                        </div>
+                                    </div>
+                                  
+                                </div>
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6 col-md-6 col-xs-12 ">
+                                        <div class="form-floating mb-3 col-xs-12">
+
+                                            <input class="form-control" type="date" required id="name" name="name" placeholder="amount">
+                                            <label for="name">PASPORT ISSUE DATE</label>  
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-lg-6 col-md-6 col-xs-12 ">
+                                        <div class="form-floating mb-3">
+
+                                            <input class="form-control" type="date" id="father_name" name="father_name" placeholder="amount">
+                                           <label for="name">PASPORT EXPIRY DATE</label>  
+
+                                        </div>
+                                    </div>
+                                  
+                                </div>
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6 col-md-6 col-xs-12 ">
+                                        <div class="form-floating mb-3 col-xs-12">
+
+                                            <input class="form-control" type="date" required id="name" name="name" placeholder="amount">
+                                            <label for="name">ID CARD ISSUE DATE</label>  
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-lg-6 col-md-6 col-xs-12 ">
+                                        <div class="form-floating mb-3">
+
+                                            <input class="form-control" type="date" id="father_name" name="father_name" placeholder="amount">
+                                           <label for="name">ID CARD EXPIRY DATE</label>  
+
+                                        </div>
+                                    </div>
+                                  
                                 </div>
                                 <div class="row align-items-center">
                                     <div class="col-lg-4 col-md-4 col-xs-12">
@@ -91,7 +175,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row align-items-center">
+                                <div class="row align-items-center" style="display: none;" >
                                     <div class="col-lg-4 col-md-4 col-xs-12">
                                         <div class="form-floating mb-3">
 
@@ -140,7 +224,7 @@
                                         <div class="form-floating mb-3">
 
                                             <input class="form-control" type="text" id="bank_name" name="bank_name" placeholder="amount">
-                                            <label for="bank_name">Bank Name</label>  
+                                            <label for="bank_name">Bank Account Name</label>  
 
                                         </div>
                                     </div>

@@ -75,18 +75,14 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-    //'hostname' => '11.110.0.7',
-   'hostname' => '127.0.0.1',
-//      'hostname' => 'localhost',
-
-    'port' => 3306,
+    'hostname' => '127.0.0.1',
 	//'hostname' => 'sql213.epizy.com',
     'username' => 'sa',
-	//'username' => 'topleadf_topleadf',
+	//'username' => 'epiz_32608148',
     'password' => '123456',
-	//'password' => 'yN&lH$RFYq]k',
+	//'password' => 'lQLN2yiFhQ',
     'database' => 'arsh',
-	//'database' => 'topleadf_arsh',
+	//'database' => 'epiz_32608148_arsh',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
@@ -100,7 +96,6 @@ $db['default'] = array(
 	'compress' => FALSE,
 	'stricton' => FALSE,
 	'failover' => array(),
-    'db_debug' => TRUE,
+    'db_debug' => FALSE,
 	'save_queries' => TRUE
 );
-

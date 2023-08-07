@@ -31,8 +31,9 @@
                     <div class="card-body">
                         <form action="insert_cash_register" id="form" name="form_cat"  method="post" enctype="multipart/form-data">
                             <label for="inputPassword5" class="form-label">Ledger No.</label>
-
-                            <div class="form-floating mb-3 col-lg-12 col-md-12 col-xs-12">
+                             <div class="row align-items-center">
+                            <div class="col-lg-6 col-md-6 col-xs-12">
+                              <div class="form-floating mb-3">
                                 <select class="form-control" id="company_id" name="company_id"  >
                                     <option value="0">SELECT COMPANY</option>
                                     <?php 
@@ -44,11 +45,26 @@
                                     ?>
                                 </select>
                                 <label for="company_id">COMPANY</label>  
-
+                              </div>
                             </div>
-
+                            <div class="col-lg-6 col-md-6 col-xs-12">
+                              <div class="form-floating mb-3">
+                                <select class="form-control" id="company_id" name="company_id"  >
+                                    <option value="0">SELECT BRANCH</option>
+                                    <?php 
+                                    for($i=0; $i<count($company); $i++){
+                                        $id = $company[$i]['id'];
+                                        $text = $company[$i]['name'];
+                                        echo '<option value="'.$id.'">'.$text.'</option>' ;
+                                    }
+                                    ?>
+                                </select>
+                                <label for="company_id">BRANCH</label>  
+                                </div>
+                            </div>
+                             </div>
                             <div class="row align-items-center">
-                                <div class="col-lg-4 col-md-4 col-xs-12 ">
+                                <div class="col-lg-6 col-md-6 col-xs-12 ">
                                     <div class="form-floating mb-3">
                                         <input class="form-control" id="date" name="date" type="date" placeholder="name@example.com" />
                                         <label for="date">DATE</label>
@@ -56,7 +72,7 @@
                                 </div>
 
 
-                                <div class="col-lg-4 col-md-4 col-xs-12 ">
+                                <div class="col-lg-6 col-md-6 col-xs-12 ">
                                     <div class="form-floating mb-3">
                                         <select class="form-control" id="type" name="type"  >
                                             <option value="0">SELECT TYPE</option>
@@ -72,25 +88,10 @@
 
                                     </div>
                                 </div>
-                                <div class="col-lg-4 col-md-4 col-xs-12 ">
-                                    <div class="form-floating mb-3">
-                                        <select class="form-control" id="account" name="account" >
-                                            <option value="0">SELECT ACCOUNT</option>
-                                            <?php 
-                                            for($i=0; $i<count($account); $i++){
-                                                $id = $account[$i]['id'];
-                                                $text = $account[$i]['name'];
-                                                echo '<option value="'.$id.'">'.$text.'</option>' ;
-                                            }
-                                            ?>
-                                        </select>
-                                        <label for="account">ACCOUNT</label>  
-
-                                    </div>
-                                </div>
+                         
                             </div>
 
-                            <div class="row align-items-center">
+                            <div class="row align-items-center" style="display: none;">
                                 <div class="col-lg-4 col-md-4 col-xs-12">
                                     <div class="form-floating mb-3">
                                         <select class="form-control" id="head" name="head" >

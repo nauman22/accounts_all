@@ -60,8 +60,6 @@ $autoload['packages'] = array();
 */
 $autoload['libraries'] = array('database');
 
-
-
 /*
 | -------------------------------------------------------------------
 |  Auto-load Drivers
@@ -105,8 +103,7 @@ $autoload['helper'] = array('url');
 | config files.  Otherwise, leave it blank.
 |
 */
-//$autoload['config'] = array();
-//$autoload['config'] = array('firebase');
+$autoload['config'] = array();
 
 /*
 | -------------------------------------------------------------------
