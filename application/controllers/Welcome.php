@@ -80,7 +80,7 @@ class Welcome extends CI_Controller {
         // $this->load->view('common/footer.php');
         //$this->load->view('pages/login.php');
     }
-  
+
 
     public function bar_chart_dashboard(){
 
@@ -254,7 +254,7 @@ class Welcome extends CI_Controller {
             return;
             // exit();
         }
-       
+
         $data['type'] = $this->Welcome_model->get_type($id=null);
         $data['account'] = $this->Welcome_model->get_account($id=null);
         $data['head'] = $this->Welcome_model->get_head($id=null);
@@ -733,11 +733,19 @@ class Welcome extends CI_Controller {
     {
         $this->load->model('Company_table_model');
         $columns = array( 
-            0 =>'id', 
-            1 =>'name',
-            1 =>'address',
-            2=> 'description',
-            3=> 'remarks',
+            0  =>'id', 
+            1  =>'name',
+            2  =>'address',
+            3  =>'lic_name',
+            4  =>'lic_no',
+            5  =>'company_start_date',
+            6  =>'company_last_date',
+            7  =>'est_start_date',
+            8  =>'est_end_date',
+            9  =>'office_ijari_start_date',
+            10 =>'office_ijari_end_date',
+            11 => 'description',
+            12 => 'remarks',
 
         );
 
@@ -774,6 +782,14 @@ class Welcome extends CI_Controller {
                 $nestedData['id'] = $post->id;
                 $nestedData['name'] = $post->name;
                 $nestedData['address'] = $post->address;
+                $nestedData['lic_name'] = $post->lic_name;
+                $nestedData['lic_no'] = $post->lic_no;
+                $nestedData['company_start_date'] = $post->company_start_date;
+                $nestedData['company_last_date'] = $post->company_last_date;
+                $nestedData['est_start_date'] = $post->est_start_date;
+                $nestedData['est_end_date'] = $post->est_end_date;
+                $nestedData['office_ijari_start_date'] = $post->office_ijari_start_date;
+                $nestedData['office_ijari_end_date'] = $post->office_ijari_end_date;
                 $nestedData['description'] = $post->description;
                 $nestedData['remarks'] = $post->remarks;
                 /*
@@ -1870,7 +1886,7 @@ class Welcome extends CI_Controller {
 
         return $images;
     }
-      public function upload_excel(){
+    public function upload_excel(){
         $is_login= $this->check_session();
         if($is_login){
             redirect(login);
@@ -1890,62 +1906,62 @@ class Welcome extends CI_Controller {
     public function excel_read(){
         $msg = "";
         $response = false;
-       // if ($this->input->post('submit')) {
-            $path = 'assets/uploads/excel/';
-            require_once APPPATH . "/third_party/PHPExcel-1.8.1/Classes/PHPExcel.php";
-            $config['upload_path'] = $path;
-            $config['allowed_types'] = 'xlsx|xls|csv';
-            $config['remove_spaces'] = TRUE;
-            $this->load->library('upload', $config);
-            $this->upload->initialize($config);            
-            if (!$this->upload->do_upload('uploadFile')) {
-                $msg = array('error' => $this->upload->display_errors());
+        // if ($this->input->post('submit')) {
+        $path = 'assets/uploads/excel/';
+        require_once APPPATH . "/third_party/PHPExcel-1.8.1/Classes/PHPExcel.php";
+        $config['upload_path'] = $path;
+        $config['allowed_types'] = 'xlsx|xls|csv';
+        $config['remove_spaces'] = TRUE;
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);            
+        if (!$this->upload->do_upload('uploadFile')) {
+            $msg = array('error' => $this->upload->display_errors());
+        } else {
+            $data = array('upload_data' => $this->upload->data());
+        }
+        if(empty($msg)){
+            if (!empty($data['upload_data']['file_name'])) {
+                $import_xls_file = $data['upload_data']['file_name'];
             } else {
-                $data = array('upload_data' => $this->upload->data());
+                $import_xls_file = 0;
             }
-            if(empty($msg)){
-                if (!empty($data['upload_data']['file_name'])) {
-                    $import_xls_file = $data['upload_data']['file_name'];
-                } else {
-                    $import_xls_file = 0;
-                }
-                $inputFileName = $path . $import_xls_file;
-                try {
-                    $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
-                    $objReader = PHPExcel_IOFactory::createReader($inputFileType);
-                    $objPHPExcel = $objReader->load($inputFileName);
-                    $allDataInSheet = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
-                   // echo "<pre>".print_r($allDataInSheet)."</pre>";
-                   // exit();
-                    $flag = true;
-                    $i=0;
-                    foreach ($allDataInSheet as $value) {
-                        if($flag){
-                            $flag =false;
-                            continue;
-                        }
-                        $inserdata[$i]['date'] = $value['B'];
-                        $inserdata[$i]['description'] = $value['C'];
-                        $inserdata[$i]['category'] = $value['D'];
-                        $inserdata[$i]['payment_method'] = $value['E'];
-                        $inserdata[$i]['amount'] = $value['F'];
-                        $i++;
-                    }               
-                    $result = $this->Welcome_model->excel_importData($inserdata);   
-                    if($result){
-                        $response = true;
-                        $msg =  "Imported successfully";
-                    }else{
-                        $msg =  "ERROR !";
-                    }             
-                } catch (Exception $e) {
-                    $msg = ('Error loading file "' . pathinfo($inputFileName, PATHINFO_BASENAME)
-                        . '": ' .$e->getMessage());
-                }
-            }else{
-                $msg = $error['error'];
+            $inputFileName = $path . $import_xls_file;
+            try {
+                $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
+                $objReader = PHPExcel_IOFactory::createReader($inputFileType);
+                $objPHPExcel = $objReader->load($inputFileName);
+                $allDataInSheet = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+                // echo "<pre>".print_r($allDataInSheet)."</pre>";
+                // exit();
+                $flag = true;
+                $i=0;
+                foreach ($allDataInSheet as $value) {
+                    if($flag){
+                        $flag =false;
+                        continue;
+                    }
+                    $inserdata[$i]['date'] = $value['B'];
+                    $inserdata[$i]['description'] = $value['C'];
+                    $inserdata[$i]['category'] = $value['D'];
+                    $inserdata[$i]['payment_method'] = $value['E'];
+                    $inserdata[$i]['amount'] = $value['F'];
+                    $i++;
+                }               
+                $result = $this->Welcome_model->excel_importData($inserdata);   
+                if($result){
+                    $response = true;
+                    $msg =  "Imported successfully";
+                }else{
+                    $msg =  "ERROR !";
+                }             
+            } catch (Exception $e) {
+                $msg = ('Error loading file "' . pathinfo($inputFileName, PATHINFO_BASENAME)
+                    . '": ' .$e->getMessage());
             }
-             $data=array(
+        }else{
+            $msg = $error['error'];
+        }
+        $data=array(
             'status'=>$response,
             'message'=>$msg,
             'middlename'=>33,
@@ -1955,8 +1971,8 @@ class Welcome extends CI_Controller {
         //echo "true";
         echo json_encode($data);
         exit();
-       // }
-       // $this->load->view('upload_excel');
+        // }
+        // $this->load->view('upload_excel');
     }
 
 }

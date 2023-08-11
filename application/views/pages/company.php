@@ -1,7 +1,7 @@
 <div id="layoutSidenav_content">
 <main>
     <div class="container-fluid px-4">
-         <?php 
+        <?php 
         $icon = "";
         $add_record = "";
         $name = "";
@@ -15,120 +15,120 @@
                 break;
             }
         } ?>
-         <h1 class="mt-4"><i class="<?php echo $icon; ?> "></i> <?php  echo $name; ?></h1>
+        <h1 class="mt-4"><i class="<?php echo $icon; ?> "></i> <?php  echo $name; ?></h1>
         <br>
         <?php if($add_record == 1){ ?>
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <i class="<?php echo $icon; ?>"></i>
-                        Add / Update 
-                    </div>
-                    <div class="card-body">
-                        <form action="insert_company" id="form" name="form_cat"  method="post">
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="name" required="required" name="name" type="text" placeholder="name@example.com" />
-                                <label for="inputEmail">COMPANY NAME</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="address" name="address" type="text" placeholder="Password" />
-                                <label for="address">COPANY ADDRESS</label>
-                            </div>
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="<?php echo $icon; ?>"></i>
+                            Add / Update 
+                        </div>
+                        <div class="card-body">
+                            <form action="insert_company" id="form" name="form_cat"  method="post">
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" id="name" required="required" name="name" type="text" placeholder="name@example.com" />
+                                    <label for="inputEmail">COMPANY NAME</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" id="address" name="address" type="text" placeholder="Password" />
+                                    <label for="address">COPANY ADDRESS</label>
+                                </div>
                                 <div class="row align-items-center">
-                                  <div class="col-lg-6 col-md-6 col-xs-12 ">
-                                <div class="form-floating mb-3">
-                                        <input class="form-control" id="date" name="date" type="text" placeholder="Row Permit Start Date" />
-                                        <label for="date">LICENSE NAME</label>
+                                    <div class="col-lg-6 col-md-6 col-xs-12 ">
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="lic_name" name="lic_name" type="text"  />
+                                            <label for="date">LICENSE NAME</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-xs-12 ">
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="lic_no" name="lic_no" type="text"  />
+                                            <label for="date">LICENSE NO.</label>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-xs-12 ">
-                                <div class="form-floating mb-3">
-                                        <input class="form-control" id="date" name="date" type="text" placeholder="Row Permit Last Date" />
-                                        <label for="date">LICENSE NO.</label>
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6 col-md-6 col-xs-12 ">
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="company_start_date" name="company_start_date" type="date" />
+                                            <label for="date">COMPANY START DATE</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-xs-12 ">
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="company_last_date" name="company_last_date" type="date" />
+                                            <label for="date">COMPANY LAST DATE</label>
+                                        </div>
                                     </div>
                                 </div>
-                                </div>
-                                 <div class="row align-items-center">
-                                  <div class="col-lg-6 col-md-6 col-xs-12 ">
-                                <div class="form-floating mb-3">
-                                        <input class="form-control" id="date" name="date" type="date" placeholder="Row Permit Start Date" />
-                                        <label for="date">COMPANY START DATE</label>
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6 col-md-6 col-xs-12 ">
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="est_start_date" name="est_start_date" type="date" />
+                                            <label for="date">ESTABLISMENT CARD START</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-xs-12 ">
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="est_end_date" name="est_end_date" type="date" />
+                                            <label for="date">ESTABLISMENT CARD END</label>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-xs-12 ">
-                                <div class="form-floating mb-3">
-                                        <input class="form-control" id="date" name="date" type="date" placeholder="Row Permit Last Date" />
-                                        <label for="date">COMPANY LAST DATE</label>
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6 col-md-6 col-xs-12 ">
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="office_ijari_start_date" name="office_ijari_start_date" type="date" />
+                                            <label for="date">OFFICE IJARI START</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-xs-12 ">
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="office_ijari_end_date" name="office_ijari_end_date" type="date"/>
+                                            <label for="date">OFFICE IJARI END</label>
+                                        </div>
                                     </div>
                                 </div>
-                                </div>
-                                 <div class="row align-items-center">
-                                  <div class="col-lg-6 col-md-6 col-xs-12 ">
                                 <div class="form-floating mb-3">
-                                        <input class="form-control" id="date" name="date" type="date" placeholder="Row Permit Start Date" />
-                                        <label for="date">ESTABLISMENT CARD START</label>
-                                    </div>
+                                    <input class="form-control" id="description" name="description" type="text" />
+                                    <label for="inputPassword">Description</label>
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-xs-12 ">
-                                <div class="form-floating mb-3">
-                                        <input class="form-control" id="date" name="date" type="date" placeholder="Row Permit Last Date" />
-                                        <label for="date">ESTABLISMENT CARD END</label>
-                                    </div>
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Type Remarks here" id="remarks" name="remarks" style="height: 100px"></textarea>
+                                    <label for="floatingTextarea2">Remarks</label>
                                 </div>
+                                <br>
+                                <!--    
+                                <div class="form-floating">
+                                <div class="form-check">
+                                <input class="form-check-input " type="checkbox" value="" id="flexCheckIndeterminate">
+                                <label class="form-check-label" for="flexCheckIndeterminate">
+                                Indeterminate checkbox
+                                </label>
                                 </div>
-                                 <div class="row align-items-center">
-                                  <div class="col-lg-6 col-md-6 col-xs-12 ">
-                                <div class="form-floating mb-3">
-                                        <input class="form-control" id="date" name="date" type="date" placeholder="Row Permit Start Date" />
-                                        <label for="date">OFFICE IJARI START</label>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-xs-12 ">
-                                <div class="form-floating mb-3">
-                                        <input class="form-control" id="date" name="date" type="date" placeholder="Row Permit Last Date" />
-                                        <label for="date">OFFICE IJARI END</label>
-                                    </div>
-                                </div>
-                                </div>
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="description" name="description" type="text" placeholder="Password" />
-                                <label for="inputPassword">Description</label>
-                            </div>
-                            <div class="form-floating">
-                                <textarea class="form-control" placeholder="Type Remarks here" id="remarks" name="remarks" style="height: 100px"></textarea>
-                                <label for="floatingTextarea2">Remarks</label>
-                            </div>
-                            <br>
-                            <!--    
-                            <div class="form-floating">
-                            <div class="form-check">
-                            <input class="form-check-input " type="checkbox" value="" id="flexCheckIndeterminate">
-                            <label class="form-check-label" for="flexCheckIndeterminate">
-                            Indeterminate checkbox
-                            </label>
-                            </div>
-                            </div> -->
-                            <div class="d-grid gap-2 col-6 mx-auto w-100">
-                                <button class="btn btn-success col-xs-12 form-control"  type="submit">Save</button>
-                                 <button class="btn btn-danger col-xs-12 form-control" id="btn_cancel" type="button">Cancel</button>
+                                </div> -->
+                                <div class="d-grid gap-2 col-6 mx-auto w-100">
+                                    <button class="btn btn-success col-xs-12 form-control"  type="submit">Save</button>
+                                    <button class="btn btn-danger col-xs-12 form-control" id="btn_cancel" type="button">Cancel</button>
 
-                            </div>
-                            <div id="output1" class="d-grid gap-2 col-6 mx-auto">
+                                </div>
+                                <div id="output1" class="d-grid gap-2 col-6 mx-auto">
 
-                            </div>
-                             <input type="hidden" id="id" name="id">
-                        </form>
+                                </div>
+                                <input type="hidden" id="id" name="id">
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-        </div>
-        <?php } ?>
+            </div>
+            <?php } ?>
         <div class="card mb-4">
             <div class="card-header">
                 <i class="<?php echo $icon; ?>"></i>
-               Saved Entries
+                Saved Entries
             </div>
             <div class="card-body">
                 <table id="datatablesSimple" class="display responsive nowrap" style=" width:100%!important">
@@ -137,6 +137,14 @@
                             <th>Id</th>
                             <th>Name</th>
                             <th>Address</th>
+                            <th>License Name</th>
+                            <th>License Number.</th>
+                            <th>Company Start Date</th>
+                            <th>Company Last Date</th>
+                            <th>Establishment Card Start</th>
+                            <th>Establishment Card End</th>
+                            <th>Office Ijari Start Date</th>
+                            <th>Office Ijari End Date</th>
                             <th>Description</th>
                             <th>Remarks</th>
                             <th>Actions</th>
@@ -168,13 +176,21 @@
                 { "data": "id" },
                 { "data": "name" },
                 { "data": "address" },
+                { "data": "lic_name" },
+                { "data": "lic_no" },
+                { "data": "company_start_date" },
+                { "data": "company_last_date" },
+                { "data": "est_start_date" },
+                { "data": "est_end_date" },
+                { "data": "office_ijari_start_date" },
+                { "data": "office_ijari_end_date" },
                 { "data": "description" },
                 { "data": "remarks" },
                 { "data": "buttons" },
             ]     
 
         });
-    
+
     } );
 </script>
 <script type="text/javascript">
@@ -232,7 +248,7 @@
         // property set to 'json' then the first argument to the success callback 
         // is the json data object returned by the server 
         console.log(responseText)  ;
-         console.log(statusText)  ;
+        console.log(statusText)  ;
         // console.log($form)  ;
 
         if(responseText.status == true){
@@ -247,17 +263,17 @@
                 icon: 'error',
                 title: 'NOT SAVED!',
                 text: responseText.message,
-               // footer: '<a href="">Why do I have this issue?</a>'
+                // footer: '<a href="">Why do I have this issue?</a>'
             })
         }
         //console.info(xhr);
         //alert('status: ' + statusText + '\n\nresponseText: \n' + responseText + 
-       //     '\n\nThe output div should have already been updated with the responseText.');
+        //     '\n\nThe output div should have already been updated with the responseText.');
     } 
 
 
 
-   
-  
- 
+
+
+
 </script>

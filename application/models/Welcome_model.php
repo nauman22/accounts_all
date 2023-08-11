@@ -27,23 +27,23 @@ class Welcome_model extends CI_Model {
         $this->db->where('type_id',1);
         $this->db->group_by('id');  
         $q = $this->db->get('tbl_cash_register');
-            //echo $this->db->last_query();
-            //exit();
+        //echo $this->db->last_query();
+        //exit();
         $response['monthly_income'] = $q->result_array();
 
-         // over all income
-         $this->db->select_sum('amount');
+        // over all income
+        $this->db->select_sum('amount');
         // $this->db->from('vw_cash_register');
         //$this->db->where('date >=',$first_date);
-       // $this->db->where('date <=',$last_date);
+        // $this->db->where('date <=',$last_date);
         $this->db->where('is_active',1);
         $this->db->where('type_id',1);
         $this->db->group_by('id');  
         $q = $this->db->get('tbl_cash_register');
-            //echo $this->db->last_query();
-            //exit();
+        //echo $this->db->last_query();
+        //exit();
         $response['overall_income'] = $q->result_array();
-        
+
         // Daily Expenses
 
         $this->db->select_sum('amount');
@@ -62,58 +62,58 @@ class Welcome_model extends CI_Model {
         $this->db->where('date >=',$first_date);
         $this->db->where('date <=',$last_date);
         $this->db->where('is_active',1);
-         $this->db->where('type_id != ',1);
+        $this->db->where('type_id != ',1);
         $this->db->group_by('id');  
         $q = $this->db->get('tbl_cash_register');
         $response['monthly_expenses'] = $q->result_array();
-        
+
         // Overall Expenses
 
         $this->db->select_sum('amount');
         // $this->db->from('vw_cash_register');
-       // $this->db->where('date >=',$first_date);
-       // $this->db->where('date <=',$last_date);
+        // $this->db->where('date >=',$first_date);
+        // $this->db->where('date <=',$last_date);
         $this->db->where('is_active',1);
         $this->db->where('type_id != ',1);
         //$this->db->group_by('id');  
         $q = $this->db->get('tbl_cash_register');
         $response['overall_expenses'] = $q->result_array();
-         //echo  $this->db->last_query();
+        //echo  $this->db->last_query();
         // exit();
-        
+
         $this->db->select('*');
         // $this->db->from('vw_cash_register');
         $this->db->where('is_active',1);
         $q = $this->db->get('tbl_category');
-        
-        
-         $this->db->select('sum(amount) as amount_,name');
+
+
+        $this->db->select('sum(amount) as amount_,name');
         // $this->db->from('vw_cash_register');
         $this->db->where('tbl_cash_register.is_active',1);
         $this->db->where('tbl_cash_register.date between "2022-09-01" and "2022-09-30"');
         $this->db->from('tbl_cash_register');
         $this->db->join('tbl_category','tbl_cash_register.category_id = tbl_category.id');
         $this->db->group_by('tbl_cash_register.category_id'); 
-       // $this->db->where('is_active',1);
+        // $this->db->where('is_active',1);
         $q = $this->db->get();
-         //   echo $this->db->last_query();
-         //   exit();
+        //   echo $this->db->last_query();
+        //   exit();
         $response['cat_data'] = $q->result_array();
-        
-         $this->db->select('sum(amount) as amount_');
+
+        $this->db->select('sum(amount) as amount_');
         // $this->db->from('vw_cash_register');
         $this->db->where('tbl_cash_register.is_active',1);
         $this->db->where('tbl_cash_register.date between "2022-09-01" and "2022-09-30"');
         $this->db->from('tbl_cash_register');
         $this->db->join('tbl_category','tbl_cash_register.category_id = tbl_category.id');
-       // $this->db->group_by('tbl_cash_register.category_id'); 
-       // $this->db->where('is_active',1);
+        // $this->db->group_by('tbl_cash_register.category_id'); 
+        // $this->db->where('is_active',1);
         $q = $this->db->get();
-         //   echo $this->db->last_query();
-         //   exit();
+        //   echo $this->db->last_query();
+        //   exit();
         $response['cat_data_sum'] = $q->result_array();
-      //  print_r($response['category_list']);
-      //  exit();
+        //  print_r($response['category_list']);
+        //  exit();
         return $response;
     }
     function get_data($tbl_name){
@@ -128,7 +128,7 @@ class Welcome_model extends CI_Model {
         return $response;
     }
     function get_barchart_dashboard(){
-         $response = array();
+        $response = array();
 
         // Select record
         $this->db->select('(select name from tbl_type where id =tbl_cash_register.type_id)as  type_name, SUM(amount) as amount');
@@ -136,12 +136,12 @@ class Welcome_model extends CI_Model {
         $this->db->group_by('type_id') ;
         $q = $this->db->get('tbl_cash_register');
         $response = $q->result_array();
-       // echo $this->db->last_query();
-       // exit();
+        // echo $this->db->last_query();
+        // exit();
         return $response;
     }
     function get_piechart_dashboard(){
-         $response = array();
+        $response = array();
 
         // Select record
         $this->db->select(' (select name from tbl_category where id =tbl_cash_register.category_id) as name , SUM(amount) as amount');
@@ -150,12 +150,12 @@ class Welcome_model extends CI_Model {
         $this->db->group_by('category_id') ;
         $q = $this->db->get('tbl_cash_register');
         $response = $q->result_array();
-      //  echo $this->db->last_query();
-      //  exit();
+        //  echo $this->db->last_query();
+        //  exit();
         return $response;
     }
     function get_task(){
-         $response = array();
+        $response = array();
 
         // Select record
         $this->db->select('(select name from tbl_user where id=tbl_task.user_id  ) as emp_name ,tbl_task.*');
@@ -164,8 +164,8 @@ class Welcome_model extends CI_Model {
         //$this->db->group_by('category_id') ;
         $q = $this->db->get('tbl_task');
         $response = $q->result_array();
-       // echo $this->db->last_query();
-       // exit();
+        // echo $this->db->last_query();
+        // exit();
         return $response;
     }
     function crud(){
@@ -360,11 +360,11 @@ class Welcome_model extends CI_Model {
 
         $response = array();
         $query = $this->db->query("SELECT *, m.id as menu_id FROM tbl_menu m left join tbl_user_rights t on m.id = t.menu_id WHERE m.is_active = 1 and t.user_id = $userId ");
-       // echo $this->db->last_query();
-       // exit();
+        // echo $this->db->last_query();
+        // exit();
         $count =  $query->num_rows();
         if($count>0){
-        $response = $query->result_array();    
+            $response = $query->result_array();    
         }
         //print_r($response);
         return $response;
@@ -376,38 +376,38 @@ class Welcome_model extends CI_Model {
         $query = $this->db->query("SELECT *, m.id as menu_id FROM tbl_menu m left join tbl_user_rights t on m.id = t.menu_id WHERE m.is_active = 1  and t.user_id = $userid");
         $count =  $query->num_rows();
         if($count>0){
-        $response = $query->result_array();    
+            $response = $query->result_array();    
         }
         //print_r($response);
         return $response;
     }
-     function get_single_menu($userid,$menuid){
-        
+    function get_single_menu($userid,$menuid){
+
         // echo   $userid;
         $response = array();
         $query = $this->db->query("SELECT  show_menu,add_record,edit_record,delete_record FROM tbl_user_rights  WHERE is_active = 1  and user_id = $userid and menu_id = $menuid");
         //echo $this->db->last_query();
-       // exit();   
+        // exit();   
         $count =  $query->num_rows();
         //echo $count; 
-       // exit();
+        // exit();
         if($count>0){
-        $response = $query->result_array();    
+            $response = $query->result_array();    
         }
-       // print_r($response);
-       // exit();
+        // print_r($response);
+        // exit();
         return $response; 
     }
     function get_menu_user($userid){
-        
+
         // echo   $userid;
         $response = array();
         $query = $this->db->query("SELECT *, m.id as menu_id FROM tbl_menu m left join tbl_user_rights t on m.id = t.menu_id WHERE m.is_active = 1  and t.user_id = $userid");
         $count =  $query->num_rows();
         if($count>0){
-        $response = $query->result_array();    
+            $response = $query->result_array();    
         }
-        
+
         //print_r($response);
         return $response;
     }
@@ -432,7 +432,7 @@ class Welcome_model extends CI_Model {
         } else {
             $status = 0;
         }
-         // echo "2 status:".$status;
+        // echo "2 status:".$status;
         $date =date('Y-m-d H:i:s');
 
         if($isInsert <= 0){
@@ -475,7 +475,7 @@ class Welcome_model extends CI_Model {
                 );
                 $this->db->where('user_id',$userid)  ;
                 $this->db->where('menu_id',$menu_id)  ;
-                
+
                 $response =   $this->db->update('tbl_user_rights',$data);
                 //echo $this->db->last_query();
             } 
@@ -522,7 +522,7 @@ class Welcome_model extends CI_Model {
         return $response;
     }
     function add_task(){
-        
+
         $user_id=$this->input->post('userid');
         $heading=$this->input->post('heading');
         $title=$this->input->post('title');
@@ -532,7 +532,7 @@ class Welcome_model extends CI_Model {
         $final_date=$this->input->post('final_date');
         $description=$this->input->post('description');
         $remarks=$this->input->post('remarks');
-        
+
         //  echo $name;
         $date =date('Y-m-d H:i:s');
         $id =$this->input->post('id');
@@ -544,7 +544,7 @@ class Welcome_model extends CI_Model {
                 'user_id'=>$user_id,
                 'name'=>$heading,
                 'title'=>$title,
-               
+
                 'description'=>$description,
                 'remarks'=>$remarks,
                 'cdate'=>$date,
@@ -574,17 +574,17 @@ class Welcome_model extends CI_Model {
         return $response;
     }
     function login(){
-       $email =$this->input->post('email');
-       $pwd=$this->input->post('pwd'); 
+        $email =$this->input->post('email');
+        $pwd=$this->input->post('pwd'); 
         $response = array();
         $query = $this
-                ->db
-               // ->where('is_active',1)
-                ->where('email',$email)
-                ->where('pwd',$pwd)
-                ->get('tbl_user');
-        
-       
+        ->db
+        // ->where('is_active',1)
+        ->where('email',$email)
+        ->where('pwd',$pwd)
+        ->get('tbl_user');
+
+
         if($query->num_rows()>0)
         {
             return $query->result();  
@@ -594,9 +594,9 @@ class Welcome_model extends CI_Model {
             return null;
         }
         //$q = $this->db->query("SELECT * FROM tbl_user  where email = $email and pwd = $pwd");
-       // $response = $q->result_array();
+        // $response = $q->result_array();
         //print_r($response);
-       // return $response;  
+        // return $response;  
     }
     function add_cash_register(){
         $company =$this->input->post('company_id');
@@ -612,8 +612,8 @@ class Welcome_model extends CI_Model {
         $remarks=$this->input->post('remarks');
 
         $id =$this->input->post('id');
-            // echo $amount ;
-            // exit();
+        // echo $amount ;
+        // exit();
         if($id>0){
             $date =date('Y-m-d H:i:s');
             $data = array(
@@ -780,6 +780,14 @@ class Welcome_model extends CI_Model {
     function add_company(){
         $name=$this->input->post('name');
         $address=$this->input->post('address');
+        $lic_name=$this->input->post('lic_name');
+        $lic_no=$this->input->post('lic_no');
+        $company_start_date=$this->input->post('company_start_date');
+        $company_last_date=$this->input->post('company_last_date');
+        $est_start_date=$this->input->post('est_start_date');
+        $est_end_date=$this->input->post('est_end_date');
+        $office_ijari_start_date=$this->input->post('office_ijari_start_date');
+        $office_ijari_end_date=$this->input->post('office_ijari_end_date');
         $description=$this->input->post('description');
         $remarks=$this->input->post('remarks');
         $date =date('Y-m-d H:i:s');
@@ -789,6 +797,14 @@ class Welcome_model extends CI_Model {
             $data = array(
                 'name'=>$name,
                 'address'=>$address,
+                'lic_name'=>$lic_name,
+                'lic_no'=>$lic_no,
+                'company_start_date'=>$company_start_date,
+                'company_last_date'=>$company_last_date,
+                'est_start_date'=>$est_start_date,
+                'est_end_date'=>$est_end_date,
+                'office_ijari_start_date'=>$office_ijari_start_date,
+                'office_ijari_end_date'=>$office_ijari_end_date,
                 'description'=>$description,
                 'remarks'=>$remarks,
                 'cdate'=>$date,
@@ -801,6 +817,14 @@ class Welcome_model extends CI_Model {
             $data = array(
                 'name'=>$name,
                 'address'=>$address,
+                'lic_name'=>$lic_name,
+                'lic_no'=>$lic_no,
+                'company_start_date'=>$company_start_date,
+                'company_last_date'=>$company_last_date,
+                'est_start_date'=>$est_start_date,
+                'est_end_date'=>$est_end_date,
+                'office_ijari_start_date'=>$office_ijari_start_date,
+                'office_ijari_end_date'=>$office_ijari_end_date,
                 'description'=>$description,
                 'remarks'=>$remarks,
                 'edate'=>$date,
@@ -1002,15 +1026,15 @@ class Welcome_model extends CI_Model {
         }
         //return $response;
     }
-     public function excel_importData($data) {
- 
+    public function excel_importData($data) {
+
         $res = $this->db->insert_batch('excel_data',$data);
         if($res){
             return TRUE;
         }else{
             return FALSE;
         }
- 
+
     }
 
 

@@ -23,8 +23,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-//$config['base_url'] = 'http://arshnetwork.great-site.net/arsh/Welcome/';
-$config['base_url'] = 'http://localhost/arsh/Welcome/';
+
+$config['base_url'] = 'http://localhost:8083/accounts_all/Welcome/';
 
 /*
 |--------------------------------------------------------------------------
