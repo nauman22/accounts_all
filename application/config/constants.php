@@ -86,6 +86,7 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 
 define('cash_register_voucher',"assets/uploads/cash_register_vouchers/");
+define('branch_img',"assets/uploads/branch_img/");
 define('employee_img',"assets/uploads/employee_img/");
 define('employee_doc',"assets/uploads/employee_doc/");
 define('asset_doc',"assets/uploads/asset_doc/");

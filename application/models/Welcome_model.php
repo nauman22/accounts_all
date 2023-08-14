@@ -200,18 +200,21 @@ class Welcome_model extends CI_Model {
                                     } else
                                         if($menu_id == 15){
                                             $table="tbl_asset";
-                                        } 
-                                        /*$date =date('Y-m-d H:i:s', strtotime('2010-10-12 15:09:00') );
-                                        $data = array(
-                                        'name'=>$name,
-                                        'description'=>$description,
-                                        'remarks'=>$remarks,
-                                        'edate'=>$date,
-                                        'ekpo'=>1,
-                                        'is_active'=>1
-                                        ); */
+                                        } else
+                                            if($menu_id == 22){
+                                                $table="tbl_branches";
+                                            } 
+                                            /*$date =date('Y-m-d H:i:s', strtotime('2010-10-12 15:09:00') );
+                                            $data = array(
+                                            'name'=>$name,
+                                            'description'=>$description,
+                                            'remarks'=>$remarks,
+                                            'edate'=>$date,
+                                            'ekpo'=>1,
+                                            'is_active'=>1
+                                            ); */
 
-                                        if($button_id == 1){
+                                            if($button_id == 1){
             $this->db->where('is_active','1');
             $this->db->where('id',$row_id);
             $this->db->select('*');
@@ -290,7 +293,35 @@ class Welcome_model extends CI_Model {
         $response = $q->result_array();
 
         return $response;
-    }
+    }   
+     function get_single_company($id){
+
+        $response = array();
+        $this->db->where('is_active','1','id',$id);
+        $this->db->order_by('id', 'DESC');  //actual field name of id
+
+        // Select record
+        $this->db->select('name');
+        $q = $this->db->get('tbl_company');
+        $response = $q->result_array();
+
+        return $response;
+    }  
+
+    function get_branch($id){
+
+        $response = array();
+        $this->db->where('is_active','1');
+        $this->db->order_by('id', 'DESC');  //actual field name of id
+
+        // Select record
+        $this->db->select('*');
+        $q = $this->db->get('tbl_branches');
+        $response = $q->result_array();
+
+        return $response;
+    } 
+
     function get_account($id){
 
         $response = array();
@@ -343,7 +374,19 @@ class Welcome_model extends CI_Model {
 
         return $response;
     }
+    function get_single_user($id){
 
+        $response = array();
+        $this->db->where('is_active','1','id',$id);
+        $this->db->order_by('id', 'DESC');  //actual field name of id
+        // Select record
+        $this->db->select('name');
+        $q = $this->db->get('tbl_user');
+        $response = $q->result_array();
+        /*echo $this->db->last_query();
+        exit();*/
+        return $response;
+    }
     function get_user($id){
 
         $response = array();
@@ -837,6 +880,89 @@ class Welcome_model extends CI_Model {
 
         return $response;
     }
+
+    function add_branch(){
+
+
+
+        $company_id =$this->input->post('company_id');
+        $branch_name=$this->input->post('branch_name');
+        $user_id=$this->input->post('user_id');
+        $branch_price=$this->input->post('branch_price');
+        $row_permit_start_date=$this->input->post('row_permit_start_date');
+        $row_permit_end_date=$this->input->post('row_permit_end_date');
+        $plot_utilization_start_date=$this->input->post('plot_utilization_start_date');
+        $plot_utilization_end_date=$this->input->post('plot_utilization_end_date');
+        $building_permit_start_date=$this->input->post('building_permit_start_date');
+        $building_permit_end_date=$this->input->post('building_permit_end_date');
+        $project_start_date=$this->input->post('project_start_date');
+        $project_end_date=$this->input->post('project_end_date');
+        $parking_ijari_start_date=$this->input->post('parking_ijari_start_date');
+        $parking_ijari_end_date=$this->input->post('parking_ijari_end_date');
+        $remarks=$this->input->post('remarks');
+        $date =date('Y-m-d H:i:s');
+        $id =$this->input->post('id');
+
+        if($id>0)
+        {
+            $data = array(
+                'company_id'=>$company_id,
+                'branch_name'=>$branch_name,
+                'user_id'=>$user_id,
+                'branch_price'=>$branch_price,
+                'row_permit_start_date'=>$row_permit_start_date,
+                'row_permit_end_date'=>$row_permit_end_date,
+                'plot_utilization_start_date'=>$plot_utilization_start_date,
+                'plot_utilization_end_date'=>$plot_utilization_end_date,
+                'building_permit_start_date'=>$building_permit_start_date,
+                'building_permit_end_date'=>$building_permit_end_date,
+                'project_start_date'=>$project_start_date,
+                'project_end_date'=>$project_end_date,
+                'parking_ijari_start_date'=>$parking_ijari_start_date,
+                'parking_ijari_end_date'=>$parking_ijari_end_date,
+                'remarks'=>$remarks,
+                'cdate'=>$date,
+                'ckpo'=>1,
+                'is_active'=>1
+            );
+            $this->db->where('id',$id);
+            $response =   $this->db->update('tbl_branches',$data);
+        } 
+        else
+        {
+            $data = array(
+                'company_id'=>$company_id,
+                'branch_name'=>$branch_name,
+                'user_id'=>$user_id,
+                'branch_price'=>$branch_price,
+                'row_permit_start_date'=>$row_permit_start_date,
+                'row_permit_end_date'=>$row_permit_end_date,
+                'plot_utilization_start_date'=>$plot_utilization_start_date,
+                'plot_utilization_end_date'=>$plot_utilization_end_date,
+                'building_permit_start_date'=>$building_permit_start_date,
+                'building_permit_end_date'=>$building_permit_end_date,
+                'project_start_date'=>$project_start_date,
+                'project_end_date'=>$project_end_date,
+                'parking_ijari_start_date'=>$parking_ijari_start_date,
+                'parking_ijari_end_date'=>$parking_ijari_end_date,
+                'remarks'=>$remarks,
+                'edate'=>$date,
+                'ekpo'=>1,
+                'is_active'=>1
+            );
+
+
+            $response = $this->db->insert('tbl_branches',$data);
+            /*print_r($this->db->error());
+            exit();*/
+
+
+
+        }
+
+        return $response;
+    }
+
     function add_head(){
         $name=$this->input->post('name');
         $description=$this->input->post('description');

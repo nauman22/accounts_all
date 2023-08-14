@@ -19,169 +19,167 @@
                 break;
             }
         } ?>
-         <h1 class="mt-4"><i class="<?php echo $icon; ?> "></i> <?php  echo $name; ?></h1>
+        <h1 class="mt-4"><i class="<?php echo $icon; ?> "></i> <?php  echo $name; ?></h1>
         <br>
         <?php if($add_record == 1){ ?>
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <i class="<?php echo $icon; ?>"></i> Add / Update 
-                    </div>
-                    <div class="card-body">
-                        <form action="insert_cash_register" id="form" name="form_cat"  method="post" enctype="multipart/form-data">
-                            <label for="inputPassword5" class="form-label">Ledger No.</label>
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="<?php echo $icon; ?>"></i> Add / Update 
+                        </div>
+                        <div class="card-body">
+                            <form action="insert_branch" id="form" name="form_cat"  method="post" enctype="multipart/form-data">
+                                <div class="form-floating mb-3 col-lg-12 col-md-12 col-xs-12">
+                                    <select class="form-control" id="company_id" name="company_id"  >
+                                        <option value="0">SELECT COMPANY</option>
+                                        <?php 
+                                        for($i=0; $i<count($company); $i++){
+                                            $id = $company[$i]['id'];
+                                            $text = $company[$i]['name'];
+                                            echo '<option value="'.$id.'">'.$text.'</option>' ;
+                                        }
+                                        ?>
+                                    </select>
+                                    <label for="company_id">COMPANY</label>  
 
-                            <div class="form-floating mb-3 col-lg-12 col-md-12 col-xs-12">
-                                <select class="form-control" id="company_id" name="company_id"  >
-                                    <option value="0">SELECT COMPANY</option>
-                                    <?php 
-                                    for($i=0; $i<count($company); $i++){
-                                        $id = $company[$i]['id'];
-                                        $text = $company[$i]['name'];
-                                        echo '<option value="'.$id.'">'.$text.'</option>' ;
-                                    }
-                                    ?>
-                                </select>
-                                <label for="company_id">COMPANY</label>  
-
-                            </div>
+                                </div>
                                 <div class="row align-items-center">
-                                <div class="col-lg-4 col-md-4 col-xs-12 ">
-                                    <div class="form-floating mb-3">
-                                        <input class="form-control" id="date" name="date" type="text" placeholder="Branch Name" />
-                                        <label for="date">BRANCH NAME</label>
+                                    <div class="col-lg-4 col-md-4 col-xs-12 ">
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="branch_name" name="branch_name" type="text" placeholder="Branch Name" />
+                                            <label for="date">BRANCH NAME</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12 ">
+                                        <div class="form-floating mb-3">
+                                            <select class="form-control" id="user_id" name="user_id"  >
+                                                <option value="0">SELECT EMPLOYEE</option>
+                                                <?php 
+                                                for($i=0; $i<count($user); $i++){
+                                                    $id = $user[$i]['id'];
+                                                    $text = $user[$i]['name'];
+                                                    echo '<option value="'.$id.'">'.$text.'</option>' ;
+                                                }
+                                                ?>
+                                            </select>
+                                            <label for="date">SELECT EMPLOYEE</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-xs-12 ">
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="branch_price" name="branch_price" type="text" placeholder="Branch Price" />
+                                            <label for="price">BRANCH PRICE</label>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-4 col-md-4 col-xs-12 ">
-                                    <div class="form-floating mb-3">
-                                           <select class="form-control" id="type" name="type"  >
-                                            <option value="0">SELECT EMPLOYEE</option>
-                                            <?php 
-                                            for($i=0; $i<count($user); $i++){
-                                                $id = $user[$i]['id'];
-                                                $text = $user[$i]['name'];
-                                                echo '<option value="'.$id.'">'.$text.'</option>' ;
-                                            }
-                                            ?>
-                                        </select>
-                                        <label for="date">SELECT EMPLOYEE</label>
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6 col-md-6 col-xs-12 ">
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="row_permit_start_date" name="row_permit_start_date" type="date" placeholder="Row Permit Start Date" />
+                                            <label for="date">ROW PERMIT START</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-xs-12 ">
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="row_permit_end_date" name="row_permit_end_date" type="date" placeholder="Row Permit Last Date" />
+                                            <label for="date">ROW PERMIT END</label>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-4 col-md-4 col-xs-12 ">
-                                    <div class="form-floating mb-3">
-                                            <input class="form-control" id="price" name="price" type="text" placeholder="Branch Price" />
-                                        <label for="price">BRANCH PRICE</label>
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6 col-md-6 col-xs-12 ">
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="plot_utilization_start_date" name="plot_utilization_start_date" type="date" placeholder="Row Permit Start Date" />
+                                            <label for="date">PLOT UTILIZATION START</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-xs-12 ">
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="plot_utilization_end_date" name="plot_utilization_end_date" type="date" placeholder="Row Permit Last Date" />
+                                            <label for="date">PLOT UTILIZATION END</label>
+                                        </div>
                                     </div>
                                 </div>
-                                </div>
-                                 <div class="row align-items-center">
-                                <div class="col-lg-6 col-md-6 col-xs-12 ">
-                                <div class="form-floating mb-3">
-                                        <input class="form-control" id="date" name="date" type="date" placeholder="Row Permit Start Date" />
-                                        <label for="date">ROW PERMIT START</label>
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6 col-md-6 col-xs-12 ">
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="building_permit_start_date" name="building_permit_start_date" type="date" placeholder="Row Permit Start Date" />
+                                            <label for="date">BUILDING PERMIT START</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-xs-12 ">
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="building_permit_end_date" name="building_permit_end_date" type="date" placeholder="Row Permit Last Date" />
+                                            <label for="date">BUILDING PERMIT END</label>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-xs-12 ">
-                                <div class="form-floating mb-3">
-                                        <input class="form-control" id="date" name="date" type="date" placeholder="Row Permit Last Date" />
-                                        <label for="date">ROW PERMIT END</label>
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6 col-md-6 col-xs-12 ">
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="project_start_date" name="project_start_date" type="date" placeholder="Row Permit Start Date" />
+                                            <label for="date">PROJECT ENTRY START</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-xs-12 ">
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="project_end_date" name="project_end_date" type="date" placeholder="Row Permit Last Date" />
+                                            <label for="date">PROJECT ENTRY END</label>
+                                        </div>
                                     </div>
                                 </div>
-                                </div>
-                                 <div class="row align-items-center">
-                                  <div class="col-lg-6 col-md-6 col-xs-12 ">
-                                <div class="form-floating mb-3">
-                                        <input class="form-control" id="date" name="date" type="date" placeholder="Row Permit Start Date" />
-                                        <label for="date">PLOT UTILIZATION START</label>
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6 col-md-6 col-xs-12 ">
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="parking_ijari_start_date" name="parking_ijari_start_date" type="date" placeholder="Row Permit Start Date" />
+                                            <label for="date">PARKING IJARI START</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-xs-12 ">
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="parking_ijari_end_date" name="parking_ijari_end_date" type="date" placeholder="Row Permit Last Date" />
+                                            <label for="date">PARKING IJARI END</label>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-xs-12 ">
-                                <div class="form-floating mb-3">
-                                        <input class="form-control" id="date" name="date" type="date" placeholder="Row Permit Last Date" />
-                                        <label for="date">PLOT UTILIZATION END</label>
-                                    </div>
-                                </div>
-                                </div>
-                                 <div class="row align-items-center">
-                                  <div class="col-lg-6 col-md-6 col-xs-12 ">
-                                <div class="form-floating mb-3">
-                                        <input class="form-control" id="date" name="date" type="date" placeholder="Row Permit Start Date" />
-                                        <label for="date">BUILDING PERMIT START</label>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-xs-12 ">
-                                <div class="form-floating mb-3">
-                                        <input class="form-control" id="date" name="date" type="date" placeholder="Row Permit Last Date" />
-                                        <label for="date">BUILDING PERMIT END</label>
-                                    </div>
-                                </div>
-                                </div>
-                                 <div class="row align-items-center">
-                                  <div class="col-lg-6 col-md-6 col-xs-12 ">
-                                <div class="form-floating mb-3">
-                                        <input class="form-control" id="date" name="date" type="date" placeholder="Row Permit Start Date" />
-                                        <label for="date">PROJECT ENTRY START</label>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-xs-12 ">
-                                <div class="form-floating mb-3">
-                                        <input class="form-control" id="date" name="date" type="date" placeholder="Row Permit Last Date" />
-                                        <label for="date">PROJECT ENTRY END</label>
-                                    </div>
-                                </div>
-                                </div>
-                                 <div class="row align-items-center">
-                                  <div class="col-lg-6 col-md-6 col-xs-12 ">
-                                <div class="form-floating mb-3">
-                                        <input class="form-control" id="date" name="date" type="date" placeholder="Row Permit Start Date" />
-                                        <label for="date">PARKING IJARI START</label>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-xs-12 ">
-                                <div class="form-floating mb-3">
-                                        <input class="form-control" id="date" name="date" type="date" placeholder="Row Permit Last Date" />
-                                        <label for="date">PARKING IJARI END</label>
-                                    </div>
-                                </div>
-                                </div>
-                                
-                          
-                            <div class="row align-items-center">
-                                <div class="col-lg-12 col-md-12 col-xs-12">
-                                    <div class="form-floating">
-                                        <textarea class="form-control" placeholder="Type Remarks here" id="remarks" name="remarks" style="height: 100px"></textarea>
-                                        <label for="remarks">REMARKS</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="row align-items-center">
-                                <div class="col-lg-12 col-md-12 col-xs-12 ">
-                                    <label for="inputGroupFile01">UPLOAD DOCUMENTS IF ANY</label> 
-                                    <input type="file" class="form-control" name="upload_doc_cash_register[]" multiple id="upload_doc_cash_register">
 
 
+                                <div class="row align-items-center">
+                                    <div class="col-lg-12 col-md-12 col-xs-12">
+                                        <div class="form-floating">
+                                            <textarea class="form-control" placeholder="Type Remarks here" id="remarks" name="remarks" style="height: 100px"></textarea>
+                                            <label for="remarks">REMARKS</label>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <br>
+                                <br>
+                                <div class="row align-items-center">
+                                    <div class="col-lg-12 col-md-12 col-xs-12 ">
+                                        <label for="inputGroupFile01">UPLOAD DOCUMENTS IF ANY</label> 
+                                        <input type="file" class="form-control" name="upload_branches[]" multiple id="upload_branches">
 
-                            <div class="d-grid gap-2 col-6 mx-auto w-100">
-                                <button class="btn btn-success col-xs-12 form-control"  type="submit">Save</button>
-                                <button class="btn btn-danger col-xs-12 form-control" id="btn_cancel" type="button">Cancel</button>
 
-                            </div>
-                            <div id="output1" class="d-grid gap-2 col-6 mx-auto">
+                                    </div>
+                                </div>
+                                <br>
 
-                            </div>
-                            <input type="hidden" id="id" name="id">
-                        </form>
+                                <div class="d-grid gap-2 col-6 mx-auto w-100">
+                                    <button class="btn btn-success col-xs-12 form-control"  type="submit">Save</button>
+                                    <button class="btn btn-danger col-xs-12 form-control" id="btn_cancel" type="button">Cancel</button>
+
+                                </div>
+                                <div id="output1" class="d-grid gap-2 col-6 mx-auto">
+
+                                </div>
+                                <input type="hidden" id="id" name="id">
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-        </div>
-        <?php } ?>
+            </div>
+            <?php } ?>
         <div class="card mb-4">
             <div class="card-header">
                 <i class="<?php echo $icon; ?>"></i>
@@ -192,18 +190,22 @@
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Date</th>
-                            <th>Description</th>
-                            <th>Amount</th>
-                            <th>Type</th>
-                            <th>Bank</th>
-                            <th>Head</th>
-                            <th>Category</th>
-                            <th>Employee</th>
-                            <th>Mode</th>
-                            <th>Remarks</th>
+                            <th>Image</th>
                             <th>Company</th>
-                            <th>Images</th>
+                            <th>Branch</th>
+                            <th>Employee</th>
+                            <th>Price</th>
+                            <th>Row Permit Start</th>
+                            <th>Row Permit End</th>
+                            <th>Plot Utilization Start</th>
+                            <th>Plot Utilization End</th>
+                            <th>Building Permit Start</th>
+                            <th>Building Permit End</th>
+                            <th>Project Start</th>
+                            <th>Project End</th> 
+                            <th>Parking Ijari Start</th>
+                            <th>Parking Ijari End</th>
+                            <th>Remarks</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -217,7 +219,7 @@
     </div>
 </main>  
 <script type="text/javascript">
-   
+
     $(document).ready( function () {
         // $('#datatablesSimple').DataTable();
         var table =  $('#datatablesSimple').DataTable({
@@ -225,7 +227,7 @@
             "serverSide": true,
             responsive: true,
             "ajax":{
-                "url": "<?php echo base_url()."cash_register_table" ?>",
+                "url": "<?php echo base_url()."branch_table" ?>",
                 "dataType": "json",
                 "type": "POST",
                 "data":{  '<?php echo $this->security->get_csrf_token_name(); ?>' : '<?php echo $this->security->get_csrf_hash(); ?>' }
@@ -233,26 +235,26 @@
 
             "columns": [
                 { "data": "id" },
-                { "data": "date" },
-                { "data": "description" },
-                { "data": "amount" },
-                { "data": "type_name" },
-                { "data": "bank_name" },
-                { "data": "head_name" },
-                { "data": "category_name" },
-                { "data": "user_name" },
-                { "data": "mode_name" },
+                { "data": "image" },
+                { "data": "company_id" },
+                { "data": "branch_name" },
+                { "data": "user_id" },
+                { "data": "branch_price" },
+                { "data": "row_permit_start_date" },
+                { "data": "row_permit_end_date" },
+                { "data": "plot_utilization_start_date" },
+                { "data": "plot_utilization_end_date" },
+                { "data": "building_permit_start_date" },
+                { "data": "building_permit_end_date" },
+                { "data": "project_start_date" },
+                { "data": "project_end_date" },
+                { "data": "parking_ijari_start_date" },
+                { "data": "parking_ijari_start_date" },
                 { "data": "remarks" },
-                { "data": "company_name" },
-                { "data": "images" },
                 { "data": "buttons" },
             ]     
-
         });
-
-
-
-    } );
+    });
 </script>
 <script type="text/javascript">
     // prepare the form when the DOM is ready 
@@ -269,7 +271,7 @@
             //type:      type        // 'get' or 'post', override for form's 'method' attribute 
             //dataType:  null        // 'xml', 'script', or 'json' (expected server response type) 
             //clearForm: true ,       // clear all form fields after successful submit 
-           // resetForm: true        // reset the form after successful submit 
+            // resetForm: true        // reset the form after successful submit 
 
             // $.ajax options can be used here too, for example: 
             //timeout:   3000 
@@ -320,12 +322,12 @@
                 'Thank You.',
                 'success'
             )
-             $("#amount").val("");
-             $("#description").val("");
-             $("#remarks").val("");
-             document.getElementById("upload_doc_cash_register").value = "";
-             
-            
+            $("#amount").val("");
+            $("#description").val("");
+            $("#remarks").val("");
+            document.getElementById("upload_doc_cash_register").value = "";
+
+
             $('#datatablesSimple').DataTable().ajax.reload();
         } else{
             Swal.fire({

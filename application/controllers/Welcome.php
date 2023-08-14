@@ -263,12 +263,8 @@ class Welcome extends CI_Controller {
         $data['user'] = $this->Welcome_model->get_user($id=null);
         $data['company'] = $this->Welcome_model->get_company($id=null);
 
-        //$data['cash_register'] = $this->Welcome_model->get_type($id=null);
-        //print_r($data);
-        // exit();
-        //$data['menu'] = $this->Welcome_model->get_menu("cash register");
         $userid = $_SESSION['id'];
-        $data['menu_id'] =22; //$this->Welcome_model->get_menu("dashboard");
+        $data['menu_id'] =22; 
         $data['user_rights'] = $this->Welcome_model->get_menu_user($userid);
         $data['single_menu'] = $this->Welcome_model->get_single_menu($userid,$data['menu_id']);
 
@@ -635,6 +631,35 @@ class Welcome extends CI_Controller {
         echo json_encode($data);
         exit();
     }
+
+    public function insert_branch()
+    {
+        $insertId = $this->Welcome_model->add_branch();
+
+        $response = 0;
+        if($insertId >0){
+            $response = true;
+
+            if(isset($_FILES['upload_branches'])){
+                $path = branch_img.$insertId."/"; // upload directory
+                $files = $_FILES['upload_branches'];
+                $title = $insertId;
+                $this->upload_files($path,$title,$files);
+
+            }
+        }
+
+        $data=array(
+            'status'=>$response,
+            'message'=>"There is an error occoured. Please try again later!",
+            'middlename'=>33,
+            'surname'=>44
+            //'response'=>$response
+        );
+        //echo "true";
+        echo json_encode($data);
+        exit();
+    }
     public function insert_head()
     {
         $response = $this->Welcome_model->add_head();
@@ -794,18 +819,147 @@ class Welcome extends CI_Controller {
                 $nestedData['remarks'] = $post->remarks;
                 /*
                 $btn = "        <div class='d-grid gap-2'>  <button data-button_id='1' data-menu_id = '12'  data-row_id='".$post->id."'  type='button' class='btn_edit btn btn-labeled btn-success '>
-                <span class='btn-label'><i class='fa fa-check'></i></span>Updte</button><button data-button_id='2' data-menu_id = '12' data-row_id='".$post->id."' class='btn_del btn btn-labeled btn-danger '>
+                <span class='btn-label'><i class='fa fa-check'></i></span>Update</button><button data-button_id='2' data-menu_id = '12' data-row_id='".$post->id."' class='btn_del btn btn-labeled btn-danger '>
                 <span class='btn-label'><i class='fa fa-remove'></i></span>Delete</button></div>";
                 */
 
                 $btn = "<div class='d-grid gap-2'>";
                 if($single_menu[0]['edit_record'] == 1 ){
                     $btn .="<button data-button_id='1' data-menu_id = '12'  data-row_id='".$post->id."'  type='button' class='btn_edit btn btn-labeled btn-success '>
-                    <span class='btn-label'><i class='fa fa-check'></i></span>Updte</button>";
+                    <span class='btn-label'><i class='fa fa-check'></i></span>Update</button>";
 
                 }
                 if($single_menu[0]['delete_record'] == 1 ){
                     $btn .="<button data-button_id='2' data-menu_id = '12' data-row_id='".$post->id."' class='btn_del btn btn-labeled btn-danger '>
+                    <span class='btn-label'><i class='fa fa-remove'></i></span>Delete</button>";
+
+                }
+                $btn .="</div>";
+
+
+                $nestedData['buttons'] = $btn;
+                //$nestedData['created_at'] = date('j M Y h:i a',strtotime($post->created_at));
+
+                $data[] = $nestedData;
+
+            }
+        }
+
+        $json_data = array(
+            "draw"            => intval($this->input->post('draw')),  
+            "recordsTotal"    => intval($totalData),  
+            "recordsFiltered" => intval($totalFiltered), 
+            "data"            => $data   
+        );
+
+        echo json_encode($json_data); 
+    }
+    public function branch_table()
+    {
+        $this->load->model('branch_table_model');
+        $columns = array( 
+            0  =>'id', 
+            1  =>'company_id',
+            2  =>'branch_name',
+            3  =>'user_id',
+            4  =>'branch_price',
+            5  =>'row_permit_start_date',
+            6  =>'row_permit_end_date',
+            7  =>'plot_utilization_start_date',
+            8  =>'plot_utilization_end_date',
+            9  =>'building_permit_start_date',
+            10 =>'building_permit_end_date',
+            11 => 'project_start_date',
+            12 => 'project_end_date',
+            13 => 'parking_ijari_start_date',
+            14 => 'parking_ijari_start_date',
+            15 => 'remarks',
+
+        );
+
+        $limit = $this->input->post('length');
+        $start = $this->input->post('start');
+        $order = $columns[$this->input->post('order')[0]['column']];
+        $dir = $this->input->post('order')[0]['dir'];
+
+        $totalData = $this->branch_table_model->allposts_count();
+
+        $totalFiltered = $totalData; 
+
+        if(empty($this->input->post('search')['value']))
+        {            
+            $posts = $this->branch_table_model->allposts($limit,$start,$order,$dir);
+        }
+        else {
+            $search = $this->input->post('search')['value']; 
+
+            $posts =  $this->branch_table_model->posts_search($limit,$start,$search,$order,$dir);
+
+            $totalFiltered = $this->branch_table_model->posts_search_count($search);
+        }
+
+        $data = array();
+        if(!empty($posts))
+        {    
+            $userid = $_SESSION['id'];
+            $menu_id =22;
+            $single_menu = $this->Welcome_model->get_single_menu($userid,$menu_id);
+            // print_r($single_menu);
+            foreach ($posts as $post)
+            {
+
+                $nestedData['id'] = $post->id;
+                $path  = branch_img.$post->id."/";
+                $img = "";
+                $images = glob($path."*.{jpg,png,jpeg}",GLOB_BRACE);
+
+                /*print_r($images);
+                exit();*/
+
+                $hard_path  = "C:\\xampp\\htdocs\\arsh\\";
+                foreach ($images as $image) {
+                    $img .= ' <a class="nsbbox" title="'.basename($image).'" 
+                    href="../'.$image.'">
+                    <img title="'.basename($image).'" alt="Image 1" class="img-responsive img" src="../'.$image.'" style="width:50px" />
+                    </a>
+                    ';
+                }
+
+                $nestedData['image'] = $img;
+                $nestedData['company_id'] = $this->Welcome_model->get_single_company($post->user_id);
+                $nestedData['company_id'] = $nestedData['company_id'][0]['name'];
+                $nestedData['branch_name'] = $post->branch_name;
+                $nestedData['user_id'] = $this->Welcome_model->get_single_user($post->user_id);
+                $nestedData['user_id'] = $nestedData['user_id'][0]['name'];
+                $nestedData['branch_price'] = $post->branch_price;
+                $nestedData['row_permit_start_date'] = $post->row_permit_start_date;
+                $nestedData['row_permit_end_date'] = $post->row_permit_end_date;
+                $nestedData['plot_utilization_start_date'] = $post->plot_utilization_start_date;
+                $nestedData['plot_utilization_end_date'] = $post->plot_utilization_end_date;
+                $nestedData['building_permit_start_date'] = $post->building_permit_start_date;
+                $nestedData['building_permit_end_date'] = $post->building_permit_end_date;
+                $nestedData['project_start_date'] = $post->project_start_date;
+                $nestedData['project_end_date'] = $post->project_end_date;
+                $nestedData['parking_ijari_start_date'] = $post->parking_ijari_start_date;
+                $nestedData['parking_ijari_end_date'] = $post->parking_ijari_end_date;
+                $nestedData['remarks'] = $post->remarks;
+                /*
+                $btn = "        <div class='d-grid gap-2'>  <button data-button_id='1' data-menu_id = '12'  data-row_id='".$post->id."'  type='button' class='btn_edit btn btn-labeled btn-success '>
+                <span class='btn-label'><i class='fa fa-check'></i></span>Update</button><button data-button_id='2' data-menu_id = '12' data-row_id='".$post->id."' class='btn_del btn btn-labeled btn-danger '>
+                <span class='btn-label'><i class='fa fa-remove'></i></span>Delete</button></div>";
+                */
+
+                /*print_r($nestedData);
+                exit();*/
+
+                $btn = "<div class='d-grid gap-2'>";
+                if($single_menu[0]['edit_record'] == 1 ){
+                    $btn .="<button data-button_id='1' data-menu_id = '22'  data-row_id='".$post->id."'  type='button' class='btn_edit btn btn-labeled btn-success '>
+                    <span class='btn-label'><i class='fa fa-check'></i></span>Update</button>";
+
+                }
+                if($single_menu[0]['delete_record'] == 1 ){
+                    $btn .="<button data-button_id='2' data-menu_id = '22' data-row_id='".$post->id."' class='btn_del btn btn-labeled btn-danger '>
                     <span class='btn-label'><i class='fa fa-remove'></i></span>Delete</button>";
 
                 }
@@ -1013,7 +1167,7 @@ class Welcome extends CI_Controller {
                 $btn = "<div class='d-grid gap-2'>";
                 if(@$single_menu[0]['edit_record'] == 1 ){
                     $btn .="<button data-button_id='1' data-menu_id = '2'  data-row_id='".$post->id."'  type='button' class='btn_edit btn btn-labeled btn-success '>
-                    <span class='btn-label'><i class='fa fa-check'></i></span>Updte</button>";
+                    <span class='btn-label'><i class='fa fa-check'></i></span>Update</button>";
 
                 }
                 if(@$single_menu[0]['delete_record'] == 1 ){
@@ -1093,7 +1247,7 @@ class Welcome extends CI_Controller {
                 $btn = "<div class='d-grid gap-2'>";
                 if(@$single_menu[0]['edit_record'] == 1 ){
                     $btn .="<button data-button_id='1' data-menu_id = '15'  data-row_id='".$post->id."'  type='button' class='btn_edit btn btn-labeled btn-success '>
-                    <span class='btn-label'><i class='fa fa-check'></i></span>Updte</button>";
+                    <span class='btn-label'><i class='fa fa-check'></i></span>Update</button>";
 
                 }
                 if(@$single_menu[0]['delete_record'] == 1 ){
@@ -1104,7 +1258,7 @@ class Welcome extends CI_Controller {
                 $btn .="</div>";
 
                 /* $btn = "        <div class='d-grid gap-2'>  <button data-button_id='1' data-menu_id = '15'  data-row_id='".$post->id."'  type='button' class='btn_edit btn btn-labeled btn-success '>
-                <span class='btn-label'><i class='fa fa-check'></i></span>Updte</button><button data-button_id='2' data-menu_id = '15' data-row_id='".$post->id."' class='btn_del btn btn-labeled btn-danger '>
+                <span class='btn-label'><i class='fa fa-check'></i></span>Update</button><button data-button_id='2' data-menu_id = '15' data-row_id='".$post->id."' class='btn_del btn btn-labeled btn-danger '>
                 <span class='btn-label'><i class='fa fa-remove'></i></span>Delete</button></div>";
                 */  
                 $nestedData['buttons'] = $btn;
@@ -1192,13 +1346,13 @@ class Welcome extends CI_Controller {
 
 
                 /*$btn = "        <div class='d-grid gap-2'>  <button data-button_id='1' data-menu_id = '14'  data-row_id='".$post->id."'  type='button' class='btn_edit btn btn-labeled btn-success '>
-                <span class='btn-label'><i class='fa fa-check'></i></span>Updte</button><button data-button_id='2' data-menu_id = '14' data-row_id='".$post->id."' class='btn_del btn btn-labeled btn-danger '>
+                <span class='btn-label'><i class='fa fa-check'></i></span>Update</button><button data-button_id='2' data-menu_id = '14' data-row_id='".$post->id."' class='btn_del btn btn-labeled btn-danger '>
                 <span class='btn-label'><i class='fa fa-remove'></i></span>Delete</button></div>";
                 */
                 $btn = "<div class='d-grid gap-2'>";
                 if($single_menu[0]['edit_record'] == 1 ){
                     $btn .="<button data-button_id='1' data-menu_id = '14'  data-row_id='".$post->id."'  type='button' class='btn_edit btn btn-labeled btn-success '>
-                    <span class='btn-label'><i class='fa fa-check'></i></span>Updte</button>";
+                    <span class='btn-label'><i class='fa fa-check'></i></span>Update</button>";
 
                 }
                 if($single_menu[0]['delete_record'] == 1 ){
@@ -1272,13 +1426,13 @@ class Welcome extends CI_Controller {
                 $nestedData['remarks'] = $post->remarks;
 
                 /*$btn = "        <div class='d-grid gap-2'>  <button data-button_id='1' data-menu_id = '4'  data-row_id='".$post->id."'  type='button' class='btn_edit btn btn-labeled btn-success '>
-                <span class='btn-label'><i class='fa fa-check'></i></span>Updte</button><button data-button_id='2' data-menu_id = '4' data-row_id='".$post->id."' class='btn_del btn btn-labeled btn-danger '>
+                <span class='btn-label'><i class='fa fa-check'></i></span>Update</button><button data-button_id='2' data-menu_id = '4' data-row_id='".$post->id."' class='btn_del btn btn-labeled btn-danger '>
                 <span class='btn-label'><i class='fa fa-remove'></i></span>Delete</button></div>";
                 */
                 $btn = "<div class='d-grid gap-2'>";
                 if($single_menu[0]['edit_record'] == 1 ){
                     $btn .="<button data-button_id='1' data-menu_id = '4'  data-row_id='".$post->id."'  type='button' class='btn_edit btn btn-labeled btn-success '>
-                    <span class='btn-label'><i class='fa fa-check'></i></span>Updte</button>";
+                    <span class='btn-label'><i class='fa fa-check'></i></span>Update</button>";
 
                 }
                 if($single_menu[0]['delete_record'] == 1 ){
@@ -1352,14 +1506,14 @@ class Welcome extends CI_Controller {
                 $nestedData['remarks'] = $post->remarks;
 
                 /*$btn = "        <div class='d-grid gap-2'>  <button data-button_id='1' data-menu_id = '3'  data-row_id='".$post->id."'  type='button' class='btn_edit btn btn-labeled btn-success '>
-                <span class='btn-label'><i class='fa fa-check'></i></span>Updte</button><button data-button_id='2' data-menu_id = '3' data-row_id='".$post->id."' class='btn_del btn btn-labeled btn-danger '>
+                <span class='btn-label'><i class='fa fa-check'></i></span>Update</button><button data-button_id='2' data-menu_id = '3' data-row_id='".$post->id."' class='btn_del btn btn-labeled btn-danger '>
                 <span class='btn-label'><i class='fa fa-remove'></i></span>Delete</button></div>";
                 */
 
                 $btn = "<div class='d-grid gap-2'>";
                 if($single_menu[0]['edit_record'] == 1 ){
                     $btn .="<button data-button_id='1' data-menu_id = '3'  data-row_id='".$post->id."'  type='button' class='btn_edit btn btn-labeled btn-success '>
-                    <span class='btn-label'><i class='fa fa-check'></i></span>Updte</button>";
+                    <span class='btn-label'><i class='fa fa-check'></i></span>Update</button>";
 
                 }
                 if($single_menu[0]['delete_record'] == 1 ){
@@ -1441,14 +1595,14 @@ class Welcome extends CI_Controller {
                 $nestedData['remarks'] = $post->remarks;
 
                 /*$btn = "        <div class='d-grid gap-2'>  <button data-button_id='1' data-menu_id = '6'  data-row_id='".$post->id."'  type='button' class='btn_edit btn btn-labeled btn-success '>
-                <span class='btn-label'><i class='fa fa-check'></i></span>Updte</button><button data-button_id='2' data-menu_id = '6' data-row_id='".$post->id."' class='btn_del btn btn-labeled btn-danger '>
+                <span class='btn-label'><i class='fa fa-check'></i></span>Update</button><button data-button_id='2' data-menu_id = '6' data-row_id='".$post->id."' class='btn_del btn btn-labeled btn-danger '>
                 <span class='btn-label'><i class='fa fa-remove'></i></span>Delete</button></div>";
                 */
 
                 $btn = "<div class='d-grid gap-2'>";
                 if(@$single_menu[0]['edit_record'] == 1 ){
                     $btn .="<button data-button_id='1' data-menu_id = '6'  data-row_id='".$post->id."'  type='button' class='btn_edit btn btn-labeled btn-success '>
-                    <span class='btn-label'><i class='fa fa-check'></i></span>Updte</button>";
+                    <span class='btn-label'><i class='fa fa-check'></i></span>Update</button>";
 
                 }
                 if(@$single_menu[0]['delete_record'] == 1 ){
@@ -1522,13 +1676,13 @@ class Welcome extends CI_Controller {
                 $nestedData['remarks'] = $post->remarks;
                 //$nestedData['created_at'] = date('j M Y h:i a',strtotime($post->created_at));
                 /*$btn = "        <div class='d-grid gap-2'>  <button data-button_id='1' data-menu_id = '8'  data-row_id='".$post->id."'  type='button' class='btn_edit btn btn-labeled btn-success '>
-                <span class='btn-label'><i class='fa fa-check'></i></span>Updte</button><button data-button_id='2' data-menu_id = '8' data-row_id='".$post->id."' class='btn_del btn btn-labeled btn-danger '>
+                <span class='btn-label'><i class='fa fa-check'></i></span>Update</button><button data-button_id='2' data-menu_id = '8' data-row_id='".$post->id."' class='btn_del btn btn-labeled btn-danger '>
                 <span class='btn-label'><i class='fa fa-remove'></i></span>Delete</button></div>";
                 */
                 $btn = "<div class='d-grid gap-2'>";
                 if(@$single_menu[0]['edit_record'] == 1 ){
                     $btn .="<button data-button_id='1' data-menu_id = '8'  data-row_id='".$post->id."'  type='button' class='btn_edit btn btn-labeled btn-success '>
-                    <span class='btn-label'><i class='fa fa-check'></i></span>Updte</button>";
+                    <span class='btn-label'><i class='fa fa-check'></i></span>Update</button>";
 
                 }
                 if(@$single_menu[0]['delete_record'] == 1 ){
@@ -1668,7 +1822,7 @@ class Welcome extends CI_Controller {
                 $nestedData['doc'] = $img;
 
                 /* $btn = "        <div class='d-grid gap-2'>  <button data-button_id='1' data-menu_id = '10'  data-row_id='".$post->id."'  type='button' class='btn_edit btn btn-labeled btn-success '>
-                <span class='btn-label'><i class='fa fa-check'></i></span>Updte</button><button data-button_id='2' data-menu_id = '10' data-row_id='".$post->id."' class='btn_del btn btn-labeled btn-danger '>
+                <span class='btn-label'><i class='fa fa-check'></i></span>Update</button><button data-button_id='2' data-menu_id = '10' data-row_id='".$post->id."' class='btn_del btn btn-labeled btn-danger '>
                 <span class='btn-label'><i class='fa fa-remove'></i></span>Delete</button></div>";
                 */
                 $btn = "<div class='d-grid gap-2'>";
@@ -1676,7 +1830,7 @@ class Welcome extends CI_Controller {
 
                 if(@$single_menu[0]['edit_record'] == 1 ){
                     $btn .="<button data-button_id='1' data-menu_id = '10'  data-row_id='".$post->id."'  type='button' class='btn_edit btn btn-labeled btn-success '>
-                    <span class='btn-label'><i class='fa fa-check'></i></span>Updte</button>";
+                    <span class='btn-label'><i class='fa fa-check'></i></span>Update</button>";
 
                 }
                 if(@$single_menu[0]['delete_record'] == 1 ){
@@ -1813,7 +1967,7 @@ class Welcome extends CI_Controller {
                 $nestedData['doc'] = $img;
 
                 /* $btn = "        <div class='d-grid gap-2'>  <button data-button_id='1' data-menu_id = '10'  data-row_id='".$post->id."'  type='button' class='btn_edit btn btn-labeled btn-success '>
-                <span class='btn-label'><i class='fa fa-check'></i></span>Updte</button><button data-button_id='2' data-menu_id = '10' data-row_id='".$post->id."' class='btn_del btn btn-labeled btn-danger '>
+                <span class='btn-label'><i class='fa fa-check'></i></span>Update</button><button data-button_id='2' data-menu_id = '10' data-row_id='".$post->id."' class='btn_del btn btn-labeled btn-danger '>
                 <span class='btn-label'><i class='fa fa-remove'></i></span>Delete</button></div>";
                 */
                 $btn = "<div class='d-grid gap-2'>";
@@ -1821,7 +1975,7 @@ class Welcome extends CI_Controller {
 
                 if(@$single_menu[0]['edit_record'] == 1 ){
                     $btn .="<button data-button_id='1' data-menu_id = '10'  data-row_id='".$post->id."'  type='button' class='btn_edit btn btn-labeled btn-success '>
-                    <span class='btn-label'><i class='fa fa-check'></i></span>Updte</button>";
+                    <span class='btn-label'><i class='fa fa-check'></i></span>Update</button>";
 
                 }
                 if(@$single_menu[0]['delete_record'] == 1 ){
@@ -1852,7 +2006,7 @@ class Welcome extends CI_Controller {
         }
         $config = array(
             'upload_path'   => $path,
-            'allowed_types' => 'jpg|gif|png',
+            'allowed_types' => 'jpg|jpeg|png',
             'overwrite'     => 1,                       
         );
 
