@@ -287,10 +287,11 @@ class Welcome extends CI_Controller {
         $data['type'] = $this->Welcome_model->get_type($id=null);
         $data['account'] = $this->Welcome_model->get_account($id=null);
         $data['head'] = $this->Welcome_model->get_head($id=null);
-        $data['category'] = $this->Welcome_model->get_category($id=null);
-        $data['mode'] = $this->Welcome_model->get_mode($id=null);
+        //$data['category'] = $this->Welcome_model->get_category($id=null);
+        //$data['mode'] = $this->Welcome_model->get_mode($id=null);
         $data['user'] = $this->Welcome_model->get_user($id=null);
         $data['company'] = $this->Welcome_model->get_company($id=null);
+        //$data['branch'] = $this->Welcome_model->get_branch($id=null);
 
         //$data['cash_register'] = $this->Welcome_model->get_type($id=null);
         //print_r($data);
@@ -382,6 +383,18 @@ class Welcome extends CI_Controller {
     public function get_user_rights()
     {
         $data = $this->Welcome_model->get_menu_all_user();
+        echo json_encode($data);
+        exit();
+    } 
+    public function get_Company_branches()
+    {
+        $data = $this->Welcome_model->get_Company_branches($_POST['id']);
+        echo json_encode($data);
+        exit();
+    } 
+    public function get_branches_employee()
+    {
+        $data = $this->Welcome_model->get_branches_employee($_POST['id']);
         echo json_encode($data);
         exit();
     }
@@ -1144,6 +1157,7 @@ class Welcome extends CI_Controller {
                 $nestedData['user_name'] = $post->user_name;
                 $nestedData['mode_name'] = $post->mode_name;
                 $nestedData['company_name'] = $post->company_name;
+                $nestedData['branch_name'] = $post->branch_name;
                 $nestedData['remarks'] = $post->remarks;
                 $path  = cash_register_voucher.$post->id."/";
                 $img = "";

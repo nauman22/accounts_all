@@ -122,6 +122,64 @@
 
     });
 
+    $("#company_id").change(function(){
+
+        var selectedValue = $(this).val();
+        $.ajax({
+            url: "get_Company_branches", // URL to the server endpoint
+            method: "POST",
+            dataType: "json", // Expected data type of the response
+            data: {id: selectedValue }, 
+            success: function(data) {
+
+                // Populate the dropdown with data from the response
+
+                var dropdown = $("#branch_id");
+                var dropdown2 = $("#lblBranch");
+                dropdown.empty();
+                dropdown.css("display", "block");
+                dropdown2.css("display", "block");
+                dropdown.append('<option value="">Select a branch</option>');
+                $.each(data, function(index, branch) {
+                    dropdown.append($('<option></option>').attr('value', branch.id).text(branch.branch_name));
+                });
+            },
+            error: function(xhr, status, error) {
+                // Handle errors
+                console.log("Error:", error);
+            }
+        });
+    });
+
+    $("#branch_id").change(function(){
+
+        var selectedValue = $(this).val();
+        $.ajax({
+            url: "get_branches_employee", // URL to the server endpoint
+            method: "POST",
+            dataType: "json", // Expected data type of the response
+            data: {id: selectedValue }, 
+            success: function(data) {
+
+                // Populate the dropdown with data from the response
+
+                var dropdown = $("#emp");
+                var dropdown2 = $("#lblemp");
+                dropdown.empty();
+                dropdown.css("display", "block");
+                dropdown2.css("display", "block");
+                //dropdown.append('<option value="">Select a Employee</option>');
+                $.each(data, function(index, emp) {
+                    dropdown.append($('<option></option>').attr('value', emp.id).text(emp.name));
+                });
+            },
+            error: function(xhr, status, error) {
+                // Handle errors
+                console.log("Error:", error);
+            }
+        });
+    });
+    
     $(document).on("click", ".btn_edit, .btn_del  ", function(){
         var isdelete =0;
         var menu_id  = $(this).attr("data-menu_id");
@@ -270,7 +328,7 @@
                                     window.scrollTo({ top: 0, behavior: 'smooth' });              
                                 }
                                 else if(menu_id == 22){
-                                  
+
                                     $("#id").val(data[0]['id']);             
                                     $("#company_id").val(data[0]['company_id']);             
                                     $("#branch_name").val(data[0]['branch_name']);             

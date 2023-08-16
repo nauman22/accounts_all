@@ -294,7 +294,7 @@ class Welcome_model extends CI_Model {
 
         return $response;
     }   
-     function get_single_company($id){
+    function get_single_company($id){
 
         $response = array();
         $this->db->where('is_active','1','id',$id);
@@ -318,7 +318,43 @@ class Welcome_model extends CI_Model {
         $this->db->select('*');
         $q = $this->db->get('tbl_branches');
         $response = $q->result_array();
+        /*echo $this->db->last_query();
+        exit();*/
+        return $response;
+    }
 
+    function get_Company_branches($id){
+
+        $response = array();
+        $this->db->where('is_active','1','company_id',$id);
+        $this->db->order_by('id', 'ASC');  //actual field name of id
+
+        // Select record
+        $this->db->select('*');
+        $q = $this->db->get('tbl_branches');
+        $response = $q->result_array();
+        /*echo $this->db->last_query();
+        exit();*/
+        return $response;
+    } 
+    function get_branches_employee($id){
+
+        $response = array();
+        $q = $this->db->query("SELECT (SELECT name from tbl_user WHERE user_id = a.user_id) AS name,user_id AS id FROM `tbl_branches` a WHERE id = $id");
+
+        /*print_r($q);
+        exit();*/
+        /*$this->db->where('is_active','1','company_id',$id);
+        $this->db->order_by('id', 'ASC');  //actual field name of id
+
+        // Select record
+        $this->db->select('*');
+        $q = $this->db->get('tbl_user');*/
+        $response = $q->result_array();
+        /*print_r($response);
+        exit();*/
+        /*echo $this->db->last_query();
+        exit();*/
         return $response;
     } 
 
@@ -643,6 +679,7 @@ class Welcome_model extends CI_Model {
     }
     function add_cash_register(){
         $company =$this->input->post('company_id');
+        $branch_id =$this->input->post('branch_id');
         $date_=$this->input->post('date');
         $type=$this->input->post('type');
         $account=$this->input->post('account');
@@ -662,6 +699,7 @@ class Welcome_model extends CI_Model {
             $data = array(
 
                 'company_id'=>$company,
+                'branch_id'=>$branch_id,
                 'date'=>$date_,
                 'type_id'=>$type,
                 'bank_id'=>$account,
@@ -678,7 +716,8 @@ class Welcome_model extends CI_Model {
             );
             $this->db->where('id',$id);
             $response =   $this->db->update('tbl_cash_register',$data);
-            //  echo     $this->db->last_query();
+            /*echo $this->db->error();
+            exit();*/
             $insert_id = $id;                    
 
             //$insert_id = $this->db->insert_id();
@@ -690,6 +729,7 @@ class Welcome_model extends CI_Model {
             $data = array(
 
                 'company_id'=>$company,
+                'branch_id'=>$branch_id,
                 'date'=>$date_,
                 'type_id'=>$type,
                 'bank_id'=>$account,
@@ -705,6 +745,8 @@ class Welcome_model extends CI_Model {
                 'is_active'=>1
             );
             $response =   $this->db->insert('tbl_cash_register',$data);
+            /*print_r($this->db->error());
+            exit();*/
             $insert_id = $this->db->insert_id();
             return $insert_id;
 
