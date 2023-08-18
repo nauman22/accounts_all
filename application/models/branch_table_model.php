@@ -13,7 +13,7 @@ class Branch_table_model extends CI_Model
         $query = $this
         ->db
         ->where('is_active',1)
-        ->get('tbl_branches');
+        ->get('tbl_branch');
 
         return $query->num_rows();  
 
@@ -26,7 +26,7 @@ class Branch_table_model extends CI_Model
         ->where('is_active',1)
         ->limit($limit,$start)
         ->order_by($col,$dir)
-        ->get('tbl_branches');
+        ->get('tbl_branch');
 
         if($query->num_rows()>0)
         {
@@ -49,7 +49,7 @@ class Branch_table_model extends CI_Model
         ->or_like('remarks',$search)
         ->limit($limit,$start)
         ->order_by($col,$dir)
-        ->get('tbl_branches');
+        ->get('tbl_branch');
 
 
         if($query->num_rows()>0)
@@ -70,7 +70,7 @@ class Branch_table_model extends CI_Model
         ->like('id',$search)
         ->or_like('name',$search)
         ->or_like('remarks',$search)
-        ->get('tbl_branches');
+        ->get('tbl_branch');
 
         return $query->num_rows();
     } 

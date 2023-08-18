@@ -179,7 +179,7 @@
             }
         });
     });
-    
+
     $(document).on("click", ".btn_edit, .btn_del  ", function(){
         var isdelete =0;
         var menu_id  = $(this).attr("data-menu_id");
@@ -269,7 +269,18 @@
                                     $("#name").val(data[0]['name']);             
                                     $("#father_name").val(data[0]['father_name']);             
                                     $("#cnic").val(data[0]['cnic']);             
-                                    $("#desig").val(data[0]['desig']);             
+                                    $("#desig").val(data[0]['desig']);    
+
+                                    $("#visa_entry_date").val(data[0]['visa_entry_date']);             
+                                    $("#visa_expiry_date").val(data[0]['visa_expiry_date']);             
+                                    $("#labour_entry_date").val(data[0]['labour_entry_date']);             
+                                    $("#labour_expiry_date").val(data[0]['labour_expiry_date']);             
+                                    $("#pasport_issue_date").val(data[0]['pasport_issue_date']);             
+                                    $("#pasport_expiry_date").val(data[0]['pasport_expiry_date']);             
+                                    $("#id_card_issue_date").val(data[0]['id_card_issue_date']);             
+                                    $("#id_card_expiry_date").val(data[0]['id_card_expiry_date']);             
+
+
                                     $("#dob").val(data[0]['dob']);             
                                     $("#cell_no").val(data[0]['cell_no']);             
                                     $("#guardian_cell").val(data[0]['guardian_cell']);             
@@ -431,7 +442,17 @@
                             $("#name").val(data[0]['name']);             
                             $("#father_name").val(data[0]['father_name']);             
                             $("#cnic").val(data[0]['cnic']);             
-                            $("#desig").val(data[0]['desig']);             
+                            $("#desig").val(data[0]['desig']);         
+
+                            $("#visa_entry_date").val(data[0]['visa_entry_date']);             
+                            $("#visa_expiry_date").val(data[0]['visa_expiry_date']);             
+                            $("#labour_entry_date").val(data[0]['labour_entry_date']);             
+                            $("#labour_expiry_date").val(data[0]['labour_expiry_date']);             
+                            $("#pasport_issue_date").val(data[0]['pasport_issue_date']);             
+                            $("#pasport_expiry_date").val(data[0]['pasport_expiry_date']);             
+                            $("#id_card_issue_date").val(data[0]['id_card_issue_date']);             
+                            $("#id_card_expiry_date").val(data[0]['id_card_expiry_date']); 
+
                             $("#dob").val(data[0]['dob']);             
                             $("#cell_no").val(data[0]['cell_no']);             
                             $("#guardian_cell").val(data[0]['guardian_cell']);             

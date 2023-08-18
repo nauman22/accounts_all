@@ -202,7 +202,7 @@ class Welcome_model extends CI_Model {
                                             $table="tbl_asset";
                                         } else
                                             if($menu_id == 22){
-                                                $table="tbl_branches";
+                                                $table="tbl_branch";
                                             } 
                                             /*$date =date('Y-m-d H:i:s', strtotime('2010-10-12 15:09:00') );
                                             $data = array(
@@ -316,7 +316,7 @@ class Welcome_model extends CI_Model {
 
         // Select record
         $this->db->select('*');
-        $q = $this->db->get('tbl_branches');
+        $q = $this->db->get('tbl_branch');
         $response = $q->result_array();
         /*echo $this->db->last_query();
         exit();*/
@@ -331,7 +331,7 @@ class Welcome_model extends CI_Model {
 
         // Select record
         $this->db->select('*');
-        $q = $this->db->get('tbl_branches');
+        $q = $this->db->get('tbl_branch');
         $response = $q->result_array();
         /*echo $this->db->last_query();
         exit();*/
@@ -340,7 +340,7 @@ class Welcome_model extends CI_Model {
     function get_branches_employee($id){
 
         $response = array();
-        $q = $this->db->query("SELECT (SELECT name from tbl_user WHERE user_id = a.user_id) AS name,user_id AS id FROM `tbl_branches` a WHERE id = $id");
+        $q = $this->db->query("SELECT (SELECT name from tbl_user WHERE user_id = a.user_id) AS name,user_id AS id FROM `tbl_branch` a WHERE id = $id");
 
         /*print_r($q);
         exit();*/
@@ -751,9 +751,6 @@ class Welcome_model extends CI_Model {
             return $insert_id;
 
         }
-
-
-
     }
     function add_asset(){
         $name=$this->input->post('name');
@@ -968,7 +965,7 @@ class Welcome_model extends CI_Model {
                 'is_active'=>1
             );
             $this->db->where('id',$id);
-            $response =   $this->db->update('tbl_branches',$data);
+            $response =   $this->db->update('tbl_branch',$data);
         } 
         else
         {
@@ -994,7 +991,7 @@ class Welcome_model extends CI_Model {
             );
 
 
-            $response = $this->db->insert('tbl_branches',$data);
+            $response = $this->db->insert('tbl_branch',$data);
             /*print_r($this->db->error());
             exit();*/
 
@@ -1128,6 +1125,18 @@ class Welcome_model extends CI_Model {
         $email=$this->input->post('email');
         $remarks=$this->input->post('remarks');
 
+
+        $visa_entry_date=$this->input->post('visa_entry_date');
+        $visa_expiry_date=$this->input->post('visa_expiry_date');
+        $labour_entry_date=$this->input->post('labour_entry_date');
+        $labour_expiry_date=$this->input->post('labour_expiry_date');
+        $pasport_issue_date=$this->input->post('pasport_issue_date');
+        $pasport_expiry_date=$this->input->post('pasport_expiry_date');
+        $id_card_issue_date=$this->input->post('id_card_issue_date');
+        $id_card_expiry_date=$this->input->post('id_card_expiry_date');
+
+
+
         $date =date('Y-m-d H:i:s');
         $id =$this->input->post('id');
 
@@ -1155,7 +1164,17 @@ class Welcome_model extends CI_Model {
                 'dob'=>$dob,
                 'cdate'=>$date,
                 'ckpo'=>1,
-                'is_active'=>1
+                'is_active'=>1,
+
+
+                'visa_entry_date'=>$visa_entry_date,
+                'visa_expiry_date'=>$visa_expiry_date,
+                'labour_entry_date'=>$labour_entry_date,
+                'labour_expiry_date'=>$labour_expiry_date,
+                'pasport_issue_date'=>$pasport_issue_date,
+                'pasport_expiry_date'=>$pasport_expiry_date,
+                'id_card_issue_date'=>$id_card_issue_date,
+                'id_card_expiry_date'=>$id_card_expiry_date
             );
             $this->db->where('id',$id);
             $insert_id =   $this->db->update('tbl_user',$data);
@@ -1184,7 +1203,16 @@ class Welcome_model extends CI_Model {
                 'dob'=>$dob,
                 'edate'=>$date,
                 'ekpo'=>1,
-                'is_active'=>1
+                'is_active'=>1,
+
+                'visa_entry_date'=>$visa_entry_date,
+                'visa_expiry_date'=>$visa_expiry_date,
+                'labour_entry_date'=>$labour_entry_date,
+                'labour_expiry_date'=>$labour_expiry_date,
+                'pasport_issue_date'=>$pasport_issue_date,
+                'pasport_expiry_date'=>$pasport_expiry_date,
+                'id_card_issue_date'=>$id_card_issue_date,
+                'id_card_expiry_date'=>$id_card_expiry_date
             );
 
             $response =   $this->db->insert('tbl_user',$data);

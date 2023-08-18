@@ -253,20 +253,16 @@
 
             "columns": [
                 { "data": "id" },
+                { "data": "images" },
                 { "data": "date" },
                 { "data": "company_name" },
                 { "data": "branch_name" },
-
                 { "data": "amount" },
                 { "data": "type_name" },
-
                 { "data": "head_name" },
-
                 { "data": "user_name" },
                 { "data": "description" },
                 { "data": "remarks" },
-
-                { "data": "images" },
                 { "data": "buttons" },
             ]     
 

@@ -40,8 +40,7 @@
                                 <div class="row align-items-center">
                                     <div class="col-lg-4 col-md-4 col-xs-12 ">
                                         <div class="form-floating mb-3 col-xs-12">
-
-                                            <input class="form-control" type="text" required id="name" name="name" placeholder="amount">
+                                            <input class="form-control" type="text" required id="name" name="name">
                                             <label for="name">Name</label>  
 
                                         </div>
@@ -51,25 +50,25 @@
                                     <div class="col-lg-4 col-md-4 col-xs-12">
                                         <div class="form-floating mb-3">
 
-                                            <input class="form-control" type="text" id="father_name" name="father_name" placeholder="amount">
+                                            <input class="form-control" required type="text" id="father_name" name="father_name">
                                             <label for="father_name">Father's Name</label>  
 
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-4 col-xs-12">
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" type="text" placeholder=" description" id="cnic" name="cnic">
+                                            <input class="form-control" required type="text" id="cnic" name="cnic">
                                             <label for="cnic">ID CARD NO</label>  
 
                                         </div>
                                     </div>
                                 </div>
-                                    <div class="row align-items-center">
+                                <div class="row align-items-center">
                                     <div class="col-lg-6 col-md-6 col-xs-12 ">
                                         <div class="form-floating mb-3 col-xs-12">
 
-                                            <input class="form-control" type="date" required id="name" name="name" placeholder="amount">
-                                            <label for="name">VISA ENTRY DATE</label>  
+                                            <input class="form-control" type="date" required id="visa_entry_date" name="visa_entry_date">
+                                            <label for="visa_entry_date">VISA ENTRY DATE</label>  
 
                                         </div>
                                     </div>
@@ -78,19 +77,19 @@
                                     <div class="col-lg-6 col-md-6 col-xs-12 ">
                                         <div class="form-floating mb-3">
 
-                                            <input class="form-control" type="date" id="father_name" name="father_name" placeholder="amount">
-                                           <label for="name">VISA EXPIRY DATE</label>  
+                                            <input class="form-control" required type="date" id="visa_expiry_date" name="visa_expiry_date">
+                                            <label for="visa_expiry_date">VISA EXPIRY DATE</label>  
 
                                         </div>
                                     </div>
-                                  
+
                                 </div>
                                 <div class="row align-items-center">
                                     <div class="col-lg-6 col-md-6 col-xs-12 ">
                                         <div class="form-floating mb-3 col-xs-12">
 
-                                            <input class="form-control" type="date" required id="name" name="name" placeholder="amount">
-                                            <label for="name">LABOUR ENTRY DATE</label>  
+                                            <input class="form-control" type="date" required id="labour_entry_date" name="labour_entry_date">
+                                            <label for="labour_entry_date">LABOUR ENTRY DATE</label>  
 
                                         </div>
                                     </div>
@@ -99,19 +98,19 @@
                                     <div class="col-lg-6 col-md-6 col-xs-12 ">
                                         <div class="form-floating mb-3">
 
-                                            <input class="form-control" type="date" id="father_name" name="father_name" placeholder="amount">
-                                           <label for="name">LABOUR EXPIRY DATE</label>  
+                                            <input class="form-control" type="date" required id="labour_expiry_date" name="labour_expiry_date">
+                                            <label for="labour_expiry_date">LABOUR EXPIRY DATE</label>  
 
                                         </div>
                                     </div>
-                                  
+
                                 </div>
                                 <div class="row align-items-center">
                                     <div class="col-lg-6 col-md-6 col-xs-12 ">
                                         <div class="form-floating mb-3 col-xs-12">
 
-                                            <input class="form-control" type="date" required id="name" name="name" placeholder="amount">
-                                            <label for="name">PASPORT ISSUE DATE</label>  
+                                            <input class="form-control" type="date" required id="pasport_issue_date" name="pasport_issue_date">
+                                            <label for="passport_issue_date">PASPORT ISSUE DATE</label>  
 
                                         </div>
                                     </div>
@@ -120,19 +119,19 @@
                                     <div class="col-lg-6 col-md-6 col-xs-12 ">
                                         <div class="form-floating mb-3">
 
-                                            <input class="form-control" type="date" id="father_name" name="father_name" placeholder="amount">
-                                           <label for="name">PASPORT EXPIRY DATE</label>  
+                                            <input class="form-control" type="date" required id="pasport_expiry_date" name="pasport_expiry_date">
+                                            <label for="pasport_expiry_date">PASPORT EXPIRY DATE</label>  
 
                                         </div>
                                     </div>
-                                  
+
                                 </div>
                                 <div class="row align-items-center">
                                     <div class="col-lg-6 col-md-6 col-xs-12 ">
                                         <div class="form-floating mb-3 col-xs-12">
 
-                                            <input class="form-control" type="date" required id="name" name="name" placeholder="amount">
-                                            <label for="name">ID CARD ISSUE DATE</label>  
+                                            <input class="form-control" type="date" required id="id_card_issue_date" name="id_card_issue_date">
+                                            <label for="id_card_issue_date">ID CARD ISSUE DATE</label>  
 
                                         </div>
                                     </div>
@@ -141,18 +140,18 @@
                                     <div class="col-lg-6 col-md-6 col-xs-12 ">
                                         <div class="form-floating mb-3">
 
-                                            <input class="form-control" type="date" id="father_name" name="father_name" placeholder="amount">
-                                           <label for="name">ID CARD EXPIRY DATE</label>  
+                                            <input class="form-control" type="date" required id="id_card_expiry_date" name="id_card_expiry_date">
+                                            <label for="name">ID CARD EXPIRY DATE</label>  
 
                                         </div>
                                     </div>
-                                  
+
                                 </div>
                                 <div class="row align-items-center">
                                     <div class="col-lg-4 col-md-4 col-xs-12">
                                         <div class="form-floating mb-3">
 
-                                            <input class="form-control" type="text" id="desig" name="desig" placeholder="amount">
+                                            <input class="form-control" type="text" id="desig" name="desig">
                                             <label for="desig">Designation</label>  
 
                                         </div>
@@ -161,8 +160,8 @@
                                     <div class="col-lg-4 col-md-4 col-xs-12">
                                         <div class="form-floating mb-3">
 
-                                            <input class="form-control" type="date" id="dob" name="dob" placeholder="amount">
-                                            <label for="dob">DOB</label>  
+                                            <input class="form-control" type="date" id="dob" name="dob">
+                                            <label for="dob">Date of Birth</label>  
 
                                         </div>
                                     </div>
@@ -179,7 +178,7 @@
                                     <div class="col-lg-4 col-md-4 col-xs-12">
                                         <div class="form-floating mb-3">
 
-                                            <input class="form-control" type="text" id="guardian_cell" name="guardian_cell" placeholder="amount">
+                                            <input class="form-control" type="text" id="guardian_cell" name="guardian_cell">
                                             <label for="guardian_cell">Guardian Cell</label>  
 
                                         </div>
@@ -189,7 +188,7 @@
                                     <div class="col-lg-4 col-md-4 col-xs-12">
                                         <div class="form-floating mb-3">
 
-                                            <input class="form-control" type="text" id="home_cell" name="home_cell" placeholder="amount">
+                                            <input class="form-control" type="text" id="home_cell" name="home_cell">
                                             <label for="home_cell">Home Cell No.</label>  
 
                                         </div>
@@ -215,7 +214,7 @@
                                     <div class="col-lg-3 col-md-3 col-xs-12">
                                         <div class="form-floating mb-3">
 
-                                            <input class="form-control" type="number" id="salary" name="salary" placeholder="amount">
+                                            <input class="form-control" type="number" id="salary" name="salary">
                                             <label for="salary">Salary</label>  
 
                                         </div>
@@ -223,7 +222,7 @@
                                     <div class="col-lg-3 col-md-3 col-xs-12">
                                         <div class="form-floating mb-3">
 
-                                            <input class="form-control" type="text" id="bank_name" name="bank_name" placeholder="amount">
+                                            <input class="form-control" type="text" id="bank_name" name="bank_name">
                                             <label for="bank_name">Bank Account Name</label>  
 
                                         </div>
@@ -233,14 +232,14 @@
                                     <div class="col-lg-3 col-md-3 col-xs-12">
                                         <div class="form-floating mb-3">
 
-                                            <input class="form-control" type="number" id="bank_account_no" name="bank_account_no" placeholder="amount">
+                                            <input class="form-control" type="number" id="bank_account_no" name="bank_account_no">
                                             <label for="bank_account_no">Bank Account No.</label>  
 
                                         </div>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-xs-12">
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" type="text" placeholder=" description" id="iban" name="iban">
+                                            <input class="form-control" type="text" id="iban" name="iban">
                                             <label for="iban">Bank IBAN</label>  
 
                                         </div>
@@ -260,7 +259,7 @@
                                     <div class="col-lg-4 col-md-4 col-xs-12">
                                         <div class="form-floating mb-3">
 
-                                            <input class="form-control" type="text" id="note" name="note" placeholder="amount">
+                                            <input class="form-control" type="text" id="note" name="note">
                                             <label for="note">NOTE</label>  
 
                                         </div>
@@ -270,7 +269,7 @@
                                     <div class="col-lg-4 col-md-4 col-xs-12">
                                         <div class="form-floating mb-3">
 
-                                            <input class="form-control" type="text" id="description" name="description" placeholder="amount">
+                                            <input class="form-control" type="text" id="description" name="description">
                                             <label for="description">Description.</label>  
 
                                         </div>
@@ -278,7 +277,7 @@
                                     <div class="col-lg-4 col-md-4 col-xs-12">
                                         <div class="form-floating mb-3">
 
-                                            <input class="form-control" type="email" id="email" name="email" placeholder="amount">
+                                            <input class="form-control" type="email" id="email" name="email">
                                             <label for="email">Email</label>  
 
                                         </div>
@@ -316,7 +315,7 @@
 
                                 <div class="d-grid gap-2 col-6 mx-auto w-100">
                                     <button class="btn btn-success col-xs-12 form-control"  type="submit">Save</button>
-                                     <button class="btn btn-danger col-xs-12 form-control" id="btn_cancel" type="button">Cancel</button>
+                                    <button class="btn btn-danger col-xs-12 form-control" id="btn_cancel" type="button">Cancel</button>
 
                                 </div>
                                 <input type="hidden" id="id" name="id">
@@ -342,6 +341,17 @@
                             <th>Father Name</th>
                             <th>CNIC</th>
                             <th>Designation</th>
+
+                            <th>visa_entry_date</th>
+                            <th>visa_expiry_date</th>
+                            <th>labour_entry_date</th>
+                            <th>labour_expiry_date</th>
+                            <th>pasport_issue_date</th>
+                            <th>pasport_expiry_date</th>
+                            <th>id_card_issue_date</th>
+                            <th>id_card_expiry_date</th>
+
+
                             <th>Cell</th>
                             <th>Guard. Cell</th>
                             <th>Home Cell</th>
@@ -391,6 +401,16 @@
                 { "data": "father_name" },
                 { "data": "cnic" },
                 { "data": "designation" },
+
+                { "data": "visa_entry_date" },
+                { "data": "visa_expiry_date" },
+                { "data": "labour_entry_date" },
+                { "data": "labour_expiry_date" },
+                { "data": "pasport_issue_date" },
+                { "data": "pasport_expiry_date" },
+                { "data": "id_card_issue_date" },
+                { "data": "id_card_expiry_date" },
+
                 { "data": "cell" },
                 { "data": "guardian_cell" },
                 { "data": "home_cell" },
@@ -413,7 +433,7 @@
         });
 
 
-        
+
     } );
 </script>
 <script type="text/javascript">
