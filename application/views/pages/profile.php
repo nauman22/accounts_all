@@ -337,6 +337,7 @@
                         <tr>
                             <th>Id</th>
                             <th>Picture</th>
+                            <th>Documents</th>
                             <th>Name</th>
                             <th>Father Name</th>
                             <th>CNIC</th>
@@ -353,9 +354,10 @@
 
 
                             <th>Cell</th>
-                            <th>Guard. Cell</th>
+                            
+                            <!--<th>Guard. Cell</th>
                             <th>Home Cell</th>
-                            <th>Emergency Cell</th>
+                            <th>Emergency Cell</th>-->
                             <th>Address</th>
                             <th>Salary</th>
                             <th>Bank Name</th>
@@ -366,7 +368,7 @@
                             <th>Email</th>
                             <th>Remarks</th>
                             <th>DOB</th>
-                            <th>Documents</th>
+
                             <th>Actions</th>
 
 
@@ -396,7 +398,8 @@
             },
             "columns": [
                 { "data": "id" },
-                { "data": "image" },
+                { "data": "images" },
+                { "data": "doc" },
                 { "data": "name" },
                 { "data": "father_name" },
                 { "data": "cnic" },
@@ -412,9 +415,9 @@
                 { "data": "id_card_expiry_date" },
 
                 { "data": "cell" },
-                { "data": "guardian_cell" },
+                /*{ "data": "guardian_cell" },
                 { "data": "home_cell" },
-                { "data": "emergency_cell" },
+                { "data": "emergency_cell" },*/
                 { "data": "address" },
                 { "data": "salary" },
                 { "data": "bank_name" },
@@ -425,7 +428,7 @@
                 { "data": "email" },
                 { "data": "remarks" },
                 { "data": "dob" },
-                { "data": "doc" },
+
                 { "data": "buttons" },
 
             ]     

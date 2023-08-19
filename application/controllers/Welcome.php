@@ -933,7 +933,7 @@ class Welcome extends CI_Controller {
                 /*print_r($images);
                 exit();*/
 
-                $hard_path  = "C:\\xampp\\htdocs\\arsh\\";
+                
                 foreach ($images as $image) {
                     $img .= ' <a class="nsbbox" title="'.basename($image).'" 
                     href="../'.$image.'">
@@ -1075,7 +1075,7 @@ class Welcome extends CI_Controller {
                 $path  = cash_register_voucher.$post->id."/";
                 $img = "";
                 $images = glob($path."*.{jpg,png,jpeg}", GLOB_BRACE);
-                $hard_path  = "C:\\xampp\\htdocs\\arsh\\";
+                
                 //$img .= '<div class="show_img_screen_view"><div>';
 
 
@@ -1165,7 +1165,7 @@ class Welcome extends CI_Controller {
                 $path  = cash_register_voucher.$post->id."/";
                 $img = "";
                 $images = glob($path."*.{jpg,png,jpeg}", GLOB_BRACE);
-                $hard_path  = "C:\\xampp\\htdocs\\arsh\\";
+                
                 //$img .= '<div class="show_img_screen_view"><div>';
 
 
@@ -1285,7 +1285,7 @@ class Welcome extends CI_Controller {
                 $path  = asset_doc.$post->id."/";
                 $img = "";
                 $images = glob($path."*.{jpg,png,jpeg}", GLOB_BRACE);
-                $hard_path  = "C:\\xampp\\htdocs\\arsh\\";
+                
 
                 foreach ($images as $image) {
                     $img .= ' <a class="nsbbox" title="'.basename($image).'" 
@@ -1786,21 +1786,28 @@ class Welcome extends CI_Controller {
             foreach ($posts as $post)
             {
 
-                $nestedData['id'] = $post->id;
                 $path  = employee_img.$post->id."/";
                 $img = "";
                 $images = glob($path."*.{jpg,png,jpeg}", GLOB_BRACE);
-                $hard_path  = "C:\\xampp\\htdocs\\arsh\\";
+                
+                //$img .= '<div class="show_img_screen_view"><div>';
+
 
                 foreach ($images as $image) {
+                    // $img .= '<img alt="Image 1" class="img-responsive img" src="../'.$image.'" style="width:50px" />';
                     $img .= ' <a class="nsbbox" title="'.basename($image).'" 
                     href="../'.$image.'">
                     <img title="'.basename($image).'" alt="Image 1" class="img-responsive img" src="../'.$image.'" style="width:50px" />
                     </a>
                     ';
                 }
+                //$img .=' </div></div>';
+                $nestedData['images'] = $img;
 
-                $nestedData['image'] = $img;
+                /*print_r($img);
+                exit();*/
+                     
+                $nestedData['id'] = $post->id;
                 $nestedData['name'] = $post->name;
                 $nestedData['cell'] = $post->cell_no;
                 $nestedData['address'] = $post->address;
@@ -1825,8 +1832,8 @@ class Welcome extends CI_Controller {
                 $nestedData['iban'] = $post->iban;
                 $nestedData['note'] = $post->note;
                 $nestedData['description'] = $post->description;
-                
-                
+
+
                 $nestedData['visa_entry_date'] = $post->visa_entry_date;
                 $nestedData['visa_expiry_date'] = $post->visa_expiry_date;
                 $nestedData['labour_entry_date'] = $post->labour_entry_date;
@@ -1835,14 +1842,15 @@ class Welcome extends CI_Controller {
                 $nestedData['pasport_expiry_date'] = $post->pasport_expiry_date;
                 $nestedData['id_card_issue_date'] = $post->id_card_issue_date;
                 $nestedData['id_card_expiry_date'] = $post->id_card_expiry_date;
-                
-                
-                
+
+                /*echo $post->id;
+                exit();      */
+
 
                 $path  = employee_doc.$post->id."/";
                 $img = "";
                 $images = glob($path."*.{jpg,png,jpeg}", GLOB_BRACE);
-                $hard_path  = "C:\\xampp\\htdocs\\arsh\\";
+                
                 foreach ($images as $image) {
                     $img .= ' <a class="nsbbox" title="'.basename($image).'" 
                     href="../'.$image.'">
@@ -1948,7 +1956,7 @@ class Welcome extends CI_Controller {
                 $path  = employee_img.$post->id."/";
                 $img = "";
                 $images = glob($path."*.{jpg,png,jpeg}", GLOB_BRACE);
-                $hard_path  = "C:\\xampp\\htdocs\\arsh\\";
+                
 
                 foreach ($images as $image) {
                     $img .= ' <a class="nsbbox" title="'.basename($image).'" 
@@ -1987,7 +1995,7 @@ class Welcome extends CI_Controller {
                 $path  = employee_doc.$post->id."/";
                 $img = "";
                 $images = glob($path."*.{jpg,png,jpeg}", GLOB_BRACE);
-                $hard_path  = "C:\\xampp\\htdocs\\arsh\\";
+                
                 foreach ($images as $image) {
                     $img .= ' <a class="nsbbox" title="'.basename($image).'" 
                     href="../'.$image.'">

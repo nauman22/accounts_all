@@ -340,21 +340,10 @@ class Welcome_model extends CI_Model {
     function get_branches_employee($id){
 
         $response = array();
-        $q = $this->db->query("SELECT (SELECT name from tbl_user WHERE user_id = a.user_id) AS name,user_id AS id FROM `tbl_branch` a WHERE id = $id");
-
-        /*print_r($q);
-        exit();*/
-        /*$this->db->where('is_active','1','company_id',$id);
-        $this->db->order_by('id', 'ASC');  //actual field name of id
-
-        // Select record
-        $this->db->select('*');
-        $q = $this->db->get('tbl_user');*/
-        $response = $q->result_array();
-        /*print_r($response);
-        exit();*/
+        $q = $this->db->query("SELECT u.name, b.user_id AS id FROM tbl_branch b JOIN tbl_user u ON b.user_id = u.id WHERE b.id = $id;");
         /*echo $this->db->last_query();
         exit();*/
+        $response = $q->result_array();
         return $response;
     } 
 
@@ -745,8 +734,10 @@ class Welcome_model extends CI_Model {
                 'is_active'=>1
             );
             $response =   $this->db->insert('tbl_cash_register',$data);
-            /*print_r($this->db->error());
+            /*echo $this->db->last_query();
             exit();*/
+            /* print_r($this->db->error());
+            exit(); */
             $insert_id = $this->db->insert_id();
             return $insert_id;
 
