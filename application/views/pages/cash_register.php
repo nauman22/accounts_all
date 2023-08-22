@@ -88,8 +88,8 @@
 
                                 <div class="row align-items-center">
                                     <div class="col-lg-12 col-md-12 col-xs-12">
-                                        <div class="form-floating mb-3">
-                                            <select class="form-control" id="head" name="head" required="required">
+                                        <div style="display: none;" class="form-floating mb-3">
+                                            <select class="form-control" id="head" name="head" >
                                                 <option value="">SELECT HEAD</option>
                                                 <?php 
                                                 for($i=0; $i<count($head); $i++){
@@ -143,7 +143,7 @@
                                     <div class="col-lg-4 col-md-4 col-xs-12 ">
                                         <div class="form-floating mb-3">
                                             <input class="form-control" id="date" name="date" type="date" placeholder="name@example.com" />
-                                            <label for="date">DATE</label>
+                                            <label for="date">COLLECTION DATE</label>
                                         </div>
                                     </div>
 
@@ -210,12 +210,14 @@
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Date</th>
+                            <th>Images</th>
+                            <th>Collection Date</th>
                             <th>Company</th>
                             <th>Branch</th>
-
                             <th>Amount</th>
                             <th>Type</th>
+
+
 
                             <th>Head</th>
 
@@ -223,7 +225,7 @@
                             <th>Description</th>
                             <th>Remarks</th>
 
-                            <th>Images</th>
+
                             <th>Actions</th>
                         </tr>
                     </thead>

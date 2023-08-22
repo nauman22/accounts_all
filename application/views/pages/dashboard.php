@@ -44,7 +44,7 @@
     <div class="row">
          <h3 class="mt-4 text-warning" ><i class="fas fa-tachometer-alt "></i> COMPANY INFORMATION</h3>
         <div class="col-lg-12 col-md-12 col-xl-12 col-sm-12">
-            <table class="table table-success table-striped table-hover table-sm table-bordered" border="1">
+            <table class="table table-success table-striped table-hover table-sm table-bordered table-responsive" border="1">
                 <thead>
                     <tr>
                         <th>
@@ -70,7 +70,7 @@
                         <td>30-03-2022</td>
                         <td>30-12-2023</td>
                         <td>               <div class="progress">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style="width: 70%"  aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:100%">
                                     License Expire in 4 Months and 28 Days
                                 </div>
                             </div></td>
@@ -80,7 +80,7 @@
                         <td>30-03-2023</td>
                         <td>30-03-2024</td>
                         <td>               <div class="progress">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: 70%"  aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:100%">
                                     License Expire in 8 Months 
                                 </div>
                             </div></td>
@@ -90,7 +90,7 @@
                         <td>30-03-2022</td>
                         <td>30-12-2025</td>
                         <td>               <div class="progress">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 70%"  aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:100%">
                                     License Expire 2 Years , 4 Months and 29 Days
                                 </div>
                             </div></td>
@@ -100,7 +100,7 @@
                         <td>30-03-2022</td>
                         <td>30-12-2026</td>
                         <td>               <div class="progress">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style="width: 70%"  aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:100%">
                                     License Expire in 3 Years Approx.
                                 </div>
                             </div></td>
@@ -114,7 +114,7 @@
          <div class="row">
          <h3 class="mt-4 text-warning" ><i class="fas fa-tachometer-alt "></i> BRANCH INFORMATION</h3>
         <div class="col-lg-12 col-md-12 col-xl-12 col-sm-12">
-            <table class="table table-success table-striped table-hover table-sm table-bordered" border="1">
+            <table class="table table-success table-striped table-hover table-sm table-bordered table-responsive" border="1">
                 <thead>
                     <tr>
                         <th>
@@ -140,7 +140,7 @@
                         <td>30-03-2022</td>
                         <td>30-12-2023</td>
                         <td>               <div class="progress">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style="width: 70%"  aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:100%">
                                     IJARI Expire in 4 Months and 28 Days
                                 </div>
                             </div></td>
@@ -150,7 +150,7 @@
                         <td>30-03-2023</td>
                         <td>30-03-2024</td>
                         <td>               <div class="progress">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" style="width: 70%"  aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:100%">
                                     IJARI Expire in 8 Months 
                                 </div>
                             </div></td>
@@ -160,7 +160,7 @@
                         <td>30-03-2022</td>
                         <td>30-12-2025</td>
                         <td>               <div class="progress">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 70%"  aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:100%">
                                     IJARI Expire 2 Years , 4 Months and 29 Days
                                 </div>
                             </div></td>
@@ -170,7 +170,7 @@
                         <td>30-03-2022</td>
                         <td>30-12-2026</td>
                         <td>               <div class="progress">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style="width: 70%"  aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:100%">
                                     IJARI Expire in 3 Years Approx.
                                 </div>
                             </div></td>
@@ -184,7 +184,7 @@
        <div class="row">
          <h3 class="mt-4 text-warning" ><i class="fas fa-tachometer-alt "></i> EMPLOYEE INFORMATION</h3>
         <div class="col-lg-12 col-md-12 col-xl-12 col-sm-12">
-            <table class="table table-success table-striped table-hover table-sm table-bordered" border="1">
+            <table class="table table-success table-striped table-hover table-sm table-bordered table-responsive" border="1">
                 <thead>
                     <tr>
                         <th>
@@ -242,7 +242,7 @@
 
             <div class="col-lg-8 col-md-8 col-xl-8 col-sm-12">
             
-                <table class="table table-success table-striped table-hover table-sm table-bordered" border="1">
+                <table class="table table-success table-striped table-hover table-sm table-bordered table-responsive" border="1">
                     <thead>
                         <tr>
                             <th>
