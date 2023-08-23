@@ -81,16 +81,28 @@
                                     </div>
                                 </div>
                                 <div class="row align-items-center">
-                                    <div class="col-lg-6 col-md-6 col-xs-12 ">
+                                    <div class="col-lg-3 col-md-3 col-xs-12 ">
                                         <div class="form-floating mb-3">
                                             <input class="form-control" id="row_permit_start_date" name="row_permit_start_date" type="date" placeholder="Row Permit Start Date" />
                                             <label for="date">ROW PERMIT START</label>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6 col-md-6 col-xs-12 ">
+                                    <div class="col-lg-3 col-md-3 col-xs-12 ">
                                         <div class="form-floating mb-3">
                                             <input class="form-control" id="row_permit_end_date" name="row_permit_end_date" type="date" placeholder="Row Permit Last Date" />
                                             <label for="date">ROW PERMIT END</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12 ">
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="tax" name="tax" type="number"  />
+                                            <label for="date">Tax %</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12 ">
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" readonly="readonly" id="taxshow" type="text" />
+                                            <label for="taxshow">TAX PRICE</label>
                                         </div>
                                     </div>
                                 </div>
@@ -270,6 +282,34 @@
             var monprice = $("#building_permit_price").val()/12;
             $("#building_permit_mon_price").val(monprice );
             $("#building_permit_mon_price").css("background-color", "cyan");
+            return true;
+        });
+        $("#tax").keyup(function(){
+
+            //tax formula
+            /*Tax Rate = 8%
+            Tax Rate (in decimal form) = 8% / 100 = 0.08
+            Tax Amount = $100 × 0.08 = $8*/
+
+
+            var TaxRate = $("#tax").val()/100;
+            var branch_price = $("#branch_price").val();
+
+            if(branch_price  == "")
+            {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: "Enter Branch Price First !!!"
+                });
+                $("#tax").val('');
+                $("#branch_price").focus();
+                return false;
+            }
+
+            var TaxAmount =  branch_price * TaxRate;
+            $("#taxshow").val(TaxAmount);
+            $("#taxshow").css("background-color", "orange");
             return true;
         });
 

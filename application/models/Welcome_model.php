@@ -951,6 +951,7 @@ class Welcome_model extends CI_Model {
         $branch_price=$this->input->post('branch_price');
         $row_permit_start_date=$this->input->post('row_permit_start_date');
         $row_permit_end_date=$this->input->post('row_permit_end_date');
+        $tax=$this->input->post('tax');
         $plot_utilization_start_date=$this->input->post('plot_utilization_start_date');
         $plot_utilization_end_date=$this->input->post('plot_utilization_end_date');
         $plot_utilization_price=$this->input->post('plot_utilization_price');
@@ -974,6 +975,7 @@ class Welcome_model extends CI_Model {
                 'branch_price'=>$branch_price,
                 'row_permit_start_date'=>$row_permit_start_date,
                 'row_permit_end_date'=>$row_permit_end_date,
+                'tax'=>$tax,
                 'plot_utilization_start_date'=>$plot_utilization_start_date,
                 'plot_utilization_end_date'=>$plot_utilization_end_date,
                 'plot_utilization_price'=>$plot_utilization_price,
@@ -1001,6 +1003,7 @@ class Welcome_model extends CI_Model {
                 'branch_price'=>$branch_price,
                 'row_permit_start_date'=>$row_permit_start_date,
                 'row_permit_end_date'=>$row_permit_end_date,
+                'tax'=>$tax,
                 'plot_utilization_start_date'=>$plot_utilization_start_date,
                 'plot_utilization_end_date'=>$plot_utilization_end_date,
                 'plot_utilization_price'=>$plot_utilization_price,

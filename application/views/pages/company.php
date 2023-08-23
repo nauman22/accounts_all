@@ -197,6 +197,13 @@
     // prepare the form when the DOM is ready 
     $(document).ready(function() { 
 
+        $("#name").keyup(function(){
+            
+            $("#lic_name").val($("#name").val());
+            return true;
+        });
+
+
         var options = { 
             target:        '#output1',   // target element(s) to be updated with server response 
             beforeSubmit:  showRequest,  // pre-submit callback 
