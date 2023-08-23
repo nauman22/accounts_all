@@ -140,7 +140,14 @@
                                 </div>
                                 <div class="row align-items-center">
 
-                                    <div class="col-lg-4 col-md-4 col-xs-12 ">
+                                    <div class="col-lg-3 col-md-3 col-xs-12 ">
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="srno" name="srno" type="text" />
+                                            <label for="date">Serial Number</label>
+                                        </div>
+                                    </div> 
+
+                                    <div class="col-lg-3 col-md-3 col-xs-12 ">
                                         <div class="form-floating mb-3">
                                             <input class="form-control" id="date" name="date" type="date" placeholder="name@example.com" />
                                             <label for="date">COLLECTION DATE</label>
@@ -149,7 +156,7 @@
 
 
 
-                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
                                         <div class="form-floating mb-3">
 
                                             <input class="form-control" type="number" id="amount" name="amount" placeholder=" description">
@@ -157,7 +164,7 @@
 
                                         </div>
                                     </div>
-                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
                                         <div class="form-floating mb-3">
                                             <input class="form-control" type="text" placeholder="description" id="description" name="description">
                                             <label for="description">DESCRIPTION</label>  

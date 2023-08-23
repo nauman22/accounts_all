@@ -669,6 +669,7 @@ class Welcome_model extends CI_Model {
     function add_cash_register(){
         $company =$this->input->post('company_id');
         $branch_id =$this->input->post('branch_id');
+        $srno =$this->input->post('srno');
         $date_=$this->input->post('date');
         $type=$this->input->post('type');
         $account=$this->input->post('account');
@@ -689,6 +690,7 @@ class Welcome_model extends CI_Model {
 
                 'company_id'=>$company,
                 'branch_id'=>$branch_id,
+                'srno'=>$srno,
                 'date'=>$date_,
                 'type_id'=>$type,
                 'bank_id'=>$account,
@@ -719,6 +721,7 @@ class Welcome_model extends CI_Model {
 
                 'company_id'=>$company,
                 'branch_id'=>$branch_id,
+                'srno'=>$srno,
                 'date'=>$date_,
                 'type_id'=>$type,
                 'bank_id'=>$account,

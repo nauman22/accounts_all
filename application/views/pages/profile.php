@@ -38,7 +38,7 @@
                                     </div>
                                 </div>
                                 <div class="row align-items-center">
-                                    <div class="col-lg-4 col-md-4 col-xs-12 ">
+                                    <div class="col-lg-6 col-md-6 col-xs-12 ">
                                         <div class="form-floating mb-3 col-xs-12">
                                             <input class="form-control" type="text" required id="name" name="name">
                                             <label for="name">Name</label>  
@@ -47,17 +47,17 @@
                                     </div>
 
 
-                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                    <div style="display: none;" class="col-lg-4 col-md-4 col-xs-12">
                                         <div class="form-floating mb-3">
 
-                                            <input class="form-control" required type="text" id="father_name" name="father_name">
+                                            <input class="form-control" type="text" id="father_name" name="father_name">
                                             <label for="father_name">Father's Name</label>  
 
                                         </div>
                                     </div>
-                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                    <div class="col-lg-6 col-md-6 col-xs-12">
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" required type="text" id="cnic" name="cnic">
+                                            <input class="form-control"  type="text" id="cnic" name="cnic">
                                             <label for="cnic">ID CARD NO</label>  
 
                                         </div>
@@ -67,7 +67,7 @@
                                     <div class="col-lg-6 col-md-6 col-xs-12 ">
                                         <div class="form-floating mb-3 col-xs-12">
 
-                                            <input class="form-control" type="date" required id="visa_entry_date" name="visa_entry_date">
+                                            <input class="form-control" type="date"  id="visa_entry_date" name="visa_entry_date">
                                             <label for="visa_entry_date">VISA ENTRY DATE</label>  
 
                                         </div>
@@ -77,7 +77,7 @@
                                     <div class="col-lg-6 col-md-6 col-xs-12 ">
                                         <div class="form-floating mb-3">
 
-                                            <input class="form-control" required type="date" id="visa_expiry_date" name="visa_expiry_date">
+                                            <input class="form-control"  type="date" id="visa_expiry_date" name="visa_expiry_date">
                                             <label for="visa_expiry_date">VISA EXPIRY DATE</label>  
 
                                         </div>
@@ -88,7 +88,7 @@
                                     <div class="col-lg-6 col-md-6 col-xs-12 ">
                                         <div class="form-floating mb-3 col-xs-12">
 
-                                            <input class="form-control" type="date" required id="labour_entry_date" name="labour_entry_date">
+                                            <input class="form-control" type="date"  id="labour_entry_date" name="labour_entry_date">
                                             <label for="labour_entry_date">LABOUR ENTRY DATE</label>  
 
                                         </div>
@@ -98,7 +98,7 @@
                                     <div class="col-lg-6 col-md-6 col-xs-12 ">
                                         <div class="form-floating mb-3">
 
-                                            <input class="form-control" type="date" required id="labour_expiry_date" name="labour_expiry_date">
+                                            <input class="form-control" type="date"  id="labour_expiry_date" name="labour_expiry_date">
                                             <label for="labour_expiry_date">LABOUR EXPIRY DATE</label>  
 
                                         </div>
@@ -109,7 +109,7 @@
                                     <div class="col-lg-6 col-md-6 col-xs-12 ">
                                         <div class="form-floating mb-3 col-xs-12">
 
-                                            <input class="form-control" type="date" required id="pasport_issue_date" name="pasport_issue_date">
+                                            <input class="form-control" type="date"  id="pasport_issue_date" name="pasport_issue_date">
                                             <label for="passport_issue_date">PASPORT ISSUE DATE</label>  
 
                                         </div>
@@ -119,7 +119,7 @@
                                     <div class="col-lg-6 col-md-6 col-xs-12 ">
                                         <div class="form-floating mb-3">
 
-                                            <input class="form-control" type="date" required id="pasport_expiry_date" name="pasport_expiry_date">
+                                            <input class="form-control" type="date"  id="pasport_expiry_date" name="pasport_expiry_date">
                                             <label for="pasport_expiry_date">PASPORT EXPIRY DATE</label>  
 
                                         </div>
@@ -130,7 +130,7 @@
                                     <div class="col-lg-6 col-md-6 col-xs-12 ">
                                         <div class="form-floating mb-3 col-xs-12">
 
-                                            <input class="form-control" type="date" required id="id_card_issue_date" name="id_card_issue_date">
+                                            <input class="form-control" type="date"  id="id_card_issue_date" name="id_card_issue_date">
                                             <label for="id_card_issue_date">ID CARD ISSUE DATE</label>  
 
                                         </div>
@@ -140,7 +140,7 @@
                                     <div class="col-lg-6 col-md-6 col-xs-12 ">
                                         <div class="form-floating mb-3">
 
-                                            <input class="form-control" type="date" required id="id_card_expiry_date" name="id_card_expiry_date">
+                                            <input class="form-control" type="date"  id="id_card_expiry_date" name="id_card_expiry_date">
                                             <label for="name">ID CARD EXPIRY DATE</label>  
 
                                         </div>
@@ -339,8 +339,8 @@
                             <th>Picture</th>
                             <th>Documents</th>
                             <th>Name</th>
-                            <th>Father Name</th>
-                            <th>CNIC</th>
+                            
+                            <th>Id Card Number</th>
                             <th>Designation</th>
 
                             <th>visa_entry_date</th>
@@ -401,7 +401,7 @@
                 { "data": "images" },
                 { "data": "doc" },
                 { "data": "name" },
-                { "data": "father_name" },
+                
                 { "data": "cnic" },
                 { "data": "designation" },
 
