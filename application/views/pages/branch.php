@@ -45,13 +45,13 @@
 
                                 </div>
                                 <div class="row align-items-center">
-                                    <div class="col-lg-4 col-md-4 col-xs-12 ">
+                                    <div class="col-lg-3 col-md-3 col-xs-12 ">
                                         <div class="form-floating mb-3">
                                             <input class="form-control" id="branch_name" name="branch_name" type="text" placeholder="Branch Name" />
                                             <label for="date">BRANCH NAME</label>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4 col-md-4 col-xs-12 ">
+                                    <div class="col-lg-3 col-md-3 col-xs-12 ">
                                         <div class="form-floating mb-3">
                                             <select class="form-control" id="user_id" name="user_id"  >
                                                 <option value="0">SELECT EMPLOYEE</option>
@@ -63,13 +63,20 @@
                                                 }
                                                 ?>
                                             </select>
-                                            <label for="date">SELECT EMPLOYEE</label>
+                                            <label for="user_id">SELECT EMPLOYEE</label>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4 col-md-4 col-xs-12 ">
+                                    <div class="col-lg-3 col-md-3 col-xs-12 ">
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="branch_price" name="branch_price" type="text" placeholder="Branch Price" />
+                                            <input class="form-control" id="branch_price" name="branch_price" type="number" placeholder="Branch Price" />
                                             <label for="price">BRANCH PRICE</label>
+                                        </div>
+                                    </div> 
+
+                                    <div class="col-lg-3 col-md-3 col-xs-12 ">
+                                        <div class="form-floating mb-3">
+                                            <input readonly="readonly" class="form-control" id="monprice" type="text"  />
+                                            <label for="monprice">Monthly Price</label>
                                         </div>
                                     </div>
                                 </div>
@@ -88,30 +95,54 @@
                                     </div>
                                 </div>
                                 <div class="row align-items-center">
-                                    <div class="col-lg-6 col-md-6 col-xs-12 ">
+                                    <div class="col-lg-3 col-md-3 col-xs-12 ">
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="plot_utilization_start_date" name="plot_utilization_start_date" type="date" placeholder="Row Permit Start Date" />
-                                            <label for="date">PLOT UTILIZATION START</label>
+                                            <input class="form-control" id="plot_utilization_start_date" name="plot_utilization_start_date" type="date" />
+                                            <label for="plot_utilization_start_date">PLOT UTILIZATION START</label>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6 col-md-6 col-xs-12 ">
+                                    <div class="col-lg-3 col-md-3 col-xs-12 ">
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="plot_utilization_end_date" name="plot_utilization_end_date" type="date" placeholder="Row Permit Last Date" />
-                                            <label for="date">PLOT UTILIZATION END</label>
+                                            <input class="form-control" id="plot_utilization_end_date" name="plot_utilization_end_date" type="date"  />
+                                            <label for="plot_utilization_end_date">PLOT UTILIZATION END</label>
+                                        </div>
+                                    </div> 
+                                    <div class="col-lg-3 col-md-3 col-xs-12 ">
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="plot_utilization_price" name="plot_utilization_price" type="number"  />
+                                            <label for="plot_utilization_price">PLOT UTILIZATION PRICE</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12 ">
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" readonly="readonly" id="plot_utilization_mon_price" type="number"  />
+                                            <label for="plot_utilization_mon_price">PLOT UTILIZATION MONTHLY PRICE</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row align-items-center">
-                                    <div class="col-lg-6 col-md-6 col-xs-12 ">
+                                    <div class="col-lg-3 col-md-3 col-xs-12 ">
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="building_permit_start_date" name="building_permit_start_date" type="date" placeholder="Row Permit Start Date" />
-                                            <label for="date">BUILDING PERMIT START</label>
+                                            <input class="form-control" id="building_permit_start_date" name="building_permit_start_date" type="date"  />
+                                            <label for="building_permit_start_date">BUILDING PERMIT START</label>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6 col-md-6 col-xs-12 ">
+                                    <div class="col-lg-3 col-md-3 col-xs-12 ">
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="building_permit_end_date" name="building_permit_end_date" type="date" placeholder="Row Permit Last Date" />
-                                            <label for="date">BUILDING PERMIT END</label>
+                                            <input class="form-control" id="building_permit_end_date" name="building_permit_end_date" type="date" />
+                                            <label for="building_permit_end_date">BUILDING PERMIT END</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12 ">
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="building_permit_price" name="building_permit_price" type="number"  />
+                                            <label for="building_permit_price">BUILDING PRICE</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-xs-12 ">
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" readonly="readonly" id="building_permit_mon_price"  type="number" />
+                                            <label for="date">BUILDING MONTHLY PRICE</label>
                                         </div>
                                     </div>
                                 </div>
@@ -221,6 +252,27 @@
 <script type="text/javascript">
 
     $(document).ready( function () {
+
+
+        $("#branch_price").keyup(function(){
+            var monprice = $("#branch_price").val()/12;
+            $("#monprice").val(monprice );
+            $("#monprice").css("background-color", "pink");
+            return true;
+        });
+        $("#plot_utilization_price").keyup(function(){
+            var monprice = $("#plot_utilization_price").val()/12;
+            $("#plot_utilization_mon_price").val(monprice );
+            $("#plot_utilization_mon_price").css("background-color", "yellow");
+            return true;
+        });
+        $("#building_permit_price").keyup(function(){
+            var monprice = $("#building_permit_price").val()/12;
+            $("#building_permit_mon_price").val(monprice );
+            $("#building_permit_mon_price").css("background-color", "cyan");
+            return true;
+        });
+
         // $('#datatablesSimple').DataTable();
         var table =  $('#datatablesSimple').DataTable({
             "processing": true,

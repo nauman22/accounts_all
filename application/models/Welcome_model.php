@@ -953,8 +953,10 @@ class Welcome_model extends CI_Model {
         $row_permit_end_date=$this->input->post('row_permit_end_date');
         $plot_utilization_start_date=$this->input->post('plot_utilization_start_date');
         $plot_utilization_end_date=$this->input->post('plot_utilization_end_date');
+        $plot_utilization_price=$this->input->post('plot_utilization_price');
         $building_permit_start_date=$this->input->post('building_permit_start_date');
         $building_permit_end_date=$this->input->post('building_permit_end_date');
+        $building_permit_price=$this->input->post('building_permit_price');
         $project_start_date=$this->input->post('project_start_date');
         $project_end_date=$this->input->post('project_end_date');
         $parking_ijari_start_date=$this->input->post('parking_ijari_start_date');
@@ -974,8 +976,10 @@ class Welcome_model extends CI_Model {
                 'row_permit_end_date'=>$row_permit_end_date,
                 'plot_utilization_start_date'=>$plot_utilization_start_date,
                 'plot_utilization_end_date'=>$plot_utilization_end_date,
+                'plot_utilization_price'=>$plot_utilization_price,
                 'building_permit_start_date'=>$building_permit_start_date,
                 'building_permit_end_date'=>$building_permit_end_date,
+                'building_permit_price'=>$building_permit_price,
                 'project_start_date'=>$project_start_date,
                 'project_end_date'=>$project_end_date,
                 'parking_ijari_start_date'=>$parking_ijari_start_date,
@@ -999,8 +1003,10 @@ class Welcome_model extends CI_Model {
                 'row_permit_end_date'=>$row_permit_end_date,
                 'plot_utilization_start_date'=>$plot_utilization_start_date,
                 'plot_utilization_end_date'=>$plot_utilization_end_date,
+                'plot_utilization_price'=>$plot_utilization_price,
                 'building_permit_start_date'=>$building_permit_start_date,
                 'building_permit_end_date'=>$building_permit_end_date,
+                'building_permit_price'=>$building_permit_price,
                 'project_start_date'=>$project_start_date,
                 'project_end_date'=>$project_end_date,
                 'parking_ijari_start_date'=>$parking_ijari_start_date,
