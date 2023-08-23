@@ -140,12 +140,7 @@
                                 </div>
                                 <div class="row align-items-center">
 
-                                    <div class="col-lg-3 col-md-3 col-xs-12 ">
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" id="srno" name="srno" type="text" />
-                                            <label for="date">Serial Number</label>
-                                        </div>
-                                    </div> 
+
 
                                     <div class="col-lg-3 col-md-3 col-xs-12 ">
                                         <div class="form-floating mb-3">
@@ -153,6 +148,13 @@
                                             <label for="date">COLLECTION DATE</label>
                                         </div>
                                     </div>
+
+                                    <div class="col-lg-3 col-md-3 col-xs-12 ">
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" readonly="readonly" id="srno" name="srno" type="text" />
+                                            <label for="date">Serial Number</label>
+                                        </div>
+                                    </div> 
 
 
 
@@ -282,6 +284,29 @@
     } );
 </script>
 <script type="text/javascript">
+
+    $("#date").focusout(function(){
+
+        var collectiondate = $(this).val();
+        $.ajax({
+            url: "get_serialnumber", // URL to the server endpoint
+            method: "POST",
+            dataType: "json", // Expected data type of the response
+            data: {collectiondate: collectiondate }, 
+            success: function(srno) {
+
+                // Populate the dropdown with data from the response
+                $("#srno").val(srno);
+                return true;
+
+            },
+            error: function(xhr, status, error) {
+                // Handle errors
+                console.log("Error:", error);
+            }
+        });
+    });
+
     // prepare the form when the DOM is ready 
     $(document).ready(function() { 
 

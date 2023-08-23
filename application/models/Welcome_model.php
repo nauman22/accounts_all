@@ -337,6 +337,33 @@ class Welcome_model extends CI_Model {
         exit();*/
         return $response;
     } 
+
+    function get_serialnumber($collectiondate){
+
+
+        $response = array();
+        $arraywhere = array('is_active' => 1, 'date' => $collectiondate);
+        $this->db->where($arraywhere);
+        //$this->db->where('is_active','1','date',$collectiondate);
+        // Select record
+        $this->db->select_max('srno');
+        $q = $this->db->get('tbl_cash_register');
+        $response = $q->result_array();
+
+        if($response[0]['srno'] == "")
+        {
+            $response[0]['srno'] = 1;
+        }
+        else
+        {
+            $response[0]['srno'] = $response[0]['srno']+1;
+        }
+        /*echo $response[0]['srno'];
+        exit(); */
+       /* echo $this->db->last_query();
+        exit(); */    
+        return $response[0]['srno'];
+    } 
     function get_branches_employee($id){
 
         $response = array();

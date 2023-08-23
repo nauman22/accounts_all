@@ -101,6 +101,15 @@ class Welcome extends CI_Controller {
         return  $this->Welcome_model->get_piechart_dashboard();
 
 
+    } 
+
+    public function get_serialnumber(){
+
+        $data = $this->Welcome_model->get_serialnumber($_POST['collectiondate']);
+        echo json_encode($data);
+        exit();
+
+
     }
     public function reports()
     {     
@@ -933,7 +942,7 @@ class Welcome extends CI_Controller {
                 /*print_r($images);
                 exit();*/
 
-                
+
                 foreach ($images as $image) {
                     $img .= ' <a class="nsbbox" title="'.basename($image).'" 
                     href="../'.$image.'">
@@ -1075,7 +1084,7 @@ class Welcome extends CI_Controller {
                 $path  = cash_register_voucher.$post->id."/";
                 $img = "";
                 $images = glob($path."*.{jpg,png,jpeg}", GLOB_BRACE);
-                
+
                 //$img .= '<div class="show_img_screen_view"><div>';
 
 
@@ -1165,7 +1174,7 @@ class Welcome extends CI_Controller {
                 $path  = cash_register_voucher.$post->id."/";
                 $img = "";
                 $images = glob($path."*.{jpg,png,jpeg}", GLOB_BRACE);
-                
+
                 //$img .= '<div class="show_img_screen_view"><div>';
 
 
@@ -1285,7 +1294,7 @@ class Welcome extends CI_Controller {
                 $path  = asset_doc.$post->id."/";
                 $img = "";
                 $images = glob($path."*.{jpg,png,jpeg}", GLOB_BRACE);
-                
+
 
                 foreach ($images as $image) {
                     $img .= ' <a class="nsbbox" title="'.basename($image).'" 
@@ -1789,7 +1798,7 @@ class Welcome extends CI_Controller {
                 $path  = employee_img.$post->id."/";
                 $img = "";
                 $images = glob($path."*.{jpg,png,jpeg}", GLOB_BRACE);
-                
+
                 //$img .= '<div class="show_img_screen_view"><div>';
 
 
@@ -1806,7 +1815,7 @@ class Welcome extends CI_Controller {
 
                 /*print_r($img);
                 exit();*/
-                     
+
                 $nestedData['id'] = $post->id;
                 $nestedData['name'] = $post->name;
                 $nestedData['cell'] = $post->cell_no;
@@ -1850,7 +1859,7 @@ class Welcome extends CI_Controller {
                 $path  = employee_doc.$post->id."/";
                 $img = "";
                 $images = glob($path."*.{jpg,png,jpeg}", GLOB_BRACE);
-                
+
                 foreach ($images as $image) {
                     $img .= ' <a class="nsbbox" title="'.basename($image).'" 
                     href="../'.$image.'">
@@ -1956,7 +1965,7 @@ class Welcome extends CI_Controller {
                 $path  = employee_img.$post->id."/";
                 $img = "";
                 $images = glob($path."*.{jpg,png,jpeg}", GLOB_BRACE);
-                
+
 
                 foreach ($images as $image) {
                     $img .= ' <a class="nsbbox" title="'.basename($image).'" 
@@ -1995,7 +2004,7 @@ class Welcome extends CI_Controller {
                 $path  = employee_doc.$post->id."/";
                 $img = "";
                 $images = glob($path."*.{jpg,png,jpeg}", GLOB_BRACE);
-                
+
                 foreach ($images as $image) {
                     $img .= ' <a class="nsbbox" title="'.basename($image).'" 
                     href="../'.$image.'">
