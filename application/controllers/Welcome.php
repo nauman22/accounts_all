@@ -662,6 +662,9 @@ class Welcome extends CI_Controller {
     {
         $insertId = $this->Welcome_model->add_branch();
 
+        /*echo $insertId;
+        exit();*/
+        
         $response = 0;
         if($insertId >0){
             $response = true;
@@ -891,15 +894,16 @@ class Welcome extends CI_Controller {
             4  =>'branch_price',
             5  =>'row_permit_start_date',
             6  =>'row_permit_end_date',
-            7  =>'plot_utilization_start_date',
-            8  =>'plot_utilization_end_date',
-            9  =>'building_permit_start_date',
-            10 =>'building_permit_end_date',
-            11 => 'project_start_date',
-            12 => 'project_end_date',
-            13 => 'parking_ijari_start_date',
+            7  =>'tax',
+            8  =>'plot_utilization_start_date',
+            9  =>'plot_utilization_end_date',
+            10  =>'building_permit_start_date',
+            11 =>'building_permit_end_date',
+            12 => 'project_start_date',
+            13 => 'project_end_date',
             14 => 'parking_ijari_start_date',
-            15 => 'remarks',
+            15 => 'parking_ijari_start_date',
+            16 => 'remarks',
 
         );
 
@@ -960,10 +964,13 @@ class Welcome extends CI_Controller {
                 $nestedData['branch_price'] = $post->branch_price;
                 $nestedData['row_permit_start_date'] = $post->row_permit_start_date;
                 $nestedData['row_permit_end_date'] = $post->row_permit_end_date;
+                $nestedData['tax'] = $post->tax;
                 $nestedData['plot_utilization_start_date'] = $post->plot_utilization_start_date;
                 $nestedData['plot_utilization_end_date'] = $post->plot_utilization_end_date;
+                $nestedData['plot_utilization_price'] = $post->plot_utilization_price;
                 $nestedData['building_permit_start_date'] = $post->building_permit_start_date;
                 $nestedData['building_permit_end_date'] = $post->building_permit_end_date;
+                $nestedData['building_permit_price'] = $post->building_permit_price;
                 $nestedData['project_start_date'] = $post->project_start_date;
                 $nestedData['project_end_date'] = $post->project_end_date;
                 $nestedData['parking_ijari_start_date'] = $post->parking_ijari_start_date;

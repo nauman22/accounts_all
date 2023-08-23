@@ -360,7 +360,7 @@ class Welcome_model extends CI_Model {
         }
         /*echo $response[0]['srno'];
         exit(); */
-       /* echo $this->db->last_query();
+        /* echo $this->db->last_query();
         exit(); */    
         return $response[0]['srno'];
     } 
@@ -429,13 +429,18 @@ class Welcome_model extends CI_Model {
     function get_single_user($id){
 
         $response = array();
-        $this->db->where('is_active','1','id',$id);
-        $this->db->order_by('id', 'DESC');  //actual field name of id
+
+        $arraywhere = array('id' => $id);
+        //$arraywhere = array('is_active' => '1','id' => $id);
+        $this->db->where($arraywhere);
+
+        // $this->db->where('is_active','1','id',$id);
+        //$this->db->order_by('id', 'DESC');  //actual field name of id
         // Select record
         $this->db->select('name');
         $q = $this->db->get('tbl_user');
         $response = $q->result_array();
-        /*echo $this->db->last_query();
+        /* echo $this->db->last_query();
         exit();*/
         return $response;
     }
@@ -969,6 +974,7 @@ class Welcome_model extends CI_Model {
         if($id>0)
         {
             $data = array(
+
                 'company_id'=>$company_id,
                 'branch_name'=>$branch_name,
                 'user_id'=>$user_id,
@@ -991,8 +997,12 @@ class Welcome_model extends CI_Model {
                 'ckpo'=>1,
                 'is_active'=>1
             );
+            /*print_r($id);
+            exit();*/
             $this->db->where('id',$id);
-            $response =   $this->db->update('tbl_branch',$data);
+
+            $response =  $this->db->update('tbl_branch',$data);
+
         } 
         else
         {
@@ -1029,7 +1039,10 @@ class Welcome_model extends CI_Model {
 
         }
 
-        return $response;
+        /*echo $response;
+        exit();*/
+        
+        return $id;
     }
 
     function add_head(){

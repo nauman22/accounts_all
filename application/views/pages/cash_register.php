@@ -250,6 +250,11 @@
 <script type="text/javascript">
 
     $(document).ready( function () {
+
+        /*$('#company_id').select2({
+            placeholder: "Search for an option",
+            allowClear: true // Option to clear the selection
+        });*/
         // $('#datatablesSimple').DataTable();
         var table =  $('#datatablesSimple').DataTable({
             "processing": true,

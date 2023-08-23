@@ -128,7 +128,7 @@
                                     <div class="col-lg-3 col-md-3 col-xs-12 ">
                                         <div class="form-floating mb-3">
                                             <input class="form-control" readonly="readonly" id="plot_utilization_mon_price" type="number"  />
-                                            <label for="plot_utilization_mon_price">PLOT UTILIZATION MONTHLY PRICE</label>
+                                            <label for="plot_utilization_mon_price">PLOT PRICE M/O</label>
                                         </div>
                                     </div>
                                 </div>
@@ -154,7 +154,7 @@
                                     <div class="col-lg-3 col-md-3 col-xs-12 ">
                                         <div class="form-floating mb-3">
                                             <input class="form-control" readonly="readonly" id="building_permit_mon_price"  type="number" />
-                                            <label for="date">BUILDING MONTHLY PRICE</label>
+                                            <label for="date">BUILDING PRICE M/O</label>
                                         </div>
                                     </div>
                                 </div>
@@ -240,10 +240,13 @@
                             <th>Price</th>
                             <th>Row Permit Start</th>
                             <th>Row Permit End</th>
+                            <th>Tax</th>
                             <th>Plot Utilization Start</th>
                             <th>Plot Utilization End</th>
+                            <th>Plot Price</th>
                             <th>Building Permit Start</th>
                             <th>Building Permit End</th>
+                            <th>Building Permit Price</th>
                             <th>Project Start</th>
                             <th>Project End</th> 
                             <th>Parking Ijari Start</th>
@@ -334,10 +337,13 @@
                 { "data": "branch_price" },
                 { "data": "row_permit_start_date" },
                 { "data": "row_permit_end_date" },
+                { "data": "tax" },
                 { "data": "plot_utilization_start_date" },
                 { "data": "plot_utilization_end_date" },
+                { "data": "plot_utilization_price" },
                 { "data": "building_permit_start_date" },
                 { "data": "building_permit_end_date" },
+                { "data": "building_permit_price" },
                 { "data": "project_start_date" },
                 { "data": "project_end_date" },
                 { "data": "parking_ijari_start_date" },
