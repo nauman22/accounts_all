@@ -297,10 +297,8 @@ class Welcome_model extends CI_Model {
     function get_single_company($id){
 
         $response = array();
-        $this->db->where('is_active','1','id',$id);
-        $this->db->order_by('id', 'DESC');  //actual field name of id
-
-        // Select record
+        $arraywhere = array('is_active' => 1, 'id' => $id);
+        $this->db->where($arraywhere);
         $this->db->select('name');
         $q = $this->db->get('tbl_company');
         $response = $q->result_array();
@@ -367,10 +365,17 @@ class Welcome_model extends CI_Model {
     function get_branches_employee($id){
 
         $response = array();
-        $q = $this->db->query("SELECT u.name, b.user_id AS id FROM tbl_branch b JOIN tbl_user u ON b.user_id = u.id WHERE b.id = $id;");
-        /*echo $this->db->last_query();
-        exit();*/
-        $response = $q->result_array();
+        $q = $this->db->query("SELECT b.user_id AS id FROM tbl_branch b JOIN tbl_user u ON b.user_id = u.id WHERE b.id = $id;");
+
+        $rowCount = $q->num_rows(); 
+        if($rowCount > 0)
+        {
+            $response = $q->result_array();
+            $ids = $response[0]['id'];
+            $response = $this->get_branch_users($ids);
+        }
+
+
         return $response;
     } 
 
@@ -426,23 +431,20 @@ class Welcome_model extends CI_Model {
 
         return $response;
     }
-    function get_single_user($id){
+    function get_branch_users($ids){
 
         $response = array();
-
-        $arraywhere = array('id' => $id);
-        //$arraywhere = array('is_active' => '1','id' => $id);
-        $this->db->where($arraywhere);
-
-        // $this->db->where('is_active','1','id',$id);
-        //$this->db->order_by('id', 'DESC');  //actual field name of id
-        // Select record
+        $commaSeparatedString = $ids;
+        $arrayFromCommaSeparated = explode(',', $commaSeparatedString);
+        $this->db->where_in('id', $arrayFromCommaSeparated);
+        $this->db->select('id');
         $this->db->select('name');
         $q = $this->db->get('tbl_user');
         $response = $q->result_array();
-        /* echo $this->db->last_query();
+        /*echo $this->db->last_query();
         exit();*/
         return $response;
+
     }
     function get_user($id){
 
@@ -952,7 +954,10 @@ class Welcome_model extends CI_Model {
 
         $company_id =$this->input->post('company_id');
         $branch_name=$this->input->post('branch_name');
-        $user_id=$this->input->post('user_id');
+        //$user_id=$this->input->post('user_id');
+        $user_id = implode(",", $this->input->post('user_id'));
+        /*print_r($com_values);
+        exit();*/
         $branch_price=$this->input->post('branch_price');
         $row_permit_start_date=$this->input->post('row_permit_start_date');
         $row_permit_end_date=$this->input->post('row_permit_end_date');
@@ -970,6 +975,9 @@ class Welcome_model extends CI_Model {
         $remarks=$this->input->post('remarks');
         $date =date('Y-m-d H:i:s');
         $id =$this->input->post('id');
+
+        /*print_r($id);
+        exit(); */
 
         if($id>0)
         {
@@ -997,10 +1005,8 @@ class Welcome_model extends CI_Model {
                 'ckpo'=>1,
                 'is_active'=>1
             );
-            /*print_r($id);
-            exit();*/
-            $this->db->where('id',$id);
 
+            $this->db->where('id',$id);
             $response =  $this->db->update('tbl_branch',$data);
 
         } 
@@ -1032,8 +1038,7 @@ class Welcome_model extends CI_Model {
 
 
             $response = $this->db->insert('tbl_branch',$data);
-            /*print_r($this->db->error());
-            exit();*/
+
 
 
 
@@ -1041,8 +1046,16 @@ class Welcome_model extends CI_Model {
 
         /*echo $response;
         exit();*/
-        
-        return $id;
+
+        /*echo $this->db->last_query();
+        exit();*/
+        if($id > 0){
+            return $id;     
+        }
+        else{
+            return $response;
+        }
+
     }
 
     function add_head(){

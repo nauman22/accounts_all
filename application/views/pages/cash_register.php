@@ -252,8 +252,8 @@
     $(document).ready( function () {
 
         /*$('#company_id').select2({
-            placeholder: "Search for an option",
-            allowClear: true // Option to clear the selection
+        placeholder: "Search for an option",
+        allowClear: true // Option to clear the selection
         });*/
         // $('#datatablesSimple').DataTable();
         var table =  $('#datatablesSimple').DataTable({
@@ -314,6 +314,66 @@
 
     // prepare the form when the DOM is ready 
     $(document).ready(function() { 
+
+
+        $("#company_id").change(function(){
+
+            var selectedValue = $(this).val();
+            $.ajax({
+                url: "get_Company_branches", // URL to the server endpoint
+                method: "POST",
+                dataType: "json", // Expected data type of the response
+                data: {id: selectedValue }, 
+                success: function(data) {
+
+                    // Populate the dropdown with data from the response
+
+                    var dropdown = $("#branch_id");
+                    var dropdown2 = $("#lblBranch");
+                    dropdown.empty();
+                    dropdown.css("display", "block");
+                    dropdown2.css("display", "block");
+                    dropdown.append('<option value="">Select a branch</option>');
+                    $.each(data, function(index, branch) {
+                        dropdown.append($('<option></option>').attr('value', branch.id).text(branch.branch_name));
+                    });
+                },
+                error: function(xhr, status, error) {
+                    // Handle errors
+                    console.log("Error:", error);
+                }
+            });
+        });
+
+        $("#branch_id").change(function(){
+
+            var selectedValue = $(this).val();
+            $.ajax({
+                url: "get_branches_employee", // URL to the server endpoint
+                method: "POST",
+                dataType: "json", // Expected data type of the response
+                data: {id: selectedValue }, 
+                success: function(data) {
+
+                    // Populate the dropdown with data from the response
+
+                    var dropdown = $("#emp");
+                    var dropdown2 = $("#lblemp");
+                    dropdown.empty();
+                    dropdown.css("display", "block");
+                    dropdown2.css("display", "block");
+                    dropdown.append('<option value="">Select a Employee</option>');
+                    $.each(data, function(index, emp) {
+                      
+                        dropdown.append($('<option></option>').attr('value', emp.id).text(emp.name));
+                    });
+                },
+                error: function(xhr, status, error) {
+                    // Handle errors
+                    console.log("Error:", error);
+                }
+            });
+        });
 
         var options = { 
             target:        '#output1',   // target element(s) to be updated with server response 
