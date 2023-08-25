@@ -349,7 +349,7 @@
 
             var selectedValue = $(this).val();
             $.ajax({
-                url: "get_branches_employee", // URL to the server endpoint
+                url: "get_branch_users", // URL to the server endpoint
                 method: "POST",
                 dataType: "json", // Expected data type of the response
                 data: {id: selectedValue }, 
@@ -364,7 +364,7 @@
                     dropdown2.css("display", "block");
                     dropdown.append('<option value="">Select a Employee</option>');
                     $.each(data, function(index, emp) {
-                      
+
                         dropdown.append($('<option></option>').attr('value', emp.id).text(emp.name));
                     });
                 },
@@ -385,8 +385,8 @@
             //url:       url         // override for form's 'action' attribute 
             //type:      type        // 'get' or 'post', override for form's 'method' attribute 
             //dataType:  null        // 'xml', 'script', or 'json' (expected server response type) 
-            //clearForm: true ,       // clear all form fields after successful submit 
-            // resetForm: true        // reset the form after successful submit 
+            clearForm: true ,       // clear all form fields after successful submit 
+            resetForm: true        // reset the form after successful submit 
 
             // $.ajax options can be used here too, for example: 
             //timeout:   3000 

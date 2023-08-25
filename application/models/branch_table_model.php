@@ -41,12 +41,11 @@ class Branch_table_model extends CI_Model
 
     function posts_search($limit,$start,$search,$col,$dir)
     {
-        $query = $this
+       $query = $this
         ->db
         ->where('is_active',1)
         ->like('id',$search)
-        ->or_like('name',$search)
-        ->or_like('remarks',$search)
+        ->or_like('branch_name',$search)
         ->limit($limit,$start)
         ->order_by($col,$dir)
         ->get('tbl_branch');
@@ -68,8 +67,7 @@ class Branch_table_model extends CI_Model
         ->db
         ->where('is_active',1)
         ->like('id',$search)
-        ->or_like('name',$search)
-        ->or_like('remarks',$search)
+        ->or_like('branch_name',$search)
         ->get('tbl_branch');
 
         return $query->num_rows();
