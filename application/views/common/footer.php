@@ -64,13 +64,13 @@
     }
     @media screen and (max-width: 600px) {
         #title_message {
-            visibility: hidden;
-            clear: both;
-            float: left;
-            margin: 10px auto 5px 20px;
-            width: 28%;
-            display: none;
-        }
+        visibility: hidden;
+        clear: both;
+        float: left;
+        margin: 10px auto 5px 20px;
+        width: 28%;
+        display: none;
+    }
     }
 </style>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -121,65 +121,7 @@
         }})
 
     });
-
-    $("#company_id").change(function(){
-
-        var selectedValue = $(this).val();
-        $.ajax({
-            url: "get_Company_branches", // URL to the server endpoint
-            method: "POST",
-            dataType: "json", // Expected data type of the response
-            data: {id: selectedValue }, 
-            success: function(data) {
-
-                // Populate the dropdown with data from the response
-
-                var dropdown = $("#branch_id");
-                var dropdown2 = $("#lblBranch");
-                dropdown.empty();
-                dropdown.css("display", "block");
-                dropdown2.css("display", "block");
-                dropdown.append('<option value="">Select a branch</option>');
-                $.each(data, function(index, branch) {
-                    dropdown.append($('<option></option>').attr('value', branch.id).text(branch.branch_name));
-                });
-            },
-            error: function(xhr, status, error) {
-                // Handle errors
-                console.log("Error:", error);
-            }
-        });
-    });
-
-    $("#branch_id").change(function(){
-
-        var selectedValue = $(this).val();
-        $.ajax({
-            url: "get_branches_employee", // URL to the server endpoint
-            method: "POST",
-            dataType: "json", // Expected data type of the response
-            data: {id: selectedValue }, 
-            success: function(data) {
-
-                // Populate the dropdown with data from the response
-
-                var dropdown = $("#emp");
-                var dropdown2 = $("#lblemp");
-                dropdown.empty();
-                dropdown.css("display", "block");
-                dropdown2.css("display", "block");
-                //dropdown.append('<option value="">Select a Employee</option>');
-                $.each(data, function(index, emp) {
-                    dropdown.append($('<option></option>').attr('value', emp.id).text(emp.name));
-                });
-            },
-            error: function(xhr, status, error) {
-                // Handle errors
-                console.log("Error:", error);
-            }
-        });
-    });
-
+    
     $(document).on("click", ".btn_edit, .btn_del  ", function(){
         var isdelete =0;
         var menu_id  = $(this).attr("data-menu_id");
@@ -343,14 +285,48 @@
                                     $("#id").val(data[0]['id']);             
                                     $("#company_id").val(data[0]['company_id']);             
                                     $("#branch_name").val(data[0]['branch_name']);             
-                                    $("#user_id").val(data[0]['user_id']);             
+                                    //$("#user_id").val(data[0]['user_id']); 
+
+                                    $.ajax({
+                                        url: "get_branch_users", // URL to the server endpoint
+                                        method: "POST",
+                                        dataType: "json", // Expected data type of the response
+                                        data: {ids: data[0]['user_id'] }, 
+                                        success: function(data){
+                                            var dropdown = $("#user_id");
+                                            dropdown.empty();
+                                            $.each(data, function(index, emp) {
+                                                dropdown.append($('<option></option>').attr('value', emp.id).text(emp.name));
+                                            });
+                                        },
+                                        error: function(xhr, status, error) {
+                                            // Handle errors
+                                            console.log("Error:", error);
+                                        }
+                                    });
+
                                     $("#branch_price").val(data[0]['branch_price']);
+                                    $("#monprice").val(data[0]['branch_price']/12);  
+                                    $("#monprice").css("background-color", "pink");
                                     $("#row_permit_start_date").val(data[0]['row_permit_start_date']);             
                                     $("#row_permit_end_date").val(data[0]['row_permit_end_date']);             
+                                    $("#tax").val(data[0]['tax']);
+                                    var TaxRate = $("#tax").val()/100;
+                                    var branch_price = $("#branch_price").val();
+                                    var TaxAmount =  branch_price * TaxRate;
+                                    $("#taxshow").val(TaxAmount);
+                                    $("#taxshow").css("background-color", "orange");             
                                     $("#plot_utilization_start_date").val(data[0]['plot_utilization_start_date']);             
-                                    $("#plot_utilization_end_date").val(data[0]['plot_utilization_end_date']);             
+                                    $("#plot_utilization_end_date").val(data[0]['plot_utilization_end_date']); 
+                                    $("#plot_utilization_price").val(data[0]['plot_utilization_price']);   
+                                    $("#plot_utilization_mon_price").val(data[0]['plot_utilization_price']/12);
+                                    $("#plot_utilization_mon_price").css("background-color", "yellow");      
+                                    var monprice = $("#building_permit_price").val()/12;
+                                    $("#building_permit_mon_price").val(monprice );
+                                    $("#building_permit_mon_price").css("background-color", "cyan");           
                                     $("#building_permit_start_date").val(data[0]['building_permit_start_date']);             
                                     $("#building_permit_end_date").val(data[0]['building_permit_end_date']);             
+                                    $("#building_permit_price").val(data[0]['building_permit_price']);             
                                     $("#project_start_date").val(data[0]['project_start_date']);
                                     $("#project_end_date").val(data[0]['project_end_date']);    
                                     $("#parking_ijari_start_date").val(data[0]['parking_ijari_start_date']);             
@@ -514,14 +490,50 @@
                             $("#id").val(data[0]['id']);             
                             $("#company_id").val(data[0]['company_id']);             
                             $("#branch_name").val(data[0]['branch_name']);             
-                            $("#user_id").val(data[0]['user_id']);             
+                            //$("#user_id").val(data[0]['user_id']);             
+
+
+                            $.ajax({
+                                url: "get_branch_users", // URL to the server endpoint
+                                method: "POST",
+                                dataType: "json", // Expected data type of the response
+                                data: {ids: data[0]['user_id'] }, 
+                                success: function(data){
+                                    var dropdown = $("#user_id");
+                                    dropdown.empty();
+                                    $.each(data, function(index, emp) {
+                                        dropdown.append($('<option></option>').attr('value', emp.id).text(emp.name));
+                                    });
+                                },
+                                error: function(xhr, status, error) {
+                                    // Handle errors
+                                    console.log("Error:", error);
+                                }
+                            });
+
                             $("#branch_price").val(data[0]['branch_price']);             
+                            $("#monprice").val(data[0]['branch_price']/12);       
+                            $("#monprice").css("background-color", "pink");      
                             $("#row_permit_start_date").val(data[0]['row_permit_start_date']);             
                             $("#row_permit_end_date").val(data[0]['row_permit_end_date']);             
+                            $("#tax").val(data[0]['tax']);             
                             $("#plot_utilization_start_date").val(data[0]['plot_utilization_start_date']);             
                             $("#plot_utilization_end_date").val(data[0]['plot_utilization_end_date']);             
+                            $("#plot_utilization_price").val(data[0]['plot_utilization_price']);             
+                            $("#plot_utilization_mon_price").val(data[0]['plot_utilization_price']/12);
+                            $("#plot_utilization_mon_price").css("background-color", "yellow");             
                             $("#building_permit_start_date").val(data[0]['building_permit_start_date']);             
                             $("#building_permit_end_date").val(data[0]['building_permit_end_date']);             
+                            $("#building_permit_price").val(data[0]['building_permit_price']);    
+                            var monprice = $("#building_permit_price").val()/12;
+                            $("#building_permit_mon_price").val(monprice );
+                            $("#building_permit_mon_price").css("background-color", "cyan");
+                            var TaxRate = $("#tax").val()/100;
+                            var branch_price = $("#branch_price").val();
+
+                            var TaxAmount =  branch_price * TaxRate;
+                            $("#taxshow").val(TaxAmount);
+                            $("#taxshow").css("background-color", "orange");         
                             $("#project_start_date").val(data[0]['project_start_date']);             
                             $("#project_end_date").val(data[0]['project_end_date']);             
                             $("#parking_ijari_start_date").val(data[0]['parking_ijari_start_date']);             

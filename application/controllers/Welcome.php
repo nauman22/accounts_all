@@ -662,6 +662,9 @@ class Welcome extends CI_Controller {
     {
         $insertId = $this->Welcome_model->add_branch();
 
+        /*echo $insertId;
+        exit();*/
+
         $response = 0;
         if($insertId >0){
             $response = true;
@@ -880,6 +883,33 @@ class Welcome extends CI_Controller {
 
         echo json_encode($json_data); 
     }
+
+
+
+
+    public function get_branch_users()
+    {
+        //$userData['user_id'] = array();
+        //$outputarray = array();
+        //$userData['user_id'] = $this->Welcome_model->get_branch_users($_POST['ids']);
+        $userData['user_id'] = $this->Welcome_model->get_user($id=null);
+        /*$namesString = ''; 
+        $idString = ''; 
+        for ($i = 0; $i < count($userData['user_id']); $i++) {
+        $id = $userData['user_id'][$i]['id'];
+        $name = $userData['user_id'][$i]['name'];
+        $idString .= $id . ', '; 
+        $namesString .= $name . ', '; 
+        }                                        
+        $idString = rtrim($idString, ', ');
+        $namesString = rtrim($namesString, ', ');
+
+        $outputarray['ids'] =  $idString;
+        $outputarray['names'] =  $namesString;*/
+        echo json_encode($userData['user_id']);
+    }
+
+
     public function branch_table()
     {
         $this->load->model('branch_table_model');
@@ -891,15 +921,16 @@ class Welcome extends CI_Controller {
             4  =>'branch_price',
             5  =>'row_permit_start_date',
             6  =>'row_permit_end_date',
-            7  =>'plot_utilization_start_date',
-            8  =>'plot_utilization_end_date',
-            9  =>'building_permit_start_date',
-            10 =>'building_permit_end_date',
-            11 => 'project_start_date',
-            12 => 'project_end_date',
-            13 => 'parking_ijari_start_date',
+            7  =>'tax',
+            8  =>'plot_utilization_start_date',
+            9  =>'plot_utilization_end_date',
+            10  =>'building_permit_start_date',
+            11 =>'building_permit_end_date',
+            12 => 'project_start_date',
+            13 => 'project_end_date',
             14 => 'parking_ijari_start_date',
-            15 => 'remarks',
+            15 => 'parking_ijari_start_date',
+            16 => 'remarks',
 
         );
 
@@ -930,7 +961,9 @@ class Welcome extends CI_Controller {
             $userid = $_SESSION['id'];
             $menu_id =22;
             $single_menu = $this->Welcome_model->get_single_menu($userid,$menu_id);
-            // print_r($single_menu);
+            /*print_r($posts);
+            exit();*/
+            $nestedData = array(); // Initialize the result array
             foreach ($posts as $post)
             {
 
@@ -951,32 +984,38 @@ class Welcome extends CI_Controller {
                     ';
                 }
 
+
                 $nestedData['image'] = $img;
-                $nestedData['company_id'] = $this->Welcome_model->get_single_company($post->user_id);
+                $nestedData['company_id'] = $this->Welcome_model->get_single_company($post->company_id);
                 $nestedData['company_id'] = $nestedData['company_id'][0]['name'];
                 $nestedData['branch_name'] = $post->branch_name;
-                $nestedData['user_id'] = $this->Welcome_model->get_single_user($post->user_id);
-                $nestedData['user_id'] = $nestedData['user_id'][0]['name'];
+                $userData =array();
+                $userData['user_id'] = $this->Welcome_model->get_branch_users($post->user_id);
+                $namesString = ''; 
+                for ($i = 0; $i < count($userData['user_id']); $i++) {
+                    $name = $userData['user_id'][$i]['name'];
+                    $namesString .= $name . ', '; 
+                }                                        
+                $namesString = rtrim($namesString, ', ');
+                $nestedData['user_id'] = $namesString;
                 $nestedData['branch_price'] = $post->branch_price;
                 $nestedData['row_permit_start_date'] = $post->row_permit_start_date;
                 $nestedData['row_permit_end_date'] = $post->row_permit_end_date;
+                $nestedData['tax'] = $post->tax;
                 $nestedData['plot_utilization_start_date'] = $post->plot_utilization_start_date;
                 $nestedData['plot_utilization_end_date'] = $post->plot_utilization_end_date;
+                $nestedData['plot_utilization_price'] = $post->plot_utilization_price;
                 $nestedData['building_permit_start_date'] = $post->building_permit_start_date;
                 $nestedData['building_permit_end_date'] = $post->building_permit_end_date;
+                $nestedData['building_permit_price'] = $post->building_permit_price;
                 $nestedData['project_start_date'] = $post->project_start_date;
                 $nestedData['project_end_date'] = $post->project_end_date;
                 $nestedData['parking_ijari_start_date'] = $post->parking_ijari_start_date;
                 $nestedData['parking_ijari_end_date'] = $post->parking_ijari_end_date;
                 $nestedData['remarks'] = $post->remarks;
-                /*
-                $btn = "        <div class='d-grid gap-2'>  <button data-button_id='1' data-menu_id = '12'  data-row_id='".$post->id."'  type='button' class='btn_edit btn btn-labeled btn-success '>
-                <span class='btn-label'><i class='fa fa-check'></i></span>Update</button><button data-button_id='2' data-menu_id = '12' data-row_id='".$post->id."' class='btn_del btn btn-labeled btn-danger '>
-                <span class='btn-label'><i class='fa fa-remove'></i></span>Delete</button></div>";
-                */
 
-                /*print_r($nestedData);
-                exit();*/
+
+
 
                 $btn = "<div class='d-grid gap-2'>";
                 if($single_menu[0]['edit_record'] == 1 ){

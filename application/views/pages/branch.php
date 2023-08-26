@@ -1,7 +1,10 @@
 <?php //print_r($type); exit(); ?>
 
+
 <link rel="stylesheet" href="../css/NSB_Box.css" />
 <script src="../js/NSB_Box.js"></script>
+
+
 <div id="layoutSidenav_content">
 <main>
     <div class="container-fluid px-4">
@@ -41,35 +44,37 @@
                                         }
                                         ?>
                                     </select>
-                                    <label for="company_id">COMPANY</label>  
+                                    <label style="display: none;" for="company_id">COMPANY</label>  
 
                                 </div>
                                 <div class="row align-items-center">
                                     <div class="col-lg-3 col-md-3 col-xs-12 ">
                                         <div class="form-floating mb-3">
                                             <input class="form-control" id="branch_name" name="branch_name" type="text" placeholder="Branch Name" />
-                                            <label for="date">BRANCH NAME</label>
+                                            <label >BRANCH NAME</label>
                                         </div>
                                     </div>
-                                    <div class="col-lg-3 col-md-3 col-xs-12 ">
+
+                                    <div class="col-lg-3 col-md-3 col-xs-12">
                                         <div class="form-floating mb-3">
-                                            <select class="form-control" id="user_id" name="user_id"  >
+                                            <select  class="form-control" multiple="multiple" id="user_id" name="user_id[]">
                                                 <option value="0">SELECT EMPLOYEE</option>
                                                 <?php 
-                                                for($i=0; $i<count($user); $i++){
+                                                for($i = 0; $i < count($user); $i++) {
                                                     $id = $user[$i]['id'];
                                                     $text = $user[$i]['name'];
-                                                    echo '<option value="'.$id.'">'.$text.'</option>' ;
+                                                    echo '<option value="'.$id.'">'.$text.'</option>';
                                                 }
                                                 ?>
                                             </select>
-                                            <label for="user_id">SELECT EMPLOYEE</label>
+                                            <!--<label for="user_id">SELECT EMPLOYEE</label>-->
                                         </div>
                                     </div>
+
                                     <div class="col-lg-3 col-md-3 col-xs-12 ">
                                         <div class="form-floating mb-3">
                                             <input class="form-control" id="branch_price" name="branch_price" type="number" placeholder="Branch Price" />
-                                            <label for="price">BRANCH PRICE</label>
+                                            <label for="branch_price">BRANCH PRICE</label>
                                         </div>
                                     </div> 
 
@@ -84,19 +89,19 @@
                                     <div class="col-lg-3 col-md-3 col-xs-12 ">
                                         <div class="form-floating mb-3">
                                             <input class="form-control" id="row_permit_start_date" name="row_permit_start_date" type="date" placeholder="Row Permit Start Date" />
-                                            <label for="date">ROW PERMIT START</label>
+                                            <label >ROW PERMIT START</label>
                                         </div>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-xs-12 ">
                                         <div class="form-floating mb-3">
                                             <input class="form-control" id="row_permit_end_date" name="row_permit_end_date" type="date" placeholder="Row Permit Last Date" />
-                                            <label for="date">ROW PERMIT END</label>
+                                            <label >ROW PERMIT END</label>
                                         </div>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-xs-12 ">
                                         <div class="form-floating mb-3">
                                             <input class="form-control" id="tax" name="tax" type="number"  />
-                                            <label for="date">Tax %</label>
+                                            <label >Tax %</label>
                                         </div>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-xs-12 ">
@@ -128,7 +133,7 @@
                                     <div class="col-lg-3 col-md-3 col-xs-12 ">
                                         <div class="form-floating mb-3">
                                             <input class="form-control" readonly="readonly" id="plot_utilization_mon_price" type="number"  />
-                                            <label for="plot_utilization_mon_price">PLOT UTILIZATION MONTHLY PRICE</label>
+                                            <label for="plot_utilization_mon_price">PLOT PRICE M/O</label>
                                         </div>
                                     </div>
                                 </div>
@@ -154,7 +159,7 @@
                                     <div class="col-lg-3 col-md-3 col-xs-12 ">
                                         <div class="form-floating mb-3">
                                             <input class="form-control" readonly="readonly" id="building_permit_mon_price"  type="number" />
-                                            <label for="date">BUILDING MONTHLY PRICE</label>
+                                            <label >BUILDING PRICE M/O</label>
                                         </div>
                                     </div>
                                 </div>
@@ -162,13 +167,13 @@
                                     <div class="col-lg-6 col-md-6 col-xs-12 ">
                                         <div class="form-floating mb-3">
                                             <input class="form-control" id="project_start_date" name="project_start_date" type="date" placeholder="Row Permit Start Date" />
-                                            <label for="date">PROJECT ENTRY START</label>
+                                            <label >PROJECT ENTRY START</label>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-xs-12 ">
                                         <div class="form-floating mb-3">
                                             <input class="form-control" id="project_end_date" name="project_end_date" type="date" placeholder="Row Permit Last Date" />
-                                            <label for="date">PROJECT ENTRY END</label>
+                                            <label >PROJECT ENTRY END</label>
                                         </div>
                                     </div>
                                 </div>
@@ -176,13 +181,13 @@
                                     <div class="col-lg-6 col-md-6 col-xs-12 ">
                                         <div class="form-floating mb-3">
                                             <input class="form-control" id="parking_ijari_start_date" name="parking_ijari_start_date" type="date" placeholder="Row Permit Start Date" />
-                                            <label for="date">PARKING IJARI START</label>
+                                            <label >PARKING IJARI START</label>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-xs-12 ">
                                         <div class="form-floating mb-3">
                                             <input class="form-control" id="parking_ijari_end_date" name="parking_ijari_end_date" type="date" placeholder="Row Permit Last Date" />
-                                            <label for="date">PARKING IJARI END</label>
+                                            <label >PARKING IJARI END</label>
                                         </div>
                                     </div>
                                 </div>
@@ -199,10 +204,8 @@
                                 <br>
                                 <div class="row align-items-center">
                                     <div class="col-lg-12 col-md-12 col-xs-12 ">
-                                        <label for="inputGroupFile01">UPLOAD DOCUMENTS IF ANY</label> 
+                                        <label for="file">UPLOAD DOCUMENTS IF ANY</label> 
                                         <input type="file" class="form-control" name="upload_branches[]" multiple id="upload_branches">
-
-
                                     </div>
                                 </div>
                                 <br>
@@ -240,10 +243,13 @@
                             <th>Price</th>
                             <th>Row Permit Start</th>
                             <th>Row Permit End</th>
+                            <th>Tax</th>
                             <th>Plot Utilization Start</th>
                             <th>Plot Utilization End</th>
+                            <th>Plot Price</th>
                             <th>Building Permit Start</th>
                             <th>Building Permit End</th>
+                            <th>Building Permit Price</th>
                             <th>Project Start</th>
                             <th>Project End</th> 
                             <th>Parking Ijari Start</th>
@@ -263,7 +269,29 @@
 </main>  
 <script type="text/javascript">
 
-    $(document).ready( function () {
+    $(document).ready(function(){
+
+        $('#user_id').select2({
+            createTag: function (params) {
+                if (params.term.indexOf('@') === -1) {
+                    return null;
+                }
+                return {
+                    id: params.term,
+                    text: params.term
+                };
+            }
+        }).on('select2:select', function (e) {
+            if ($(this).val().length > 4) { // Set the desired maximum selection count
+                $(this).find('[value="' + e.params.data.id + '"]').remove();
+                $(this).trigger('change');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: "You cannot add more than 4 Employees !!!"
+                });
+            }
+        });
 
 
         $("#branch_price").keyup(function(){
@@ -334,10 +362,13 @@
                 { "data": "branch_price" },
                 { "data": "row_permit_start_date" },
                 { "data": "row_permit_end_date" },
+                { "data": "tax" },
                 { "data": "plot_utilization_start_date" },
                 { "data": "plot_utilization_end_date" },
+                { "data": "plot_utilization_price" },
                 { "data": "building_permit_start_date" },
                 { "data": "building_permit_end_date" },
+                { "data": "building_permit_price" },
                 { "data": "project_start_date" },
                 { "data": "project_end_date" },
                 { "data": "parking_ijari_start_date" },
@@ -362,8 +393,8 @@
             //url:       url         // override for form's 'action' attribute 
             //type:      type        // 'get' or 'post', override for form's 'method' attribute 
             //dataType:  null        // 'xml', 'script', or 'json' (expected server response type) 
-            //clearForm: true ,       // clear all form fields after successful submit 
-            // resetForm: true        // reset the form after successful submit 
+            clearForm: true ,       // clear all form fields after successful submit 
+            resetForm: true        // reset the form after successful submit 
 
             // $.ajax options can be used here too, for example: 
             //timeout:   3000 

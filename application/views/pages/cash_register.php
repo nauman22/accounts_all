@@ -43,14 +43,14 @@
                                                 }
                                                 ?>
                                             </select>
-                                            <label for="company_id">COMPANY</label>  
+                                            <!-- <label for="company_id">COMPANY</label> --> 
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-xs-12">
                                         <div class="form-floating mb-3">
                                             <select style="display: none;" class="form-control" required="required" id="branch_id" name="branch_id">
                                             </select>
-                                            <label id="lblBranch" style="display: none;" for="branch_id">BRANCH</label>  
+                                            <!--<label id="lblBranch" style="display: none;" for="branch_id">BRANCH</label> --> 
                                         </div>
                                     </div>
                                 </div>
@@ -77,7 +77,7 @@
                                             <select class="form-control" style="display: none;" id="emp" name="emp" required="required"  >
                                                 <option value="">SELECT EMPLOYEE</option>
                                             </select>
-                                            <label id="lblemp" style="display: none;" for="emp">EMPLOYEE</label>  
+                                            <!-- <label id="lblemp" style="display: none;" for="emp">EMPLOYEE</label> --> 
 
                                         </div>
                                     </div>
@@ -250,6 +250,21 @@
 <script type="text/javascript">
 
     $(document).ready( function () {
+
+        $('#company_id, #branch_id, #emp').select2({
+            placeholder: function() {
+                if ($(this).attr('id') === 'company_id') {
+                    return 'COMPANY';
+                } else if ($(this).attr('id') === 'branch_id') {
+                    return 'BRANCH';
+                } else if ($(this).attr('id') === 'emp') {
+                    return 'EMPLOYEE';
+                }
+            },
+            allowClear: true
+        })
+
+
         // $('#datatablesSimple').DataTable();
         var table =  $('#datatablesSimple').DataTable({
             "processing": true,
@@ -310,6 +325,66 @@
     // prepare the form when the DOM is ready 
     $(document).ready(function() { 
 
+
+        $("#company_id").change(function(){
+
+            var selectedValue = $(this).val();
+            $.ajax({
+                url: "get_Company_branches", // URL to the server endpoint
+                method: "POST",
+                dataType: "json", // Expected data type of the response
+                data: {id: selectedValue }, 
+                success: function(data) {
+
+                    // Populate the dropdown with data from the response
+
+                    var dropdown = $("#branch_id");
+                    var dropdown2 = $("#lblBranch");
+                    dropdown.empty();
+                    dropdown.css("display", "block");
+                    dropdown2.css("display", "block");
+                    dropdown.append('<option value="">Select a branch</option>');
+                    $.each(data, function(index, branch) {
+                        dropdown.append($('<option></option>').attr('value', branch.id).text(branch.branch_name));
+                    });
+                },
+                error: function(xhr, status, error) {
+                    // Handle errors
+                    console.log("Error:", error);
+                }
+            });
+        });
+
+        $("#branch_id").change(function(){
+
+            var selectedValue = $(this).val();
+            $.ajax({
+                url: "get_branch_users", // URL to the server endpoint
+                method: "POST",
+                dataType: "json", // Expected data type of the response
+                data: {id: selectedValue }, 
+                success: function(data) {
+
+                    // Populate the dropdown with data from the response
+
+                    var dropdown = $("#emp");
+                    // var dropdown2 = $("#lblemp");
+                    dropdown.empty();
+                    dropdown.css("display", "block");
+                    //dropdown2.css("display", "block");
+                    dropdown.append('<option value="">Select a Employee</option>');
+                    $.each(data, function(index, emp) {
+
+                        dropdown.append($('<option></option>').attr('value', emp.id).text(emp.name));
+                    });
+                },
+                error: function(xhr, status, error) {
+                    // Handle errors
+                    console.log("Error:", error);
+                }
+            });
+        });
+
         var options = { 
             target:        '#output1',   // target element(s) to be updated with server response 
             beforeSubmit:  showRequest,  // pre-submit callback 
@@ -320,8 +395,8 @@
             //url:       url         // override for form's 'action' attribute 
             //type:      type        // 'get' or 'post', override for form's 'method' attribute 
             //dataType:  null        // 'xml', 'script', or 'json' (expected server response type) 
-            //clearForm: true ,       // clear all form fields after successful submit 
-            // resetForm: true        // reset the form after successful submit 
+            clearForm: true ,       // clear all form fields after successful submit 
+            resetForm: true        // reset the form after successful submit 
 
             // $.ajax options can be used here too, for example: 
             //timeout:   3000 
