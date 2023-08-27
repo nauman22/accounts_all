@@ -33,7 +33,7 @@
                                 <div class="row align-items-center">
                                     <div class="col-lg-6 col-md-6 col-xs-12">
                                         <div class="form-floating mb-3">
-                                            <select class="form-control" id="company_id" name="company_id" required="required"  >
+                                            <select class="form-control" id="company_id" name="company_id"  >
                                                 <option value="">SELECT COMPANY</option>
                                                 <?php 
                                                 for($i=0; $i<count($company); $i++){
@@ -48,17 +48,40 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-xs-12">
                                         <div class="form-floating mb-3">
-                                            <select style="display: none;" class="form-control" required="required" id="branch_id" name="branch_id">
+
+                                            <select class="form-control" id="branch_id" name="branch_id">
+                                                <option value="">SELECT BRANCH</option>
                                             </select>
-                                            <!--<label id="lblBranch" style="display: none;" for="branch_id">BRANCH</label> --> 
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row align-items-center">
 
+
+                                    <div class="col-lg-6 col-md-6 col-xs-12">
+                                        <div class="form-floating mb-3">
+                                            <select class="form-control" id="wrkemp" name="wrkemp" >
+                                                <option value="">WORKER EMPLOYEE</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-xs-12">
+                                        <div class="form-floating mb-3">
+                                            <select class="form-control" id="emp" name="emp"   >
+                                                <option value="">COLLECTION EMPLOYEE</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+
+                                <div class="row align-items-center">
+
                                     <div class="col-lg-6 col-md-6 col-xs-12 ">
                                         <div class="form-floating mb-3">
-                                            <select class="form-control" id="type" name="type" required="required" >
+                                            <select class="form-control" id="type" name="type" >
                                                 <option value="">SELECT TYPE</option>
                                                 <?php 
                                                 for($i=0; $i<count($type); $i++){
@@ -72,56 +95,8 @@
 
                                         </div>
                                     </div>
-                                    <div class="col-lg-6 col-md-6 col-xs-12">
-                                        <div class="form-floating mb-3">
-                                            <select class="form-control" style="display: none;" id="emp" name="emp" required="required"  >
-                                                <option value="">SELECT EMPLOYEE</option>
-                                            </select>
-                                            <!-- <label id="lblemp" style="display: none;" for="emp">EMPLOYEE</label> --> 
 
-                                        </div>
-                                    </div>
-
-
-
-                                </div>
-
-                                <div class="row align-items-center">
-                                    <div class="col-lg-12 col-md-12 col-xs-12">
-                                        <div style="display: none;" class="form-floating mb-3">
-                                            <select class="form-control" id="head" name="head" >
-                                                <option value="">SELECT HEAD</option>
-                                                <?php 
-                                                for($i=0; $i<count($head); $i++){
-                                                    $id = $head[$i]['id'];
-                                                    $text = $head[$i]['name'];
-                                                    echo '<option value="'.$id.'">'.$text.'</option>' ;
-                                                }
-                                                ?>
-                                            </select>
-                                            <label for="head">HEAD</label>  
-
-                                        </div>
-                                    </div>
-
-
-                                    <div style="display: none;" class="col-lg-4 col-md-4 col-xs-12">
-                                        <div class="form-floating mb-3">
-                                            <select class="form-control"  id="category" name="category" >
-                                                <option value="0">SELECT CATEGORY</option>
-                                                <?php 
-                                                for($i=0; $i<count($category); $i++){
-                                                    $id = $category[$i]['id'];
-                                                    $text = $category[$i]['name'];
-                                                    echo '<option value="'.$id.'">'.$text.'</option>' ;
-                                                }
-                                                ?>
-                                            </select>
-                                            <label for="category">CATEGORY</label>  
-
-                                        </div>
-                                    </div>
-                                    <div style="display: none;" class="col-lg-4 col-md-4 col-xs-12 ">
+                                    <div class="col-lg-6 col-md-6 col-xs-12 ">
                                         <div class="form-floating mb-3">
                                             <select class="form-control" id="mode" name="mode" >
                                                 <option value="0">SELECT MODE</option>
@@ -138,10 +113,43 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div style="display: none;"  class="row align-items-center">
+                                    <div class="col-lg-12 col-md-12 col-xs-12">
+                                        <div class="form-floating mb-3">
+                                            <select class="form-control" id="head" name="head" >
+                                                <option value="">SELECT HEAD</option>
+                                                <?php 
+                                                for($i=0; $i<count($head); $i++){
+                                                    $id = $head[$i]['id'];
+                                                    $text = $head[$i]['name'];
+                                                    echo '<option value="'.$id.'">'.$text.'</option>' ;
+                                                }
+                                                ?>
+                                            </select>
+                                            <label for="head">HEAD</label>  
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                        <div class="form-floating mb-3">
+                                            <select class="form-control"  id="category" name="category" >
+                                                <option value="0">SELECT CATEGORY</option>
+                                                <?php 
+                                                for($i=0; $i<count($category); $i++){
+                                                    $id = $category[$i]['id'];
+                                                    $text = $category[$i]['name'];
+                                                    echo '<option value="'.$id.'">'.$text.'</option>' ;
+                                                }
+                                                ?>
+                                            </select>
+                                            <label for="category">CATEGORY</label>  
+
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="row align-items-center">
-
-
-
                                     <div class="col-lg-3 col-md-3 col-xs-12 ">
                                         <div class="form-floating mb-3">
                                             <input class="form-control" id="date" name="date" type="date" placeholder="name@example.com" />
@@ -185,7 +193,7 @@
                                 <br>
                                 <div class="row align-items-center">
                                     <div class="col-lg-12 col-md-12 col-xs-12 ">
-                                        <label for="inputGroupFile01">UPLOAD DOCUMENTS IF ANY</label> 
+                                        <label>UPLOAD DOCUMENTS IF ANY</label> 
                                         <input type="file" class="form-control" name="upload_doc_cash_register[]" multiple id="upload_doc_cash_register">
 
 
@@ -225,16 +233,10 @@
                             <th>Branch</th>
                             <th>Amount</th>
                             <th>Type</th>
-
-
-
                             <th>Head</th>
-
                             <th>Employee</th>
                             <th>Description</th>
                             <th>Remarks</th>
-
-
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -250,15 +252,16 @@
 <script type="text/javascript">
 
     $(document).ready( function () {
-
-        $('#company_id, #branch_id, #emp').select2({
+        $('#company_id, #branch_id, #emp, #wrkemp').select2({
             placeholder: function() {
                 if ($(this).attr('id') === 'company_id') {
                     return 'COMPANY';
                 } else if ($(this).attr('id') === 'branch_id') {
                     return 'BRANCH';
                 } else if ($(this).attr('id') === 'emp') {
-                    return 'EMPLOYEE';
+                    return 'COLLECTION EMPLOYEE';
+                }else if ($(this).attr('id') === 'wrkemp') {
+                    return 'WORK EMPLOYEE';
                 }
             },
             allowClear: true
@@ -291,12 +294,8 @@
                 { "data": "remarks" },
                 { "data": "buttons" },
             ]     
-
         });
-
-
-
-    } );
+    });
 </script>
 <script type="text/javascript">
 
@@ -311,6 +310,7 @@
             success: function(srno) {
 
                 // Populate the dropdown with data from the response
+
                 $("#srno").val(srno);
                 return true;
 
@@ -324,65 +324,193 @@
 
     // prepare the form when the DOM is ready 
     $(document).ready(function() { 
+        var isDropdown1Changed = false;
 
+        $.ajax({
+            url: "get_branch_users", 
+            method: "POST",
+            dataType: "json", 
+            //data: {id: selectedValue }, 
+            success: function(data) {
+
+                var dropdown = $("#emp");
+                var dropdown2 = $("#wrkemp");
+                dropdown.empty();
+                dropdown2.empty();
+                dropdown.append('<option value="">COLLECTION EMPLOYEE</option>');
+                $.each(data, function(index, emp) {
+                    dropdown.append($('<option></option>').attr('value', emp.id).text(emp.name));
+                });
+                dropdown2.append('<option value="0">WORK EMPLOYEE</option>');
+                $.each(data, function(index, emp) {
+                    dropdown2.append($('<option></option>').attr('value', emp.id).text(emp.name));
+                });
+            },
+            error: function(xhr, status, error) {
+                console.log("Error:", error);
+            }
+        });
 
         $("#company_id").change(function(){
 
-            var selectedValue = $(this).val();
-            $.ajax({
-                url: "get_Company_branches", // URL to the server endpoint
-                method: "POST",
-                dataType: "json", // Expected data type of the response
-                data: {id: selectedValue }, 
-                success: function(data) {
+            if (!isDropdown1Changed) {
 
-                    // Populate the dropdown with data from the response
+                var selectedValue = $(this).val();
+                $.ajax({
+                    url: "get_Company_branches", // URL to the server endpoint
+                    method: "POST",
+                    dataType: "json", // Expected data type of the response
+                    data: {id: selectedValue }, 
+                    success: function(data) {
 
-                    var dropdown = $("#branch_id");
-                    var dropdown2 = $("#lblBranch");
-                    dropdown.empty();
-                    dropdown.css("display", "block");
-                    dropdown2.css("display", "block");
-                    dropdown.append('<option value="">Select a branch</option>');
-                    $.each(data, function(index, branch) {
-                        dropdown.append($('<option></option>').attr('value', branch.id).text(branch.branch_name));
-                    });
-                },
-                error: function(xhr, status, error) {
-                    // Handle errors
-                    console.log("Error:", error);
-                }
-            });
+                        // Populate the dropdown with data from the response
+
+                        var dropdown = $("#branch_id");
+                        var dropdown2 = $("#lblBranch");
+                        dropdown.empty();
+                        dropdown.css("display", "block");
+                        dropdown2.css("display", "block");
+                        dropdown.append('<option value="">SELECT BRANCH</option>');
+                        $.each(data, function(index, branch) {
+                            dropdown.append($('<option></option>').attr('value', branch.id).text(branch.branch_name));
+                        });
+                        isDropdown1Changed = true; 
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle errors
+                        console.log("Error:", error);
+                        isDropdown1Changed = false; 
+                    }
+                });
+            }
         });
 
-        $("#branch_id").change(function(){
+        $("#wrkemp").change(function(){
 
-            var selectedValue = $(this).val();
-            $.ajax({
-                url: "get_branch_users", // URL to the server endpoint
-                method: "POST",
-                dataType: "json", // Expected data type of the response
-                data: {id: selectedValue }, 
-                success: function(data) {
 
-                    // Populate the dropdown with data from the response
+            if (!isDropdown1Changed) {
 
-                    var dropdown = $("#emp");
-                    // var dropdown2 = $("#lblemp");
-                    dropdown.empty();
-                    dropdown.css("display", "block");
-                    //dropdown2.css("display", "block");
-                    dropdown.append('<option value="">Select a Employee</option>');
-                    $.each(data, function(index, emp) {
+                var selectedValue = $(this).val();
+                $.ajax({
+                    url: "get_company_branch_wrkemp", 
+                    method: "POST",
+                    dataType: "json", 
+                    data: {wrkempid: selectedValue }, 
+                    success: function(data){
 
-                        dropdown.append($('<option></option>').attr('value', emp.id).text(emp.name));
-                    });
-                },
-                error: function(xhr, status, error) {
-                    // Handle errors
-                    console.log("Error:", error);
-                }
-            });
+                        var company_dropdown = $("#company_id");
+                        var branch_dropdown = $("#branch_id");
+                        company_dropdown.empty();
+                        branch_dropdown.empty();
+                        branch_dropdown.append('<option value="">SELECT BRANCH</option>');
+                        $.each(data, function(index, emp) {
+                            branch_dropdown.append($('<option></option>').attr('value', emp.branch_id).text(emp.branch_name));
+                        }); 
+                        company_dropdown.append('<option value="">SELECT COMPANY</option>');
+                        $.each(data, function(index, emp) {
+                            company_dropdown.append($('<option></option>').attr('value', emp.company_id).text(emp.company_name));
+                        });
+
+                        isDropdown1Changed = true; 
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle errors
+                        console.log("Error:", error);
+                        isDropdown1Changed = false; 
+                    }
+                });
+            }
+            else{
+
+
+                Swal.fire({
+                    title: 'You have already choosed company or branch Do you want to save the changes?',
+                    showDenyButton: true,
+                    showCancelButton: false,
+                    confirmButtonText: 'Yes',
+                    denyButtonText: 'No',
+                    customClass: {
+                        actions: 'my-actions',
+                        //cancelButton: 'order-1 right-gap',
+                        confirmButton: 'order-2',
+                        denyButton: 'order-3',
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        var selectedValue = $(this).val();
+                        $.ajax({
+                            url: "get_company_branch_wrkemp", 
+                            method: "POST",
+                            dataType: "json", 
+                            data: {wrkempid: selectedValue }, 
+                            success: function(data){
+
+                                var company_dropdown = $("#company_id");
+                                var branch_dropdown = $("#branch_id");
+                                company_dropdown.empty();
+                                branch_dropdown.empty();
+                                branch_dropdown.append('<option value="">SELECT BRANCH</option>');
+                                $.each(data, function(index, emp) {
+                                    branch_dropdown.append($('<option></option>').attr('value', emp.branch_id).text(emp.branch_name));
+                                }); 
+                                company_dropdown.append('<option value="">SELECT COMPANY</option>');
+                                $.each(data, function(index, emp) {
+                                    company_dropdown.append($('<option></option>').attr('value', emp.company_id).text(emp.company_name));
+                                });
+
+                                isDropdown1Changed = true; 
+                            },
+                            error: function(xhr, status, error) {
+                                // Handle errors
+                                console.log("Error:", error);
+                                isDropdown1Changed = false; 
+                            }
+                        });
+                        isDropdown1Changed = false; 
+                    } else if (result.isDenied) {
+                        $("#wrkemp").empty();
+                        $("#wrkemp").val('');
+                        $.ajax({
+                            url: "get_branch_users", 
+                            method: "POST",
+                            dataType: "json", 
+                            //data: {id: selectedValue }, 
+                            success: function(data) {
+
+                                var dropdown = $("#emp");
+                                var dropdown2 = $("#wrkemp");
+                                dropdown.empty();
+                                dropdown2.empty();
+                                dropdown.append('<option value="">COLLECTION EMPLOYEE</option>');
+                                $.each(data, function(index, emp) {
+                                    dropdown.append($('<option></option>').attr('value', emp.id).text(emp.name));
+                                });
+                                dropdown2.append('<option value="0">WORK EMPLOYEE</option>');
+                                $.each(data, function(index, emp) {
+                                    dropdown2.append($('<option></option>').attr('value', emp.id).text(emp.name));
+                                });
+                            },
+                            error: function(xhr, status, error) {
+                                console.log("Error:", error);
+                            }
+                        });
+
+                        isDropdown1Changed = false;
+                        //Swal.fire('Changes are not saved', '', 'info')
+                    }
+                })
+
+
+
+                /*Swal.fire({
+                icon: 'warning',
+                title: 'Warning!',
+                text: "You have already choosed company or branch"
+                });
+
+                $("#wrkemp").empty();
+                $("#wrkemp").val('');*/
+            }
         });
 
         var options = { 
@@ -466,10 +594,5 @@
         //alert('status: ' + statusText + '\n\nresponseText: \n' + responseText + 
         //     '\n\nThe output div should have already been updated with the responseText.');
     } 
-
-
-
-
-
 
 </script>

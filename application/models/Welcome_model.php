@@ -338,29 +338,37 @@ class Welcome_model extends CI_Model {
 
     function get_serialnumber($collectiondate){
 
-
         $response = array();
-        $arraywhere = array('is_active' => 1, 'date' => $collectiondate);
-        $this->db->where($arraywhere);
-        //$this->db->where('is_active','1','date',$collectiondate);
-        // Select record
-        $this->db->select_max('srno');
-        $q = $this->db->get('tbl_cash_register');
-        $response = $q->result_array();
+        $this->db->select('srno'); 
+        $this->db->from('tbl_cash_register');
+        $this->db->where('date', $collectiondate);
+        $this->db->where('is_active =', 1);
+        $this->db->where('date IS NOT NULL');
+        $query = $this->db->get(); 
+        if ($query->num_rows() > 0)
+        {
+            $response = $query->result_array();
+            $feededsrno = $response[0]['srno'];
+        } 
+        else 
+        {
+            $this->db->select_max('srno');
+            $q = $this->db->get('tbl_cash_register');
+            $response = $q->result_array();
 
-        if($response[0]['srno'] == "")
-        {
-            $response[0]['srno'] = 1;
+            if($response[0]['srno'] == "")
+            {
+                $response[0]['srno'] = 1001;
+                $feededsrno = $response[0]['srno'];
+            }
+            else
+            {
+                $response[0]['srno'] = $response[0]['srno']+1;
+                $feededsrno = $response[0]['srno'];
+            }
         }
-        else
-        {
-            $response[0]['srno'] = $response[0]['srno']+1;
-        }
-        /*echo $response[0]['srno'];
-        exit(); */
-        /* echo $this->db->last_query();
-        exit(); */    
-        return $response[0]['srno'];
+
+        return $feededsrno;
     } 
     function get_branches_employee($id){
 
@@ -450,11 +458,30 @@ class Welcome_model extends CI_Model {
 
         $response = array();
         $this->db->where('is_active','1');
-        $this->db->order_by('id', 'DESC');  //actual field name of id
-        // Select record
+        $this->db->order_by('id', 'DESC');  
+
         $this->db->select('*');
         $q = $this->db->get('tbl_user');
         $response = $q->result_array();
+        return $response;
+    }
+
+    function get_company_branch_wrkemp($userId)
+    {
+        $response = array();
+
+        $this->db->select('b.id AS branch_id, b.branch_name, c.id AS company_id, c.name AS company_name');
+        $this->db->from('tbl_branch b');
+        $this->db->join('tbl_company c', 'c.id = b.company_id', 'left');
+        $this->db->where("FIND_IN_SET('$userId', b.user_id) > 0");
+        $this->db->limit(25);
+
+        $query = $this->db->get();
+        $response = $query->result_array();
+
+        /*print_r($response);
+        exit();*/
+
 
         return $response;
     }
@@ -711,6 +738,7 @@ class Welcome_model extends CI_Model {
         $category=$this->input->post('category');
         $mode=$this->input->post('mode');
         $emp=$this->input->post('emp');
+        $wrkemp=$this->input->post('wrkemp');
         $amount=$this->input->post('amount');
         $description=$this->input->post('description');
         $remarks=$this->input->post('remarks');
@@ -732,6 +760,7 @@ class Welcome_model extends CI_Model {
                 'category_id'=>$category,
                 'mode_id'=>$mode,
                 'user_id'=>$emp,
+                'wrkemp'=>$wrkemp,
                 'amount'=>$amount,
                 'description'=>$description,
                 'remarks'=>$remarks,
@@ -763,6 +792,7 @@ class Welcome_model extends CI_Model {
                 'category_id'=>$category,
                 'mode_id'=>$mode,
                 'user_id'=>$emp,
+                'wrkemp'=>$wrkemp,
                 'amount'=>$amount,
                 'description'=>$description,
                 'remarks'=>$remarks,

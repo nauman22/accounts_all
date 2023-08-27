@@ -884,29 +884,15 @@ class Welcome extends CI_Controller {
         echo json_encode($json_data); 
     }
 
-
-
-
     public function get_branch_users()
     {
-        //$userData['user_id'] = array();
-        //$outputarray = array();
-        //$userData['user_id'] = $this->Welcome_model->get_branch_users($_POST['ids']);
         $userData['user_id'] = $this->Welcome_model->get_user($id=null);
-        /*$namesString = ''; 
-        $idString = ''; 
-        for ($i = 0; $i < count($userData['user_id']); $i++) {
-        $id = $userData['user_id'][$i]['id'];
-        $name = $userData['user_id'][$i]['name'];
-        $idString .= $id . ', '; 
-        $namesString .= $name . ', '; 
-        }                                        
-        $idString = rtrim($idString, ', ');
-        $namesString = rtrim($namesString, ', ');
-
-        $outputarray['ids'] =  $idString;
-        $outputarray['names'] =  $namesString;*/
         echo json_encode($userData['user_id']);
+    }
+    public function get_company_branch_wrkemp()
+    {
+        $userData['data'] = $this->Welcome_model->get_company_branch_wrkemp($_POST['wrkempid']);
+        echo json_encode($userData['data']);
     }
 
 

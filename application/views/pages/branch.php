@@ -402,6 +402,7 @@
 
         // bind form using 'ajaxForm' 
         $('#form').ajaxForm(options); 
+        
     }); 
 
     // pre-submit callback 
