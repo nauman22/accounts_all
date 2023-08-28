@@ -259,7 +259,7 @@ class Welcome_model extends CI_Model {
 
         $response = array();
         $this->db->where('is_active','1');
-        $this->db->order_by('id', 'DESC');  //actual field name of id
+        $this->db->order_by('id', 'ASC');  //actual field name of id
 
         // Select record
         $this->db->select('*');
@@ -285,7 +285,7 @@ class Welcome_model extends CI_Model {
 
         $response = array();
         $this->db->where('is_active','1');
-        $this->db->order_by('id', 'DESC');  //actual field name of id
+        $this->db->order_by('id', 'ASC');  //actual field name of id
 
         // Select record
         $this->db->select('*');
@@ -370,10 +370,10 @@ class Welcome_model extends CI_Model {
 
         return $feededsrno;
     } 
-    function get_branches_employee($id){
+    function get_branches_employee($branch_id){
 
         $response = array();
-        $q = $this->db->query("SELECT b.user_id AS id FROM tbl_branch b JOIN tbl_user u ON b.user_id = u.id WHERE b.id = $id;");
+        $q = $this->db->query("SELECT b.user_id AS id FROM tbl_branch b JOIN tbl_user u ON b.user_id = u.id WHERE b.id = $branch_id;");
 
         $rowCount = $q->num_rows(); 
         if($rowCount > 0)
@@ -383,7 +383,6 @@ class Welcome_model extends CI_Model {
             $response = $this->get_branch_users($ids);
         }
 
-
         return $response;
     } 
 
@@ -392,7 +391,7 @@ class Welcome_model extends CI_Model {
         $response = array();
 
         $this->db->where('is_active','1');
-        $this->db->order_by('id', 'DESC');  //actual field name of id
+        $this->db->order_by('id', 'ASC');  //actual field name of id
         // Select record
         $this->db->select('*');
         $q = $this->db->get('tbl_bank');
@@ -409,6 +408,20 @@ class Welcome_model extends CI_Model {
         // Select record
         $this->db->select('*');
         $q = $this->db->get('tbl_head');
+        $response = $q->result_array();
+
+        return $response;
+    }
+
+    function get_bank($id){
+
+        $response = array();
+        $this->db->where('is_active','1');
+        $this->db->order_by('id', 'ASC');  //actual field name of id
+
+        // Select record
+        $this->db->select('*');
+        $q = $this->db->get('tbl_bank');
         $response = $q->result_array();
 
         return $response;
@@ -430,7 +443,7 @@ class Welcome_model extends CI_Model {
 
         $response = array();
         $this->db->where('is_active','1');
-        $this->db->order_by('id', 'DESC');  //actual field name of id
+        $this->db->order_by('id', 'ASC');  //actual field name of id
 
         // Select record
         $this->db->select('*');

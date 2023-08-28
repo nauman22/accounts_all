@@ -97,14 +97,12 @@ $active_group = 'default';
 $active_record = TRUE;
 
 
-$db['default']['hostname'] = 'localhost';
-//$db['default']['hostname'] = '64.31.43.226';
+//$db['default']['hostname'] = 'localhost:3306';
+$db['default']['hostname'] = '64.31.43.226';
 
-//$db['default']['username'] = 'paksolpk_sa';
-$db['default']['username'] = 'root';
+$db['default']['username'] = 'paksolpk_sa';
 
-//$db['default']['password'] = '-sgavgU8G}Cp';
-$db['default']['password'] = '';
+$db['default']['password'] = '-sgavgU8G}Cp';
 
 $db['default']['database'] = 'paksolpk_accounts_all';
 

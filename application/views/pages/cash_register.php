@@ -112,6 +112,25 @@
 
                                         </div>
                                     </div>
+                                </div> 
+                                <div class="row align-items-center">
+
+                                    <div class="col-lg-12 col-md-12 col-xs-12 ">
+                                        <div class="form-floating mb-3">
+                                            <select class="form-control" id="account" name="account" >
+                                                <option value="">SELECT BANK ACCOUNT</option>
+                                                <?php 
+                                                for($i=0; $i<count($account); $i++){
+                                                    $id = $account[$i]['id'];
+                                                    $text = $account[$i]['name'];
+                                                    echo '<option value="'.$id.'">'.$text.'</option>' ;
+                                                }
+                                                ?>
+                                            </select>
+                                            <label for="type">BANK ACCOUNT</label>  
+
+                                        </div>
+                                    </div>
                                 </div>
                                 <div style="display: none;"  class="row align-items-center">
                                     <div class="col-lg-12 col-md-12 col-xs-12">
@@ -233,8 +252,8 @@
                             <th>Branch</th>
                             <th>Amount</th>
                             <th>Type</th>
-                            <th>Head</th>
-                            <th>Employee</th>
+                            <!--<th>Head</th>-->
+                            <th>Collection Employee</th>
                             <th>Description</th>
                             <th>Remarks</th>
                             <th>Actions</th>
@@ -288,7 +307,7 @@
                 { "data": "branch_name" },
                 { "data": "amount" },
                 { "data": "type_name" },
-                { "data": "head_name" },
+                //{ "data": "head_name" },
                 { "data": "user_name" },
                 { "data": "description" },
                 { "data": "remarks" },
@@ -374,6 +393,38 @@
                         $.each(data, function(index, branch) {
                             dropdown.append($('<option></option>').attr('value', branch.id).text(branch.branch_name));
                         });
+                        // isDropdown1Changed = true; 
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle errors
+                        console.log("Error:", error);
+                        isDropdown1Changed = false; 
+                    }
+                });
+            }
+        });
+
+        $("#branch_id").change(function(){
+
+            if (!isDropdown1Changed) {
+
+                var selectedValue = $(this).val();
+                $.ajax({
+                    url: "get_branches_employee", // URL to the server endpoint
+                    method: "POST",
+                    dataType: "json", // Expected data type of the response
+                    data: {id: selectedValue }, 
+                    success: function(data) {
+
+                        // Populate the dropdown with data from the response
+
+                        var dropdown = $("#wrkemp");
+
+                        dropdown.empty();
+                        dropdown.append('<option value="">WORK EMPLOYEE</option>');
+                        $.each(data, function(index, emp) {
+                            dropdown.append($('<option></option>').attr('value', emp.id).text(emp.name));
+                        });
                         isDropdown1Changed = true; 
                     },
                     error: function(xhr, status, error) {
@@ -420,97 +471,97 @@
                     }
                 });
             }
-            else{
+            /*else{
 
 
-                Swal.fire({
-                    title: 'You have already choosed company or branch Do you want to save the changes?',
-                    showDenyButton: true,
-                    showCancelButton: false,
-                    confirmButtonText: 'Yes',
-                    denyButtonText: 'No',
-                    customClass: {
-                        actions: 'my-actions',
-                        //cancelButton: 'order-1 right-gap',
-                        confirmButton: 'order-2',
-                        denyButton: 'order-3',
-                    }
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        var selectedValue = $(this).val();
-                        $.ajax({
-                            url: "get_company_branch_wrkemp", 
-                            method: "POST",
-                            dataType: "json", 
-                            data: {wrkempid: selectedValue }, 
-                            success: function(data){
-
-                                var company_dropdown = $("#company_id");
-                                var branch_dropdown = $("#branch_id");
-                                company_dropdown.empty();
-                                branch_dropdown.empty();
-                                branch_dropdown.append('<option value="">SELECT BRANCH</option>');
-                                $.each(data, function(index, emp) {
-                                    branch_dropdown.append($('<option></option>').attr('value', emp.branch_id).text(emp.branch_name));
-                                }); 
-                                company_dropdown.append('<option value="">SELECT COMPANY</option>');
-                                $.each(data, function(index, emp) {
-                                    company_dropdown.append($('<option></option>').attr('value', emp.company_id).text(emp.company_name));
-                                });
-
-                                isDropdown1Changed = true; 
-                            },
-                            error: function(xhr, status, error) {
-                                // Handle errors
-                                console.log("Error:", error);
-                                isDropdown1Changed = false; 
-                            }
-                        });
-                        isDropdown1Changed = false; 
-                    } else if (result.isDenied) {
-                        $("#wrkemp").empty();
-                        $("#wrkemp").val('');
-                        $.ajax({
-                            url: "get_branch_users", 
-                            method: "POST",
-                            dataType: "json", 
-                            //data: {id: selectedValue }, 
-                            success: function(data) {
-
-                                var dropdown = $("#emp");
-                                var dropdown2 = $("#wrkemp");
-                                dropdown.empty();
-                                dropdown2.empty();
-                                dropdown.append('<option value="">COLLECTION EMPLOYEE</option>');
-                                $.each(data, function(index, emp) {
-                                    dropdown.append($('<option></option>').attr('value', emp.id).text(emp.name));
-                                });
-                                dropdown2.append('<option value="0">WORK EMPLOYEE</option>');
-                                $.each(data, function(index, emp) {
-                                    dropdown2.append($('<option></option>').attr('value', emp.id).text(emp.name));
-                                });
-                            },
-                            error: function(xhr, status, error) {
-                                console.log("Error:", error);
-                            }
-                        });
-
-                        isDropdown1Changed = false;
-                        //Swal.fire('Changes are not saved', '', 'info')
-                    }
-                })
-
-
-
-                /*Swal.fire({
-                icon: 'warning',
-                title: 'Warning!',
-                text: "You have already choosed company or branch"
-                });
-
-                $("#wrkemp").empty();
-                $("#wrkemp").val('');*/
+            Swal.fire({
+            title: 'You have already choosed company or branch. Choose this option in case you do not know the company and branch. Do you want to save the changes?',
+            showDenyButton: true,
+            showCancelButton: false,
+            confirmButtonText: 'Yes',
+            denyButtonText: 'No',
+            customClass: {
+            actions: 'my-actions',
+            //cancelButton: 'order-1 right-gap',
+            confirmButton: 'order-2',
+            denyButton: 'order-3',
             }
+            }).then((result) => {
+            if (result.isConfirmed) {
+            var selectedValue = $(this).val();
+            $.ajax({
+            url: "get_company_branch_wrkemp", 
+            method: "POST",
+            dataType: "json", 
+            data: {wrkempid: selectedValue }, 
+            success: function(data){
+
+            var company_dropdown = $("#company_id");
+            var branch_dropdown = $("#branch_id");
+            company_dropdown.empty();
+            branch_dropdown.empty();
+            branch_dropdown.append('<option value="">SELECT BRANCH</option>');
+            $.each(data, function(index, emp) {
+            branch_dropdown.append($('<option></option>').attr('value', emp.branch_id).text(emp.branch_name));
+            }); 
+            company_dropdown.append('<option value="">SELECT COMPANY</option>');
+            $.each(data, function(index, emp) {
+            company_dropdown.append($('<option></option>').attr('value', emp.company_id).text(emp.company_name));
+            });
+
+            isDropdown1Changed = true; 
+            },
+            error: function(xhr, status, error) {
+            // Handle errors
+            console.log("Error:", error);
+            isDropdown1Changed = false; 
+            }
+            });
+            isDropdown1Changed = false; 
+            } else if (result.isDenied) {
+            $("#wrkemp").empty();
+            $("#wrkemp").val('');
+            $.ajax({
+            url: "get_branch_users", 
+            method: "POST",
+            dataType: "json", 
+            //data: {id: selectedValue }, 
+            success: function(data) {
+
+            var dropdown = $("#emp");
+            var dropdown2 = $("#wrkemp");
+            dropdown.empty();
+            dropdown2.empty();
+            dropdown.append('<option value="">COLLECTION EMPLOYEE</option>');
+            $.each(data, function(index, emp) {
+            dropdown.append($('<option></option>').attr('value', emp.id).text(emp.name));
+            });
+            dropdown2.append('<option value="0">WORK EMPLOYEE</option>');
+            $.each(data, function(index, emp) {
+            dropdown2.append($('<option></option>').attr('value', emp.id).text(emp.name));
+            });
+            },
+            error: function(xhr, status, error) {
+            console.log("Error:", error);
+            }
+            });
+
+            isDropdown1Changed = false;
+            //Swal.fire('Changes are not saved', '', 'info')
+            }
+            })
+
+
+
+            /*Swal.fire({
+            icon: 'warning',
+            title: 'Warning!',
+            text: "You have already choosed company or branch"
+            });
+
+            $("#wrkemp").empty();
+            $("#wrkemp").val('');
+            }*/
         });
 
         var options = { 

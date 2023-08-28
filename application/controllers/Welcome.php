@@ -297,9 +297,10 @@ class Welcome extends CI_Controller {
         $data['account'] = $this->Welcome_model->get_account($id=null);
         $data['head'] = $this->Welcome_model->get_head($id=null);
         //$data['category'] = $this->Welcome_model->get_category($id=null);
-        //$data['mode'] = $this->Welcome_model->get_mode($id=null);
+        $data['mode'] = $this->Welcome_model->get_mode($id=null);
         $data['user'] = $this->Welcome_model->get_user($id=null);
         $data['company'] = $this->Welcome_model->get_company($id=null);
+        
         //$data['branch'] = $this->Welcome_model->get_branch($id=null);
 
         //$data['cash_register'] = $this->Welcome_model->get_type($id=null);
@@ -888,7 +889,7 @@ class Welcome extends CI_Controller {
     {
         $userData['user_id'] = $this->Welcome_model->get_user($id=null);
         echo json_encode($userData['user_id']);
-    }
+    } 
     public function get_company_branch_wrkemp()
     {
         $userData['data'] = $this->Welcome_model->get_company_branch_wrkemp($_POST['wrkempid']);
