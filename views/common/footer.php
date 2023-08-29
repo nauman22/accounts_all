@@ -205,18 +205,9 @@
                                 else if(menu_id == 6){
                                     $("#id").val(data[0]['id']);             
                                     $("#name").val(data[0]['name']);             
-                                    $("#description").val(data[0]['description']);        
+                                    $("#description").val(data[0]['description']);             
                                     $("#remarks").val(data[0]['remarks']); 
                                     window.scrollTo({ top: 0, behavior: 'smooth' });              
-                                }
-                                else if(menu_id == 7){
-                                    $("#id").val(data[0]['id']);             
-                                    $("#user_id").val(data[0]['user_id']);             
-                                    $("#type").val(data[0]['type']);             
-                                    $("#date").val(data[0]['date']);             
-                                    $("#amount").val(data[0]['amount']);             
-                                    $("#description").val(data[0]['description']);
-                                    window.scrollTo({ top: 0, behavior: 'smooth' }); 
                                 }
                                 else if(menu_id == 8){
                                     $("#id").val(data[0]['id']);             
@@ -382,7 +373,11 @@
                 },
                 dataType:'json',
                 success : function(data) {
-                    
+                    /*console.log(data);
+                    console.log(data[0]['id']);
+                    console.log(data[0]['name']);
+                    console.log(data[0]['description']);
+                    console.log(data[0]['remarks']);*/
                     if(button_id == 1){
                         if(menu_id == 2){
                             $("#id").val(data[0]['id']);             
@@ -436,17 +431,6 @@
                             $("#remarks").val(data[0]['remarks']); 
                             window.scrollTo({ top: 0, behavior: 'smooth' });              
                         }
-
-                        else if(menu_id == 7){
-                            $("#id").val(data[0]['id']);             
-                            $("#user_id").val(data[0]['user_id']);             
-                            $("#type").val(data[0]['type']);             
-                            $("#date").val(data[0]['date']);             
-                            $("#amount").val(data[0]['amount']);             
-                            $("#description").val(data[0]['description']);
-                            window.scrollTo({ top: 0, behavior: 'smooth' }); 
-                        }
-
                         else if(menu_id == 8){
                             $("#id").val(data[0]['id']);             
                             $("#name").val(data[0]['name']);             

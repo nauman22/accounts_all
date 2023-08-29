@@ -183,45 +183,41 @@ class Welcome_model extends CI_Model {
                 if($menu_id == 4){
                     $table="tbl_head";
                 }else
-                    if($menu_id == 5){
-                        $table="tbl_cheque";
+                if($menu_id == 5){
+                    $table="tbl_cheque";
+                } else
+                    if($menu_id == 6){
+                        $table="tbl_mode";
                     } else
-                        if($menu_id == 6){
-                            $table="tbl_mode";
-                        } 
-                        else
-                        if($menu_id == 7){
-                            $table="tbl_employee";
+                        if($menu_id == 8){
+                            $table="tbl_type";
                         } else
-                            if($menu_id == 8){
-                                $table="tbl_type";
+                            if($menu_id == 10){
+                                $table="tbl_user";
                             } else
-                                if($menu_id == 10){
-                                    $table="tbl_user";
+                                if($menu_id == 12){
+                                    $table="tbl_company";
                                 } else
-                                    if($menu_id == 12){
-                                        $table="tbl_company";
+                                    if($menu_id == 14){
+                                        $table="tbl_bank";
                                     } else
-                                        if($menu_id == 14){
-                                            $table="tbl_bank";
+                                        if($menu_id == 15){
+                                            $table="tbl_asset";
                                         } else
-                                            if($menu_id == 15){
-                                                $table="tbl_asset";
-                                            } else
-                                                if($menu_id == 22){
-                                                    $table="tbl_branch";
-                                                } 
-                                                /*$date =date('Y-m-d H:i:s', strtotime('2010-10-12 15:09:00') );
-                                                $data = array(
-                                                'name'=>$name,
-                                                'description'=>$description,
-                                                'remarks'=>$remarks,
-                                                'edate'=>$date,
-                                                'ekpo'=>1,
-                                                'is_active'=>1
-                                                ); */
+                                            if($menu_id == 22){
+                                                $table="tbl_branch";
+                                            } 
+                                            /*$date =date('Y-m-d H:i:s', strtotime('2010-10-12 15:09:00') );
+                                            $data = array(
+                                            'name'=>$name,
+                                            'description'=>$description,
+                                            'remarks'=>$remarks,
+                                            'edate'=>$date,
+                                            'ekpo'=>1,
+                                            'is_active'=>1
+                                            ); */
 
-                                                if($button_id == 1){
+                                            if($button_id == 1){
             $this->db->where('is_active','1');
             $this->db->where('id',$row_id);
             $this->db->select('*');
@@ -1210,7 +1206,7 @@ class Welcome_model extends CI_Model {
     function add_cheque(){
         $chqno=$this->input->post('chqno');
         $type=$this->input->post('type');
-        $datechq=$this->input->post('date');
+        $date=$this->input->post('date');
         $amount=$this->input->post('amount');
         $status=$this->input->post('status');
         $description=$this->input->post('description');
@@ -1225,7 +1221,7 @@ class Welcome_model extends CI_Model {
             $data = array(
                 'chqno'=>$chqno,
                 'type'=>$type,
-                'date'=>$datechq,
+                'date'=>$date,
                 'amount'=>$amount,
                 'status'=>$status,
                 'description'=>$description,
@@ -1243,7 +1239,7 @@ class Welcome_model extends CI_Model {
             $data = array(
                 'chqno'=>$chqno,
                 'type'=>$type,
-                'date'=>$datechq,
+                'date'=>$date,
                 'amount'=>$amount,
                 'status'=>$status,
                 'description'=>$description,
@@ -1256,11 +1252,11 @@ class Welcome_model extends CI_Model {
                 'is_active'=>1
             );
 
-
+            
             $response =   $this->db->insert('tbl_cheque',$data);
-
+            
             $res = $this->db->error();
-            /* print_r($res);
+           /* print_r($res);
             exit();*/
         }
 
@@ -1382,53 +1378,7 @@ class Welcome_model extends CI_Model {
 
             return $insert_id;
         }
-    } 
-
-    function add_employee(){
-        
-        $user_id=$this->input->post('user_id');
-        $type=$this->input->post('type');
-        $dateemp=$this->input->post('date');
-        $amount=$this->input->post('amount');
-        $description=$this->input->post('description');
-        $date =date('Y-m-d H:i:s');
-        $id =$this->input->post('id');
-
-        if($id>0){
-            $data = array(
-                'user_id'=>$user_id,
-                'type'=>$type,
-                'date'=>$dateemp,
-                'amount'=>$amount,
-                'description'=>$description,
-                'cdate'=>$date,
-                'ckpo'=>1,
-                'is_active'=>1,
-            );
-            $this->db->where('id',$id);
-            $insert_id =   $this->db->update('tbl_employee',$data);
-            return $insert_id;
-        } else{
-            $data = array(
-                'user_id'=>$user_id,
-                'type'=>$type,
-                'date'=>$dateemp,
-                'amount'=>$amount,
-                'description'=>$description,
-                'cdate'=>$date,
-                'edate'=>$date,
-                'ekpo'=>1,
-                'is_active'=>1
-            );
-
-            $response =   $this->db->insert('tbl_employee',$data);
-            $insert_id = $this->db->insert_id();
-
-           /* print_r($this->db->error());
-            exit();*/
-            
-            return $insert_id;
-        }
+        //return $response;
     }
     public function excel_importData($data) {
 

@@ -90,3 +90,5 @@ define('branch_img',"assets/uploads/branch_img/");
 define('employee_img',"assets/uploads/employee_img/");
 define('employee_doc',"assets/uploads/employee_doc/");
 define('asset_doc',"assets/uploads/asset_doc/");
+define('cheque_img',"assets/uploads/cheque_img/");
+define('staff_mgt_docs',"assets/uploads/staff_mgt_docs/");
