@@ -257,6 +257,8 @@
                                     $("#email").val(data[0]['email']);             
                                     $("#description").val(data[0]['description']);             
                                     $("#remarks").val(data[0]['remarks']); 
+                                     $("#status").val(data[0]['status']); 
+
                                     window.scrollTo({ top: 0, behavior: 'smooth' });              
                                 }
                                 else if(menu_id == 12){
@@ -484,6 +486,7 @@
                             $("#email").val(data[0]['email']);             
                             $("#description").val(data[0]['description']);             
                             $("#remarks").val(data[0]['remarks']); 
+                            $("#status").val(data[0]['status']); 
                             window.scrollTo({ top: 0, behavior: 'smooth' });              
                         }
                         else if(menu_id == 12){

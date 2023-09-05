@@ -35,6 +35,24 @@
                                 <div class="row align-items-center">
                                     <div class="col-lg-12 col-md-12 col-xs-12">
                                         <div class="form-floating mb-3">
+                                            <select class="form-control" id="paid_emp" name="paid_emp"  >
+                                                <option value="">SELECT EMPLOYEE</option>
+                                                <?php 
+                                                for($i=0; $i<count($user); $i++){
+                                                    $id = $user[$i]['id'];
+                                                    $text = $user[$i]['name'];
+                                                    echo '<option value="'.$id.'">'.$text.'</option>' ;
+                                                }
+                                                ?>
+                                            </select>
+                                            <label for="paid_emp">PAID BY EMPLOYEE</label> 
+                                        </div>
+                                    </div>
+
+                                </div> 
+                                <div class="row align-items-center">
+                                    <div class="col-lg-12 col-md-12 col-xs-12">
+                                        <div class="form-floating mb-3">
                                             <select class="form-control" id="user_id" name="user_id"  >
                                                 <option value="">SELECT EMPLOYEE</option>
                                                 <?php 
@@ -45,7 +63,7 @@
                                                 }
                                                 ?>
                                             </select>
-                                            <!-- <label for="company_id">COMPANY</label> --> 
+                                            <label for="user_id">RECEIVED BY EMPLOYEE</label> 
                                         </div>
                                     </div>
 
@@ -122,7 +140,7 @@
                     <thead>
                         <tr>
                             <th>Id</th>
-                           <!-- <th>Employee Id</th>-->
+                            <!-- <th>Employee Id</th>-->
                             <th>Employee Name</th>
                             <!--<th>Type</th>-->
                             <th>Type Name</th>
@@ -190,7 +208,7 @@
 
     // pre-submit callback 
     function showRequest(formData, jqForm, options) { 
-    
+
         var queryString = $.param(formData); 
         return true; 
     } 
@@ -211,7 +229,7 @@
                 icon: 'error',
                 title: 'NOT SAVED!',
                 text: responseText.message,
-               
+
             })
         }
     } 

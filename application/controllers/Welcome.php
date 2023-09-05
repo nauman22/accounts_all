@@ -352,7 +352,7 @@ class Welcome extends CI_Controller {
         $data['type'] = $this->Welcome_model->get_type($id=null);
         $data['account'] = $this->Welcome_model->get_account($id=null);
         $data['head'] = $this->Welcome_model->get_head($id=null);
-        //$data['category'] = $this->Welcome_model->get_category($id=null);
+        $data['category'] = $this->Welcome_model->get_category($id=null);
         $data['mode'] = $this->Welcome_model->get_mode($id=null);
         $data['user'] = $this->Welcome_model->get_user($id=null);
         $data['company'] = $this->Welcome_model->get_company($id=null);
@@ -657,6 +657,13 @@ class Welcome extends CI_Controller {
         }
     }
 
+
+    public function get_all_branches()
+    {
+        $userData['data'] = $this->Welcome_model->get_branch($id=null);
+        echo json_encode( $userData['data']);
+
+    }
     public function cheque()
     {
         $is_login= $this->check_session();
@@ -668,6 +675,8 @@ class Welcome extends CI_Controller {
         $data['menu_id'] =5; 
         $data['user_rights'] = $this->Welcome_model->get_menu_user($userid);
         $data['single_menu'] = $this->Welcome_model->get_single_menu($userid,$data['menu_id']);
+
+        $data['branch'] = $this->Welcome_model->get_branch($id=null);
 
 
         $this->load->view('common/header.php',$data);
@@ -2164,7 +2173,7 @@ class Welcome extends CI_Controller {
                 $nestedData['images'] = $img;
                 $nestedData['id'] = $post->id;
                 //$nestedData['user_id'] = $post->user_id;
-                
+
                 $userData =array();
                 $userData['user_id'] = $this->Welcome_model->get_branch_users($post->user_id);
                 $namesString = ''; 
@@ -2174,14 +2183,14 @@ class Welcome extends CI_Controller {
                 }                                        
                 $namesString = rtrim($namesString, ', ');
                 $nestedData['empname'] = $namesString;
-               
+
                 //$nestedData['type'] = $post->type;
                 if($post->type == 1){
-                   $nestedData['typename'] = "Salary"; 
+                    $nestedData['typename'] = "Salary"; 
                 }else if($post->type == 2){
-                   $nestedData['typename'] = "Loan"; 
+                    $nestedData['typename'] = "Loan"; 
                 }else if($post->type == 3){
-                   $nestedData['typename'] = "Return Loan"; 
+                    $nestedData['typename'] = "Return Loan"; 
                 }
                 $nestedData['date'] = $post->date;
                 $nestedData['amount'] = $post->amount;

@@ -132,8 +132,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div style="display: none;"  class="row align-items-center">
-                                    <div class="col-lg-12 col-md-12 col-xs-12">
+                                <div  class="row align-items-center">
+                                    <div class="col-lg-6 col-md-6 col-xs-12">
                                         <div class="form-floating mb-3">
                                             <select class="form-control" id="head" name="head" >
                                                 <option value="">SELECT HEAD</option>
@@ -151,7 +151,7 @@
                                     </div>
 
 
-                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                    <div class="col-lg-6 col-md-6 col-xs-12">
                                         <div class="form-floating mb-3">
                                             <select class="form-control"  id="category" name="category" >
                                                 <option value="0">SELECT CATEGORY</option>
@@ -252,7 +252,7 @@
                             <th>Branch</th>
                             <th>Amount</th>
                             <th>Type</th>
-                            <!--<th>Head</th>-->
+                            <th>Head</th>
                             <th>Collection Employee</th>
                             <th>Description</th>
                             <th>Remarks</th>
@@ -305,7 +305,7 @@
                 { "data": "branch_name" },
                 { "data": "amount" },
                 { "data": "type_name" },
-                //{ "data": "head_name" },
+                { "data": "head_name" },
                 { "data": "user_name" },
                 { "data": "description" },
                 { "data": "remarks" },

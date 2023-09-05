@@ -52,6 +52,23 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row align-items-center">
+                                    <div class="col-lg-12 col-md-12 col-xs-12 ">
+                                        <div class="form-floating mb-3">
+                                            <select class="form-control" id="branch_id" name="branch_id"  >
+                                                <option value="">PAID EMPLOYEE</option>
+                                                <?php 
+                                                for($i=0; $i<count($branch); $i++){
+                                                    $id = $branch[$i]['id'];
+                                                    $text = $branch[$i]['branch_name'];
+                                                    echo '<option value="'.$id.'">'.$text.'</option>' ;
+                                                }
+                                                ?>
+                                            </select>
+                                            <label for="branch_id">Company Branches</label>
+                                        </div>
+                                    </div>
+                                </div>
 
 
                                 <div class="row align-items-center">
@@ -66,6 +83,7 @@
                                         <div class="form-floating mb-3">
                                             <select class="form-control" id="status" name="status"  >
                                                 <option value="">SELECT STATUS</option>
+                                                <option value="0">None</option>
                                                 <option value="1">Paid</option>
                                                 <option value="2">Receive</option>
                                                 <option value="3">Pending</option>
@@ -175,7 +193,7 @@
 </main>
 <script type="text/javascript">
     $(document).ready( function () {
-      
+
         var table =  $('#datatablesSimple').DataTable({
             "processing": true,
             "serverSide": true,

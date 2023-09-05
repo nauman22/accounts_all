@@ -29,6 +29,26 @@
                             <form action="insert_cheque" id="form" name="form_cat"  method="post">
 
                                 <div class="row align-items-center">
+                                    <div class="col-lg-12 col-md-12 col-xs-12 ">
+                                        <label for="branch_id">COMPANY BRANCHES</label>
+                                        <div class="form-floating mb-3">
+                                            <select class="form-control" id="branch_id" name="branch_id"  >
+                                                <option value="">SELECT BRANCH</option>
+                                                <?php 
+                                                for($i=0; $i<count($branch); $i++){
+                                                    $id = $branch[$i]['id'];
+                                                    $text = $branch[$i]['branch_name'];
+                                                    echo '<option value="'.$id.'">'.$text.'</option>' ;
+                                                }
+                                                ?>
+                                            </select>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row align-items-center">
                                     <div class="col-lg-4 col-md-4 col-xs-12 ">
                                         <div class="form-floating mb-3">
                                             <input class="form-control" id="chqno" name="chqno" type="text" />
@@ -85,14 +105,14 @@
                                     <div class="col-lg-4 col-md-4 col-xs-12">
                                         <div class="form-floating mb-3">
                                             <input class="form-control" type="text" id="branchname" name="branchname" >
-                                            <label>BRANCH NAME</label>  
+                                            <label>BANK BRANCH NAME</label>  
 
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-4 col-xs-12 ">
                                         <div class="form-floating mb-3">
                                             <input class="form-control" type="text" id="branchnumber" name="branchnumber" >
-                                            <label for="amount">BRANCH NUMBER</label>  
+                                            <label for="amount">BANK BRANCH NUMBER</label>  
 
                                         </div>
                                     </div>
@@ -175,7 +195,17 @@
 </main>
 <script type="text/javascript">
     $(document).ready( function () {
-      
+
+
+        $('#branch_id').select2({
+            placeholder: function() {
+                if ($(this).attr('id') === 'branch_id') {
+                    return 'SELECT BRANCH';
+                } 
+            },
+            allowClear: true
+        });
+
         var table =  $('#datatablesSimple').DataTable({
             "processing": true,
             "serverSide": true,
@@ -242,6 +272,9 @@
                 'success'
             )
             $('#datatablesSimple').DataTable().ajax.reload();
+            $("#branch_id").html('<option></option>').trigger('change');
+            loadallbranches();
+
         } else{
             Swal.fire({
                 icon: 'error',
@@ -254,7 +287,29 @@
 
 
 
+    function loadallbranches()
+    {
+        $.ajax({
+            url: "get_all_branches",
+            method: "POST",
+            dataType: "json", 
+             
+            success: function(data) {
 
+                var dropdown = $("#branch_id");
+                dropdown.empty();
+                dropdown.append('<option value="">SELECT BRANCH</option>');
+                $.each(data, function(index, branch) {
+                    dropdown.append($('<option></option>').attr('value', branch.id).text(branch.branch_name));
+                });
+            },
+            error: function(xhr, status, error) {
+                // Handle errors
+                console.log("Error:", error);
+              
+            }
+        });
+    }
 
 
 </script>

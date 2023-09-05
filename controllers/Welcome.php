@@ -26,6 +26,7 @@ class Welcome extends CI_Controller {
     */
     public function index()
     {
+
         $is_login= $this->check_session();
         if($is_login){
             redirect(login);  
@@ -200,7 +201,33 @@ class Welcome extends CI_Controller {
         echo json_encode($data);
         exit();
     }
-    
+
+    public function insert_employee()
+    {
+        $insertId = $this->Welcome_model->add_employee();
+        $response = 0;
+        if($insertId >0){
+            $response = true;
+
+            if(isset($_FILES['staff_mgt_docs'])){
+                $path = staff_mgt_docs.$insertId."/"; // upload directory
+                $files = $_FILES['staff_mgt_docs'];
+                $title = $insertId;
+                $this->upload_files($path,$title,$files);
+            }
+
+        }
+        $data=array(
+            'status'=>$response,
+            'message'=>"There is an error occoured. Please try again later!",
+            'middlename'=>33,
+            'surname'=>44
+
+        );
+        echo json_encode($data);
+        exit();
+    }
+
     public function insert_cheque()
     {
 
@@ -224,9 +251,9 @@ class Welcome extends CI_Controller {
             'message'=>"There is an error occoured. Please try again later!",
             'middlename'=>33,
             'surname'=>44
-           
+
         );
-       
+
         echo json_encode($data);
         exit();
     }
@@ -240,7 +267,8 @@ class Welcome extends CI_Controller {
     }
 
     public function login()
-    {     $data = "";
+    {    
+        $data = "";
         //print_r($_POST);
         $data_['msg'] ="";  
         if($_POST){
@@ -326,7 +354,7 @@ class Welcome extends CI_Controller {
         $data['type'] = $this->Welcome_model->get_type($id=null);
         $data['account'] = $this->Welcome_model->get_account($id=null);
         $data['head'] = $this->Welcome_model->get_head($id=null);
-        //$data['category'] = $this->Welcome_model->get_category($id=null);
+        $data['category'] = $this->Welcome_model->get_category($id=null);
         $data['mode'] = $this->Welcome_model->get_mode($id=null);
         $data['user'] = $this->Welcome_model->get_user($id=null);
         $data['company'] = $this->Welcome_model->get_company($id=null);
@@ -642,7 +670,7 @@ class Welcome extends CI_Controller {
         $data['menu_id'] =5; 
         $data['user_rights'] = $this->Welcome_model->get_menu_user($userid);
         $data['single_menu'] = $this->Welcome_model->get_single_menu($userid,$data['menu_id']);
-
+        $data['branch'] = $this->Welcome_model->get_branch($id=null);
 
         $this->load->view('common/header.php',$data);
         if(@$data['single_menu'][0]['show_menu'] != 1 ){
@@ -663,6 +691,7 @@ class Welcome extends CI_Controller {
         $data['menu_id'] =7; 
         $data['user_rights'] = $this->Welcome_model->get_menu_user($userid);
         $data['single_menu'] = $this->Welcome_model->get_single_menu($userid,$data['menu_id']);
+        $data['user'] = $this->Welcome_model->get_user($id=null);
         $this->load->view('common/header.php',$data);
         if(@$data['single_menu'][0]['show_menu'] != 1 ){
             $this->load->view('errors/html/401.php');   
@@ -1173,8 +1202,11 @@ class Welcome extends CI_Controller {
                 $nestedData['type_name'] = $post->type_name;
                 $nestedData['bank_name'] = $post->bank_name;
                 $nestedData['head_name'] = $post->head_name;
+                $nestedData['branch_name'] = $post->branch_name;
                 $nestedData['category_name'] = $post->category_name;
-                $nestedData['user_name'] = $post->user_name;
+                $nestedData['work_employee'] = $post->work_employee;
+                $nestedData['serialNo'] = $post->srno;
+                $nestedData['collection_employee'] = $post->collection_employee;
                 $nestedData['mode_name'] = $post->mode_name;
                 $nestedData['company_name'] = $post->company_name;
                 $nestedData['remarks'] = $post->remarks;
@@ -1893,7 +1925,7 @@ class Welcome extends CI_Controller {
                 $nestedData['branchnumber'] = $post->description;
                 $nestedData['iban'] = $post->iban;
                 $nestedData['remarks'] = $post->remarks;
-               
+
                 $btn = "<div class='d-grid gap-2'>";
                 if(@$single_menu[0]['edit_record'] == 1 ){
                     $btn .="<button data-button_id='1' data-menu_id = '5'  data-row_id='".$post->id."'  type='button' class='btn_edit btn btn-labeled btn-success '>
@@ -2028,6 +2060,7 @@ class Welcome extends CI_Controller {
                 $nestedData['iban'] = $post->iban;
                 $nestedData['note'] = $post->note;
                 $nestedData['description'] = $post->description;
+                $nestedData['status'] = $post->status;
 
 
                 $nestedData['visa_entry_date'] = $post->visa_entry_date;
@@ -2071,6 +2104,118 @@ class Welcome extends CI_Controller {
                 }
                 if(@$single_menu[0]['delete_record'] == 1 ){
                     $btn .="<button data-button_id='2' data-menu_id = '10' data-row_id='".$post->id."' class='btn_del btn btn-labeled btn-danger '>
+                    <span class='btn-label'><i class='fa fa-remove'></i></span>Delete</button>";
+
+                }
+                $btn .="</div>";
+                $nestedData['buttons'] = $btn;
+                $data[] = $nestedData;
+
+            }
+        }
+
+        $json_data = array(
+            "draw"            => intval($this->input->post('draw')),  
+            "recordsTotal"    => intval($totalData),  
+            "recordsFiltered" => intval($totalFiltered), 
+            "data"            => $data   
+        );
+
+        echo json_encode($json_data); 
+    }
+    public function employee_table()
+    {
+        $userid = $_SESSION['id'];
+        $menuid = 7;
+        $single_menu = $this->Welcome_model->get_single_menu($userid,$menuid);
+        $this->load->model('Employee_table_model');
+        $columns = array( 
+            0 =>'id', 
+            1 =>'user_id',
+            2=> 'type',
+            3=> 'date',
+            4=> 'amount',
+            5=> 'description',
+
+        );
+
+        $limit = $this->input->post('length');
+        $start = $this->input->post('start');
+        $order = $columns[$this->input->post('order')[0]['column']];
+        $dir = $this->input->post('order')[0]['dir'];
+
+        $totalData = $this->Employee_table_model->allposts_count();
+
+        $totalFiltered = $totalData; 
+
+        if(empty($this->input->post('search')['value']))
+        {            
+            $posts = $this->Employee_table_model->allposts($limit,$start,$order,$dir);
+        }
+        else {
+            $search = $this->input->post('search')['value']; 
+
+            $posts =  $this->Employee_table_model->posts_search($limit,$start,$search,$order,$dir);
+
+            $totalFiltered = $this->Employee_table_model->posts_search_count($search);
+        }
+
+        $data = array();
+        if(!empty($posts))
+        {   
+
+
+            foreach ($posts as $post)
+            {
+                $nestedData['images'] = $img;
+                $nestedData['id'] = $post->id;
+                //$nestedData['user_id'] = $post->user_id;
+
+                $userData =array();
+                $userData['user_id'] = $this->Welcome_model->get_branch_users($post->user_id);
+                $namesString = ''; 
+                for ($i = 0; $i < count($userData['user_id']); $i++) {
+                    $name = $userData['user_id'][$i]['name'];
+                    $namesString .= $name . ', '; 
+                }                                        
+                $namesString = rtrim($namesString, ', ');
+                $nestedData['empname'] = $namesString;
+
+                //$nestedData['type'] = $post->type;
+                if($post->type == 1){
+                    $nestedData['typename'] = "Salary"; 
+                }else if($post->type == 2){
+                    $nestedData['typename'] = "Loan"; 
+                }else if($post->type == 3){
+                    $nestedData['typename'] = "Return Loan"; 
+                }
+                $nestedData['date'] = $post->date;
+                $nestedData['amount'] = $post->amount;
+                $nestedData['description'] = $post->description;
+
+                $path  = staff_mgt_docs.$post->id."/";
+                $img = "";
+                $images = glob($path."*.{jpg,png,jpeg}", GLOB_BRACE);
+                foreach ($images as $image) {
+
+                    $img .= ' <a class="nsbbox" title="'.basename($image).'" 
+                    href="../'.$image.'">
+                    <img title="'.basename($image).'" alt="Image 1" class="img-responsive img" src="../'.$image.'" style="width:50px" />
+                    </a>
+                    ';
+                }
+
+
+                $btn = "<div class='d-grid gap-2'>";
+
+
+                if(@$single_menu[0]['edit_record'] == 1 ){
+                    $btn .="<button data-button_id='1' data-menu_id = '7'  data-row_id='".$post->id."'  type='button' class='btn_edit btn btn-labeled btn-success '>
+                    <span class='btn-label'><i class='fa fa-check'></i></span>Update</button>";
+
+                }
+                if(@$single_menu[0]['delete_record'] == 1 ){
+                    $btn .="<button data-button_id='2' data-menu_id = '7' data-row_id='".$post->id."' class='btn_del btn btn-labeled btn-danger '>
                     <span class='btn-label'><i class='fa fa-remove'></i></span>Delete</button>";
 
                 }
@@ -2177,6 +2322,12 @@ class Welcome extends CI_Controller {
                     $post->dob = "";
                 }
 
+                if($post->status == "1"){
+                    $post->status = "ACTIVE";
+                }
+                else if($post->status == "2"){
+                    $post->status = "DEACTIVE";
+                }
                 $nestedData['dob'] = $post->dob;
                 $nestedData['father_name'] = $post->father_name;
                 $nestedData['guardian_cell'] = $post->guardian_cell;

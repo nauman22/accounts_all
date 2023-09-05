@@ -312,7 +312,19 @@
                                     </div>
                                 </div>
                                 <br>
-
+                                
+                                    <div class="row align-items-center">
+                                    <div class="col">
+                                        <div class="form-floating">
+                                            <select id="status" name="status" class="form-control">
+                                                <option value="1">ACTIVE</option>
+                                                <option value="2">DEACTIVE</option>
+                                            </select>
+                                            <label for="status">STATUS</label>
+                                        </div>
+                                    </div>
+                                </div>
+<br>
                                 <div class="d-grid gap-2 col-6 mx-auto w-100">
                                     <button class="btn btn-success col-xs-12 form-control"  type="submit">Save</button>
                                     <button class="btn btn-danger col-xs-12 form-control" id="btn_cancel" type="button">Cancel</button>
@@ -367,8 +379,9 @@
                             <th>Description</th>
                             <th>Email</th>
                             <th>Remarks</th>
-                            <th>DOB</th>
-
+                            
+                            <th>Date of Birth</th>
+                            <th>Status</th>
                             <th>Actions</th>
 
 
@@ -428,7 +441,7 @@
                 { "data": "email" },
                 { "data": "remarks" },
                 { "data": "dob" },
-
+                { "data": "status" },
                 { "data": "buttons" },
 
             ]     
