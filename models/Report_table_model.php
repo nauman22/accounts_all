@@ -19,6 +19,11 @@ class Report_table_model extends CI_Model
             $this->db->where('company_id', $p_array['company']);    
             }
         }
+        if(isset($p_array['branch'])){
+            if($p_array['branch'] != 0){
+            $this->db->where('branch_id', $p_array['branch']);    
+            }
+        }
          if(isset($p_array['date_from'])){
             if($p_array['date_from'] != 0){
             $this->db->where('date >=', $p_array['date_from']);    
@@ -57,6 +62,11 @@ class Report_table_model extends CI_Model
         if(isset($p_array['emp'])){
             if($p_array['emp'] != 0){
             $this->db->where('user_id =', $p_array['emp']);    
+            }
+        }
+         if(isset($p_array['wrkemp'])){
+            if($p_array['wrkemp'] != 0){
+            $this->db->where('wrkemp =', $p_array['wrkemp']);    
             }
         }
         $this->db->where('is_active',1);
@@ -79,10 +89,12 @@ class Report_table_model extends CI_Model
          (select name from tbl_bank where id =tbl_cash_register.bank_id ) as bank_name,
          (select name from tbl_head where id =tbl_cash_register.head_id ) as head_name,
          (select name from tbl_category where id =tbl_cash_register.category_id ) as category_name,
-         (select name from tbl_user where id =tbl_cash_register.user_id ) as user_name,
+         (select branch_name from tbl_branch where id =tbl_cash_register.branch_id ) as branch_name,
+         (select name from tbl_user where id =tbl_cash_register.wrkemp ) as work_employee,
+         (select name from tbl_user where id =tbl_cash_register.user_id ) as collection_employee,
          (select name from tbl_mode where id =tbl_cash_register.mode_id ) as mode_name,
          (select name from tbl_company where id =tbl_cash_register.company_id ) as company_name,
-         type_id,bank_id,head_id,category_id,user_id,mode_id,company_id,remarks,id,date,
+         type_id,bank_id,head_id,category_id,user_id,mode_id,company_id,remarks,id,date, srno,
          description,amount
          
          ');
@@ -90,6 +102,11 @@ class Report_table_model extends CI_Model
         if(isset($p_array['company'])){
             if($p_array['company'] != 0){
             $this->db->where('company_id', $p_array['company']);    
+            }
+        }
+        if(isset($p_array['branch'])){
+            if($p_array['branch'] != 0){
+            $this->db->where('branch_id', $p_array['branch']);    
             }
         }
          if(isset($p_array['date_from'])){
@@ -131,9 +148,17 @@ class Report_table_model extends CI_Model
             if($p_array['emp'] != 0){
             $this->db->where('user_id =', $p_array['emp']);    
             }
-        } $this->db->where('is_active',1);
+        }
+        if(isset($p_array['wrkemp'])){
+            if($p_array['wrkemp'] != 0){
+            $this->db->where('wrkemp =', $p_array['wrkemp']);    
+            }
+        }
+         $this->db->where('is_active',1);
           $this->db->group_by('id'); 
         $query = $this->db->get('tbl_cash_register');
+        //echo $this->db->last_query();
+        //exit();
      //   return $query->num_rows(); 
         if($query->num_rows()>0)
         {

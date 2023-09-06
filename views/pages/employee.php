@@ -35,6 +35,24 @@
                                 <div class="row align-items-center">
                                     <div class="col-lg-12 col-md-12 col-xs-12">
                                         <div class="form-floating mb-3">
+                                            <select class="form-control" id="paid_emp" name="paid_emp"  >
+                                                <option value="">SELECT EMPLOYEE</option>
+                                                <?php 
+                                                for($i=0; $i<count($user); $i++){
+                                                    $id = $user[$i]['id'];
+                                                    $text = $user[$i]['name'];
+                                                    echo '<option value="'.$id.'">'.$text.'</option>' ;
+                                                }
+                                                ?>
+                                            </select>
+                                            <label for="paid_emp">PAID BY EMPLOYEE</label> 
+                                        </div>
+                                    </div>
+
+                                </div> 
+                                <div class="row align-items-center">
+                                    <div class="col-lg-12 col-md-12 col-xs-12">
+                                        <div class="form-floating mb-3">
                                             <select class="form-control" id="user_id" name="user_id"  >
                                                 <option value="">SELECT EMPLOYEE</option>
                                                 <?php 
@@ -45,26 +63,10 @@
                                                 }
                                                 ?>
                                             </select>
-                                            <label for="user_id">EMPLOYEE</label>  
+                                            <label for="user_id">RECEIVED BY EMPLOYEE</label> 
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row align-items-center">
-                                    <div class="col-lg-12 col-md-12 col-xs-12">
-                                        <div class="form-floating mb-3">
-                                            <select class="form-control" id="paid_emp" name="paid_emp"  >
-                                                <option value="">PAID EMPLOYEE</option>
-                                                <?php 
-                                                for($i=0; $i<count($user); $i++){
-                                                    $id = $user[$i]['id'];
-                                                    $text = $user[$i]['name'];
-                                                    echo '<option value="'.$id.'">'.$text.'</option>' ;
-                                                }
-                                                ?>
-                                            </select>
-                                            <label for="paid_emp">PAID EMPLOYEE</label>  
-                                        </div>
-                                    </div>
+
                                 </div>
 
                                 <div class="row align-items-center">
@@ -72,7 +74,6 @@
                                         <div class="form-floating mb-3">
                                             <select class="form-control" id="type" name="type"  >
                                                 <option value="">SELECT TYPE</option>
-
                                                 <option value="1">Salary</option>
                                                 <option value="2">Loan</option>
                                                 <option value="3">Return Loan</option>

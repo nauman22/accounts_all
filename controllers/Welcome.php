@@ -26,7 +26,6 @@ class Welcome extends CI_Controller {
     */
     public function index()
     {
-
         $is_login= $this->check_session();
         if($is_login){
             redirect(login);  
@@ -267,8 +266,7 @@ class Welcome extends CI_Controller {
     }
 
     public function login()
-    {    
-        $data = "";
+    {     $data = "";
         //print_r($_POST);
         $data_['msg'] ="";  
         if($_POST){
@@ -359,12 +357,10 @@ class Welcome extends CI_Controller {
         $data['user'] = $this->Welcome_model->get_user($id=null);
         $data['company'] = $this->Welcome_model->get_company($id=null);
 
-        //$data['branch'] = $this->Welcome_model->get_branch($id=null);
-
-        //$data['cash_register'] = $this->Welcome_model->get_type($id=null);
-        //print_r($data);
-        // exit();
-        //$data['menu'] = $this->Welcome_model->get_menu("cash register");
+        /*$data['branch'] = $this->Welcome_model->get_branch($id=null);
+        $data['cash_register'] = $this->Welcome_model->get_type($id=null);
+        $data['menu'] = $this->Welcome_model->get_menu("cash register");*/
+        
         $userid = $_SESSION['id'];
         $data['menu_id'] =2; //$this->Welcome_model->get_menu("dashboard");
         $data['user_rights'] = $this->Welcome_model->get_menu_user($userid);
@@ -659,6 +655,20 @@ class Welcome extends CI_Controller {
         }
     }
 
+
+    public function get_all_branches()
+    {
+        $userData['data'] = $this->Welcome_model->get_branch($id=null);
+        echo json_encode( $userData['data']);
+
+    }
+    public function get_all_Companies()
+    {
+        $userData['data'] = $this->Welcome_model->get_company($id=null);
+        echo json_encode( $userData['data']);
+
+    }   
+  
     public function cheque()
     {
         $is_login= $this->check_session();
@@ -670,7 +680,9 @@ class Welcome extends CI_Controller {
         $data['menu_id'] =5; 
         $data['user_rights'] = $this->Welcome_model->get_menu_user($userid);
         $data['single_menu'] = $this->Welcome_model->get_single_menu($userid,$data['menu_id']);
+
         $data['branch'] = $this->Welcome_model->get_branch($id=null);
+
 
         $this->load->view('common/header.php',$data);
         if(@$data['single_menu'][0]['show_menu'] != 1 ){
@@ -1202,11 +1214,8 @@ class Welcome extends CI_Controller {
                 $nestedData['type_name'] = $post->type_name;
                 $nestedData['bank_name'] = $post->bank_name;
                 $nestedData['head_name'] = $post->head_name;
-                $nestedData['branch_name'] = $post->branch_name;
                 $nestedData['category_name'] = $post->category_name;
-                $nestedData['work_employee'] = $post->work_employee;
-                $nestedData['serialNo'] = $post->srno;
-                $nestedData['collection_employee'] = $post->collection_employee;
+                $nestedData['user_name'] = $post->user_name;
                 $nestedData['mode_name'] = $post->mode_name;
                 $nestedData['company_name'] = $post->company_name;
                 $nestedData['remarks'] = $post->remarks;
@@ -2060,7 +2069,6 @@ class Welcome extends CI_Controller {
                 $nestedData['iban'] = $post->iban;
                 $nestedData['note'] = $post->note;
                 $nestedData['description'] = $post->description;
-                $nestedData['status'] = $post->status;
 
 
                 $nestedData['visa_entry_date'] = $post->visa_entry_date;
@@ -2322,12 +2330,6 @@ class Welcome extends CI_Controller {
                     $post->dob = "";
                 }
 
-                if($post->status == "1"){
-                    $post->status = "ACTIVE";
-                }
-                else if($post->status == "2"){
-                    $post->status = "DEACTIVE";
-                }
                 $nestedData['dob'] = $post->dob;
                 $nestedData['father_name'] = $post->father_name;
                 $nestedData['guardian_cell'] = $post->guardian_cell;

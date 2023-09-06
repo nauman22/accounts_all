@@ -132,8 +132,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div style="display: none;"  class="row align-items-center">
-                                    <div class="col-lg-12 col-md-12 col-xs-12">
+                                <div  class="row align-items-center">
+                                    <div class="col-lg-6 col-md-6 col-xs-12">
                                         <div class="form-floating mb-3">
                                             <select class="form-control" id="head" name="head" >
                                                 <option value="">SELECT HEAD</option>
@@ -151,7 +151,7 @@
                                     </div>
 
 
-                                    <div class="col-lg-4 col-md-4 col-xs-12">
+                                    <div class="col-lg-6 col-md-6 col-xs-12">
                                         <div class="form-floating mb-3">
                                             <select class="form-control"  id="category" name="category" >
                                                 <option value="0">SELECT CATEGORY</option>
@@ -252,7 +252,7 @@
                             <th>Branch</th>
                             <th>Amount</th>
                             <th>Type</th>
-                            <!--<th>Head</th>-->
+                            <th>Head</th>
                             <th>Collection Employee</th>
                             <th>Description</th>
                             <th>Remarks</th>
@@ -285,7 +285,7 @@
             },
             allowClear: true
         });
-        
+
         var table =  $('#datatablesSimple').DataTable({
             "processing": true,
             "serverSide": true,
@@ -305,7 +305,7 @@
                 { "data": "branch_name" },
                 { "data": "amount" },
                 { "data": "type_name" },
-                //{ "data": "head_name" },
+                { "data": "head_name" },
                 { "data": "user_name" },
                 { "data": "description" },
                 { "data": "remarks" },
@@ -342,37 +342,13 @@
     // prepare the form when the DOM is ready 
     $(document).ready(function() { 
         var isDropdown1Changed = false;
-
-        $.ajax({
-            url: "get_branch_users", 
-            method: "POST",
-            dataType: "json", 
-            //data: {id: selectedValue }, 
-            success: function(data) {
-
-                var dropdown = $("#emp");
-                var dropdown2 = $("#wrkemp");
-                dropdown.empty();
-                dropdown2.empty();
-                dropdown.append('<option value="">COLLECTION EMPLOYEE</option>');
-                $.each(data, function(index, emp) {
-                    dropdown.append($('<option></option>').attr('value', emp.id).text(emp.name));
-                });
-                dropdown2.append('<option value="0">WORK EMPLOYEE</option>');
-                $.each(data, function(index, emp) {
-                    dropdown2.append($('<option></option>').attr('value', emp.id).text(emp.name));
-                });
-            },
-            error: function(xhr, status, error) {
-                console.log("Error:", error);
-            }
-        });
+        var isWorkEmployeeChanged = false;
+        loadAllEmployees();
 
         $("#company_id").change(function(){
 
-            isDropdown1Changed = false; 
-            if (!isDropdown1Changed) {
-
+            if (!isWorkEmployeeChanged) {
+                loadAllEmployees();
                 var selectedValue = $(this).val();
                 $.ajax({
                     url: "get_Company_branches",
@@ -387,7 +363,7 @@
                         $.each(data, function(index, branch) {
                             dropdown.append($('<option></option>').attr('value', branch.id).text(branch.branch_name));
                         });
-                        //isDropdown1Changed = true; 
+                        isDropdown1Changed = true; 
                     },
                     error: function(xhr, status, error) {
                         // Handle errors
@@ -400,34 +376,34 @@
 
         $("#branch_id").change(function(){
 
-            // if (!isDropdown1Changed) {
+            if (!isWorkEmployeeChanged) {
 
-            var selectedValue = $(this).val();
-            $.ajax({
-                url: "get_branches_employee", // URL to the server endpoint
-                method: "POST",
-                dataType: "json", // Expected data type of the response
-                data: {id: selectedValue }, 
-                success: function(data) {
+                var selectedValue = $(this).val();
+                $.ajax({
+                    url: "get_branches_employee", // URL to the server endpoint
+                    method: "POST",
+                    dataType: "json", // Expected data type of the response
+                    data: {id: selectedValue }, 
+                    success: function(data) {
 
-                    // Populate the dropdown with data from the response
+                        // Populate the dropdown with data from the response
 
-                    var dropdown = $("#wrkemp");
+                        var dropdown = $("#wrkemp");
 
-                    dropdown.empty();
-                    dropdown.append('<option value="">WORK EMPLOYEE</option>');
-                    $.each(data, function(index, emp) {
-                        dropdown.append($('<option></option>').attr('value', emp.id).text(emp.name));
-                    });
-                    isDropdown1Changed = true; 
-                },
-                error: function(xhr, status, error) {
-                    // Handle errors
-                    console.log("Error:", error);
-                    isDropdown1Changed = false; 
-                }
-            });
-            // }
+                        dropdown.empty();
+                        dropdown.append('<option value="">WORK EMPLOYEE</option>');
+                        $.each(data, function(index, emp) {
+                            dropdown.append($('<option></option>').attr('value', emp.id).text(emp.name));
+                        });
+                        isDropdown1Changed = true; 
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle errors
+                        console.log("Error:", error);
+                        isDropdown1Changed = false; 
+                    }
+                });
+            }
         });
 
         $("#wrkemp").change(function(){
@@ -456,12 +432,12 @@
                             company_dropdown.append($('<option></option>').attr('value', emp.company_id).text(emp.company_name));
                         });
 
-                        isDropdown1Changed = true; 
+                        isWorkEmployeeChanged = true; 
                     },
                     error: function(xhr, status, error) {
                         // Handle errors
                         console.log("Error:", error);
-                        isDropdown1Changed = false; 
+                        isWorkEmployeeChanged = false; 
                     }
                 });
             }
@@ -583,7 +559,7 @@
 
     // post-submit callback 
     function showResponse(responseText, statusText, xhr, $form)  { 
-       
+
 
         if(responseText.status == true){
             Swal.fire(
@@ -596,12 +572,14 @@
             $("#remarks").val("");
             document.getElementById("upload_doc_cash_register").value = "";
             $('#datatablesSimple').DataTable().ajax.reload();
-             
-           /* $("#company_id").html('<option></option>').trigger('change');
+
+            $("#company_id").html('<option></option>').trigger('change');
             $("#branch_id").html('<option></option>').trigger('change');
             $("#emp").html('<option></option>').trigger('change');
-            $("#wrkemp").html('<option></option>').trigger('change');*/
-            
+            $("#wrkemp").html('<option></option>').trigger('change');
+            loadAllCompanies();
+            loadAllEmployees();
+
         } else{
             Swal.fire({
                 icon: 'error',
@@ -609,7 +587,62 @@
                 text: responseText.message,
             })
         }
-        
+
     } 
+
+
+    function loadAllCompanies()
+    {
+        $.ajax({
+            url: "get_all_Companies",
+            method: "POST",
+            dataType: "json", 
+
+            success: function(data) {
+
+                var dropdown = $("#company_id");
+                dropdown.empty();
+                dropdown.append('<option value="">SELECT COMPANY</option>');
+                $.each(data, function(index, company) {
+                    dropdown.append($('<option></option>').attr('value', company.id).text(company.name));
+                });
+
+            },
+            error: function(xhr, status, error) {
+                // Handle errors
+                console.log("Error:", error);
+
+            }
+        });
+    } 
+
+    function loadAllEmployees()
+    {
+        $.ajax({
+            url: "get_branch_users",
+            method: "POST",
+            dataType: "json", 
+
+            success: function(data) {
+
+                var dropdown = $("#emp");
+                var dropdown1 = $("#wrkemp");
+                dropdown.empty();
+                dropdown1.empty();
+                dropdown.append('<option value="">COLLECTION EMPLOYEE</option>');
+                dropdown1.append('<option value="0">WORK EMPLOYEE</option>');
+                $.each(data, function(index, emp) {
+                    dropdown.append($('<option></option>').attr('value', emp.id).text(emp.name));
+                    dropdown1.append($('<option></option>').attr('value', emp.id).text(emp.name));
+                });
+
+            },
+            error: function(xhr, status, error) {
+                // Handle errors
+                console.log("Error:", error);
+
+            }
+        });
+    }
 
 </script>

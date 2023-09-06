@@ -190,38 +190,38 @@ class Welcome_model extends CI_Model {
                             $table="tbl_mode";
                         } 
                         else
-                        if($menu_id == 7){
-                            $table="tbl_employee";
-                        } else
-                            if($menu_id == 8){
-                                $table="tbl_type";
+                            if($menu_id == 7){
+                                $table="tbl_employee";
                             } else
-                                if($menu_id == 10){
-                                    $table="tbl_user";
+                                if($menu_id == 8){
+                                    $table="tbl_type";
                                 } else
-                                    if($menu_id == 12){
-                                        $table="tbl_company";
+                                    if($menu_id == 10){
+                                        $table="tbl_user";
                                     } else
-                                        if($menu_id == 14){
-                                            $table="tbl_bank";
+                                        if($menu_id == 12){
+                                            $table="tbl_company";
                                         } else
-                                            if($menu_id == 15){
-                                                $table="tbl_asset";
+                                            if($menu_id == 14){
+                                                $table="tbl_bank";
                                             } else
-                                                if($menu_id == 22){
-                                                    $table="tbl_branch";
-                                                } 
-                                                /*$date =date('Y-m-d H:i:s', strtotime('2010-10-12 15:09:00') );
-                                                $data = array(
-                                                'name'=>$name,
-                                                'description'=>$description,
-                                                'remarks'=>$remarks,
-                                                'edate'=>$date,
-                                                'ekpo'=>1,
-                                                'is_active'=>1
-                                                ); */
+                                                if($menu_id == 15){
+                                                    $table="tbl_asset";
+                                                } else
+                                                    if($menu_id == 22){
+                                                        $table="tbl_branch";
+                                                    } 
+                                                    /*$date =date('Y-m-d H:i:s', strtotime('2010-10-12 15:09:00') );
+                                                    $data = array(
+                                                    'name'=>$name,
+                                                    'description'=>$description,
+                                                    'remarks'=>$remarks,
+                                                    'edate'=>$date,
+                                                    'ekpo'=>1,
+                                                    'is_active'=>1
+                                                    ); */
 
-                                                if($button_id == 1){
+                                                    if($button_id == 1){
             $this->db->where('is_active','1');
             $this->db->where('id',$row_id);
             $this->db->select('*');
@@ -410,7 +410,7 @@ class Welcome_model extends CI_Model {
 
         $response = array();
         $this->db->where('is_active','1');
-        $this->db->order_by('id', 'DESC');  //actual field name of id
+        $this->db->order_by('id', 'ASC');  //actual field name of id
 
         // Select record
         $this->db->select('*');
@@ -437,7 +437,7 @@ class Welcome_model extends CI_Model {
 
         $response = array();
         $this->db->where('is_active','1');
-        $this->db->order_by('id', 'DESC');  //actual field name of id
+        $this->db->order_by('id', 'ASC');  //actual field name of id
 
         // Select record
         $this->db->select('*');
@@ -1241,6 +1241,7 @@ class Welcome_model extends CI_Model {
         return $response;
     } 
     function add_cheque(){
+        $branch_id=$this->input->post('branch_id');
         $chqno=$this->input->post('chqno');
         $type=$this->input->post('type');
         $datechq=$this->input->post('date');
@@ -1256,6 +1257,7 @@ class Welcome_model extends CI_Model {
 
         if($id>0){
             $data = array(
+                'branch_id'=>$branch_id,
                 'chqno'=>$chqno,
                 'type'=>$type,
                 'date'=>$datechq,
@@ -1274,6 +1276,7 @@ class Welcome_model extends CI_Model {
             $response =   $this->db->update('tbl_cheque',$data);
         } else{
             $data = array(
+                'branch_id'=>$branch_id,
                 'chqno'=>$chqno,
                 'type'=>$type,
                 'date'=>$datechq,
@@ -1319,7 +1322,6 @@ class Welcome_model extends CI_Model {
         $description=$this->input->post('description');
         $email=$this->input->post('email');
         $remarks=$this->input->post('remarks');
-        $status=$this->input->post('status');
 
 
         $visa_entry_date=$this->input->post('visa_entry_date');
@@ -1361,7 +1363,6 @@ class Welcome_model extends CI_Model {
                 'cdate'=>$date,
                 'ckpo'=>1,
                 'is_active'=>1,
-                'status'=>$status,
 
 
                 'visa_entry_date'=>$visa_entry_date,
@@ -1401,7 +1402,7 @@ class Welcome_model extends CI_Model {
                 'edate'=>$date,
                 'ekpo'=>1,
                 'is_active'=>1,
-                'status'=>$status,
+
                 'visa_entry_date'=>$visa_entry_date,
                 'visa_expiry_date'=>$visa_expiry_date,
                 'labour_entry_date'=>$labour_entry_date,
@@ -1420,7 +1421,7 @@ class Welcome_model extends CI_Model {
     } 
 
     function add_employee(){
-        
+
         $user_id=$this->input->post('user_id');
         $paid_emp=$this->input->post('paid_emp');
         $type=$this->input->post('type');
@@ -1462,9 +1463,9 @@ class Welcome_model extends CI_Model {
             $response =   $this->db->insert('tbl_employee',$data);
             $insert_id = $this->db->insert_id();
 
-           /* print_r($this->db->error());
+            /* print_r($this->db->error());
             exit();*/
-            
+
             return $insert_id;
         }
     }

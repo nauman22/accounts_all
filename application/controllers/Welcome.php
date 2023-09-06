@@ -357,12 +357,10 @@ class Welcome extends CI_Controller {
         $data['user'] = $this->Welcome_model->get_user($id=null);
         $data['company'] = $this->Welcome_model->get_company($id=null);
 
-        //$data['branch'] = $this->Welcome_model->get_branch($id=null);
-
-        //$data['cash_register'] = $this->Welcome_model->get_type($id=null);
-        //print_r($data);
-        // exit();
-        //$data['menu'] = $this->Welcome_model->get_menu("cash register");
+        /*$data['branch'] = $this->Welcome_model->get_branch($id=null);
+        $data['cash_register'] = $this->Welcome_model->get_type($id=null);
+        $data['menu'] = $this->Welcome_model->get_menu("cash register");*/
+        
         $userid = $_SESSION['id'];
         $data['menu_id'] =2; //$this->Welcome_model->get_menu("dashboard");
         $data['user_rights'] = $this->Welcome_model->get_menu_user($userid);
@@ -664,6 +662,13 @@ class Welcome extends CI_Controller {
         echo json_encode( $userData['data']);
 
     }
+    public function get_all_Companies()
+    {
+        $userData['data'] = $this->Welcome_model->get_company($id=null);
+        echo json_encode( $userData['data']);
+
+    }   
+  
     public function cheque()
     {
         $is_login= $this->check_session();
